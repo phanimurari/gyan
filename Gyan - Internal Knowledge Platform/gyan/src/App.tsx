@@ -1,3 +1,5 @@
-const App = () => <h1>Home</h1>
+import Home from "./user/Components/Home";
+
+const App = () => <Home/>
 
 export default App
