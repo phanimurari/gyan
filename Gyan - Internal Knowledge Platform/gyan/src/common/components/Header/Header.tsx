@@ -6,19 +6,20 @@ import { StyledButtonAndProfileImageContainer, StyledHeaderContainer, StyledInpu
 
 import commonStrings from '../../i18n/commonStrings.json'
 import imageUrls from '../../constants/imageUrls/imageUrls.json'
+import ReactPopUpModal from "../ReactPopUpModal";
 
 const Header = () => <StyledHeaderContainer>
     <ProfileOrLogoMaker url={imageUrls.logo}/>
     <>
         <StyledInputElementContainer>
             <AiOutlineSearch/>
-            <InputElement placeHolderText={commonStrings.searchInputElementPlaceHolderText}/>
+            <InputElement placeHolderText={commonStrings.searchInputElementPlaceHolderText} value={''}/>
         </StyledInputElementContainer>
     </>
     <>
         <StyledButtonAndProfileImageContainer>
-            <ButtonElement text={commonStrings.headerButtonText}/>
-            <ProfileOrLogoMaker url={imageUrls.profile} />
+            <ButtonElement text={commonStrings.headerButtonText} type={commonStrings.typeButton}/>
+            <ButtonElement text={commonStrings.loginButtonText} type={commonStrings.typeButton}/>
         </StyledButtonAndProfileImageContainer>
     </>
 </StyledHeaderContainer>

@@ -1,7 +1,8 @@
 import { StyledButtonElement } from "./styledComponents"
 
 interface ButtonElementProps {
-    text: string
+    text: string,
+    type: string
 }
 
 const ButtonElement = (props: ButtonElementProps) => {

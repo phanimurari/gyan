@@ -1,6 +1,7 @@
 {
 "headerButtonText": "Write a Post",
 "profilePicAltText": "Profile image",
-"searchInputElementPlaceHolderText" : "Search"
-
+"searchInputElementPlaceHolderText" : "Search",
+"loginButtonText": "Login",
+"typeButton": "button"
 }

@@ -1,5 +1,6 @@
 {
     "displayEmptyPostsText" : "No Posts",
     "displayEmptyTagsText": "No Tags",
-    "writeAPostButtonText": "Write a Post"
+    "writeAPostButtonText": "Write a Post",
+    "typeButton": "button"
 }

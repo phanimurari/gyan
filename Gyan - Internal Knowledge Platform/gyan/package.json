@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ib/api": "2.0.3",
+    "@ib/api-constants": "2.0.0",
+    "@ib/mobx-promise": "2.0.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "13.5.0",
@@ -11,10 +14,13 @@
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
     "js-cookie": "3.0.1",
+    "mobx": "6.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "4.7.1",
+    "react-modal": "3.16.1",
     "react-scripts": "5.0.1",
+    "reactjs-popup": "2.0.5",
     "styled-components": "5.3.6",
     "styled-components.macro": "1.0.0",
     "twin.macro": "2.8.2",
@@ -46,6 +52,8 @@
     ]
   },
   "devDependencies": {
+    "@types/react-modal": "3.13.1",
+    "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "5.1.26"
   }
 }

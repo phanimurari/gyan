@@ -7,7 +7,7 @@ import { StyledPostsContainer } from "./styledComponents"
 const PostsContainer = () => {
     return <StyledPostsContainer>
         <EmptyView displayText={userStrings.displayEmptyPostsText} />
-        <ButtonElement text={userStrings.writeAPostButtonText}/>
+        <ButtonElement text={userStrings.writeAPostButtonText} type={userStrings.typeButton}/>
     </StyledPostsContainer>
 }
 

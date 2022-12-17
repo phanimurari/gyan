@@ -1,0 +1,8 @@
+{
+    "userNameInputElementPlaceHolderText": "Enter your Name",
+    "userPasswordElementPlaceHolderText": "Enter your Password",
+    "loginButtonText": "Login",
+    "loginButtonType": "Submit",
+    "UserNameInputlabelDisplayText": "User Name",
+    "UserPasswordInputlabelDisplayText": "Password"
+}

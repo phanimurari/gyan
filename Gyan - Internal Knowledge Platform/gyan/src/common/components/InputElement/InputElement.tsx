@@ -1,14 +1,15 @@
 import { StyledInputElement } from "./StyledComponents"
 
 interface InputElementProps {
-    placeHolderText : string
+    placeHolderText : string,
+    value: string
 }
 
 const InputElement = (props: InputElementProps) => {
     
-    const {placeHolderText} = props
+    const {placeHolderText, value} = props
 
-    return <StyledInputElement placeholder={placeHolderText} />
+    return <StyledInputElement placeholder={placeHolderText} value={value}/>
 
 }
 

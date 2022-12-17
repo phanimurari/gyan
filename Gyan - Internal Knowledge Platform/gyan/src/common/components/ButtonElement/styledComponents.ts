@@ -3,4 +3,4 @@ import tw from "twin.macro";
 
 export const StyledButtonElement = styled.button`
 
-${tw `text-white text-sm bg-blue-600 px-2 py-3 font-semibold border-0 rounded`}`
+${tw `text-white text-sm px-2 bg-blue py-3 font-semibold border-0 rounded`}`
