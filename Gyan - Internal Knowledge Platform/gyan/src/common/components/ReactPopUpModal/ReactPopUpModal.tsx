@@ -33,7 +33,7 @@ const ReactPopUpModal = (props : ReactPopUpModalPropsType) => {
   return (
     <div>
       <Modal
-        isOpen={true}
+        isOpen={false}
         onRequestClose={closeModal}
         style={customStyles}
       >

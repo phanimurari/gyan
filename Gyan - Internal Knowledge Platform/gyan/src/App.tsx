@@ -1,10 +1,15 @@
-import {Route, Switch} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import { Provider } from "mobx-react";
 import { HOME_PATH } from './common/constants/routePathConstants';
-import Home from "./user/Components/Home";
 import HomeRoute from './user/Routes/HomeRoute';
 
-const App = () =>  <Switch>
-  <Route exact path={HOME_PATH} component={HomeRoute} />
-</Switch>
+import stores from "./stores";
+
+const App = () =>
+  <Provider {...stores}>
+     <Switch>
+      <Route exact path={HOME_PATH} component={HomeRoute} />
+    </Switch>
+  </Provider>
 
 export default App
