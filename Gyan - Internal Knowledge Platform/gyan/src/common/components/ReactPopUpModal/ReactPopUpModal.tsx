@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
+import {AiOutlineCloseCircle} from 'react-icons/ai'
+import { StyledCloseButton, StyledCloseButtonContainer } from './styledComponents';
 
 const customStyles = {
   content: {
@@ -33,11 +35,13 @@ const ReactPopUpModal = (props : ReactPopUpModalPropsType) => {
   return (
     <div>
       <Modal
-        isOpen={false}
+        isOpen={true}
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <button onClick={closeModal}>close</button>
+        <StyledCloseButtonContainer>
+          <StyledCloseButton onClick={closeModal}><AiOutlineCloseCircle/></StyledCloseButton>
+        </StyledCloseButtonContainer>
         {SignInComponent}
       </Modal>
     </div>

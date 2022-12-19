@@ -1,5 +1,5 @@
 import InputElement from "../../../../common/components/InputElement"
-import { StyledFormContainer } from "./styledComponents"
+import { StyledFormContainer, StyledInputElementContainer } from "./styledComponents"
 
 import strings from '../../../i18n/strings.json'
 import ButtonElement from "../../../../common/components/ButtonElement"
@@ -13,10 +13,14 @@ const [userPasswordInputElementValue, setUserPasswordInputElement] = useState(""
 
 return <StyledFormContainer>
     <InputLableElement labelDisplayText = {strings.UserNameInputlabelDisplayText}/>
-    <InputElement placeHolderText = {strings.userNameInputElementPlaceHolderText} value ={userNameInputElementValue} />
-    <InputLableElement labelDisplayText= {strings.UserPasswordInputlabelDisplayText}/>
-    <InputElement placeHolderText={strings.userPasswordElementPlaceHolderText} value = {userPasswordInputElementValue}/>
-    <ButtonElement text={strings.loginButtonText} type={strings.loginButtonType}/>
+   <StyledInputElementContainer>
+        <InputElement placeHolderText={strings.userNameInputElementPlaceHolderText} value={userNameInputElementValue} />
+    </StyledInputElementContainer>
+    <InputLableElement labelDisplayText={strings.UserPasswordInputlabelDisplayText} />
+    <StyledInputElementContainer>
+        <InputElement placeHolderText={strings.userPasswordElementPlaceHolderText} value={userPasswordInputElementValue} />
+    </StyledInputElementContainer>
+    <ButtonElement text={strings.loginButtonText} type={strings.loginButtonType} />
 </StyledFormContainer>
 
 }
