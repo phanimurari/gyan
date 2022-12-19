@@ -15,34 +15,36 @@ const customStyles = {
 };
 
 interface ReactPopUpModalPropsType {
-  SignInComponent: React.ReactNode
+  componentPassed: React.ReactNode,
+  displayModal: boolean,
+  onToggleLoginModal: (value: boolean) => void
 }
 
 const ReactPopUpModal = (props : ReactPopUpModalPropsType) => {
   
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  const {SignInComponent} = props
+  const {componentPassed, displayModal, onToggleLoginModal} = props
 
   function openModal() {
-    setIsOpen(true);
+    onToggleLoginModal(true);
   }
 
   const closeModal = ()=> {
-    setIsOpen(false);
+    onToggleLoginModal(false);
   }
 
   return (
     <div>
       <Modal
-        isOpen={true}
+        isOpen={displayModal}
         onRequestClose={closeModal}
         style={customStyles}
       >
         <StyledCloseButtonContainer>
           <StyledCloseButton onClick={closeModal}><AiOutlineCloseCircle/></StyledCloseButton>
         </StyledCloseButtonContainer>
-        {SignInComponent}
+        {componentPassed}
       </Modal>
     </div>
   );

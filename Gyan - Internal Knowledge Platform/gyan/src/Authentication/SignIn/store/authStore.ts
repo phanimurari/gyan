@@ -1,5 +1,5 @@
 import { makeAutoObservable, observable, computed, action, flow } from "mobx"
-import { API_FAILED, API_INITIAL, } from "@ib/api-constants";
+import { API_FAILED, API_FETCHING, API_INITIAL, API_SUCCESS, } from "@ib/api-constants";
 import AuthFixtureService from "../services/AuthFiextureService";
 import AuthAPIService from "../services/AuthApiService";
 import { statusCodes } from "../../../common/constants/ApiConstants";
@@ -28,26 +28,30 @@ class AuthStore {
         this.userLoginApiStatus = API_INITIAL
     }
 
-    setUserLoginApiError (response :any) {
-        this.userSignInApiError = ''
-        setAccessToken(response.access_token)
-    }
-
-    setUserLoginApiResponse (error: Error) {
+    setUserLoginApiError (error: Error) {
+       
         this.userLoginApiStatus = API_FAILED
         this.userSignInApiError = getUserDisplayableErrorMessage(error)  
+    }
+
+  setUserLoginApiResponse(response: any) {
+        this.userSignInApiError = ''
+        this.userLoginApiStatus = API_SUCCESS
+        setAccessToken(response.access_token)
     }
 
     userLogin = async (loginObject: {
         username: string;
         password: string;
-      }) => {
+    }) => {
+      
+        this.userLoginApiStatus = API_FETCHING
+
         const stringifiedLoginObject = JSON.stringify(loginObject);
     
         const userLoginPromise = await this.authService.logIn(
           stringifiedLoginObject
         );
-    
         try {
           const statusCode = userLoginPromise.status_code;
           if (statusCode === statusCodes.badRequestErrorCode) {

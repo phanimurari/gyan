@@ -2,7 +2,7 @@ import { resolveWithTimeout } from '../../../utilis/testUtilis'
 import signInFixture from '../fixtures/singInFixture.json'
 
 class AuthFixtureService {
-    logIn(loginObject: any) {
+   logIn(loginObject: {}) {
       return resolveWithTimeout(signInFixture)
    }
 }

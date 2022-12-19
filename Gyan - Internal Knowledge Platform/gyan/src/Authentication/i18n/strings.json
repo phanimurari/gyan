@@ -2,7 +2,8 @@
     "userNameInputElementPlaceHolderText": "Enter your Name",
     "userPasswordElementPlaceHolderText": "Enter your Password",
     "loginButtonText": "Login",
-    "loginButtonType": "Submit",
+    "loginButtonType": "submit",
     "UserNameInputlabelDisplayText": "User Name",
-    "UserPasswordInputlabelDisplayText": "Password"
+    "UserPasswordInputlabelDisplayText": "Password",
+    "invalidCredentials": "Invalid Username or Password"
 }

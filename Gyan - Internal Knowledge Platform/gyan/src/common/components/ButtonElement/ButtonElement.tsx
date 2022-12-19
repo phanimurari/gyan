@@ -2,13 +2,18 @@ import { StyledButtonElement } from "./styledComponents"
 
 interface ButtonElementProps {
     text: string,
-    type: string
+    type: string,
+    onClickMethod :(value:boolean) => void
 }
 
 const ButtonElement = (props: ButtonElementProps) => {
     
-    const {text} = props
+    const {text, onClickMethod} = props
 
-    return <StyledButtonElement>{text}</StyledButtonElement>
+    const onClickButton = () => {
+        onClickMethod(true)
+    }
+
+    return <StyledButtonElement onClick={onClickButton}>{text}</StyledButtonElement>
 }
 export {ButtonElement}

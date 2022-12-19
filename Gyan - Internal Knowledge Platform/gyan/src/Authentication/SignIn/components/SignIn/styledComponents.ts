@@ -6,3 +6,5 @@ export const StyledFormContainer = styled.form`${tw`flex flex-col`}`
 export const StyledInputElementContainer = styled.div`${tw`p-4 mb-3`}
 border: 1px solid #dfe4ed;
 `
+export const StyledErrorMessageElement = styled.p`${tw``}
+color: #f52950`

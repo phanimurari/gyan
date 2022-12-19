@@ -1,26 +1,63 @@
 import InputElement from "../../../../common/components/InputElement"
-import { StyledFormContainer, StyledInputElementContainer } from "./styledComponents"
-
+import { StyledErrorMessageElement, StyledFormContainer, StyledInputElementContainer } from "./styledComponents"
 import strings from '../../../i18n/strings.json'
-import ButtonElement from "../../../../common/components/ButtonElement"
 import InputLableElement from "../../../../common/components/InputLableElement"
 import { useState } from "react"
+import { API_SUCCESS } from "@ib/api-constants"
+import SubmitButtonElement from "../../../../common/components/SubmitButtonElement"
 
-const SignInComponent = () => {
+interface signInComponentProps {
+    userLogin: (loginObject: {}) => void,
+    onToggleLoginModal: (value: boolean) => void,
+    userLoginApiStatus: number
+}
+
+const SignInComponent = (props: signInComponentProps) => {
+
+const {userLogin, onToggleLoginModal, userLoginApiStatus} = props
 
 const [userNameInputElementValue, setUserNameInputElementValue ] = useState("")
 const [userPasswordInputElementValue, setUserPasswordInputElement] = useState("")
+const [errorMessage , setErrorMessage] = useState("")
+const [displayErrorMessage, setDisplayingErrorMessage] = useState(false)
+    
+    const onLogin = async (event: any) => {
+      event.preventDefault()
+      if (userNameInputElementValue !== '' && userPasswordInputElementValue !== '') { 
+          setDisplayingErrorMessage(false)
+          const loginObject = {
+              username: userNameInputElementValue,
+              password: userPasswordInputElementValue
+          }
+          await userLogin(loginObject)
 
-return <StyledFormContainer>
-    <InputLableElement labelDisplayText = {strings.UserNameInputlabelDisplayText}/>
+          if (userLoginApiStatus === API_SUCCESS) {
+              console.log("iam calling")
+              onToggleLoginModal(false)
+          }
+          
+      }
+      else {
+          setDisplayingErrorMessage(true)
+      }
+    }    
+
+    const renderErrorMessage = () => displayErrorMessage ? <StyledErrorMessageElement>{strings.invalidCredentials}</StyledErrorMessageElement> : null
+    const setUserName = (event: React.ChangeEvent<HTMLInputElement>) => setUserNameInputElementValue(event.target.value)
+    const setPassword = (event: React.ChangeEvent<HTMLInputElement>) => setUserPasswordInputElement(event.target.value)
+
+
+return <StyledFormContainer onSubmit={onLogin}>
+    <InputLableElement labelDisplayText={strings.UserNameInputlabelDisplayText} />
    <StyledInputElementContainer>
-        <InputElement placeHolderText={strings.userNameInputElementPlaceHolderText} value={userNameInputElementValue} />
+        <InputElement placeHolderText={strings.userNameInputElementPlaceHolderText} value={userNameInputElementValue} onChangeMethod={setUserName} />
     </StyledInputElementContainer>
     <InputLableElement labelDisplayText={strings.UserPasswordInputlabelDisplayText} />
     <StyledInputElementContainer>
-        <InputElement placeHolderText={strings.userPasswordElementPlaceHolderText} value={userPasswordInputElementValue} />
+        <InputElement placeHolderText={strings.userPasswordElementPlaceHolderText} value={userPasswordInputElementValue} onChangeMethod={setPassword}  />
     </StyledInputElementContainer>
-    <ButtonElement text={strings.loginButtonText} type={strings.loginButtonType} />
+    <SubmitButtonElement text={strings.loginButtonText} type={strings.loginButtonType}/>
+    {renderErrorMessage()}
 </StyledFormContainer>
 
 }
