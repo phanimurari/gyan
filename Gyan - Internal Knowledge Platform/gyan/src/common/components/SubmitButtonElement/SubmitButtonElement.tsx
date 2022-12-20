@@ -8,7 +8,7 @@ interface SubmitButtonElementProps {
 
 const SubmitButtonElement = (props: SubmitButtonElementProps) => {
     
-    const {text} = props
+    const {text, type} = props
 
     return <StyledSubmitButtonElement type="submit">{text}</StyledSubmitButtonElement>
 }

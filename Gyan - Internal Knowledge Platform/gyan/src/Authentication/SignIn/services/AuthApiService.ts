@@ -13,7 +13,6 @@ class AuthAPIService {
       baseURL: config.BASE_URL,
     });
 
-    console.log(this.api.getBaseURL);
   }
 
   logIn(stringifiedLoginObject: string) {

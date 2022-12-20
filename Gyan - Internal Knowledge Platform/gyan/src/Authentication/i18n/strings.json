@@ -5,5 +5,6 @@
     "loginButtonType": "submit",
     "UserNameInputlabelDisplayText": "User Name",
     "UserPasswordInputlabelDisplayText": "Password",
-    "invalidCredentials": "Invalid Username or Password"
+    "invalidCredentials": "Invalid Username or Password",
+    "loginFormHeadingContent" : "Hi there! Please login"
 }

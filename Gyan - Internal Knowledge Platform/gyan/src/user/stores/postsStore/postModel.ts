@@ -1,0 +1,5 @@
+class PostModel {
+
+}
+
+export {PostModel}

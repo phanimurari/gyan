@@ -6,3 +6,5 @@ justify-content: flex-end`
 
 export const StyledCloseButton = styled.button`${tw`bg-transparent border-0`}
 `
+
+export const StyeledReactModalContainer= styled.div`${tw ``}`

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import {AiOutlineCloseCircle} from 'react-icons/ai'
-import { StyledCloseButton, StyledCloseButtonContainer } from './styledComponents';
+import { StyeledReactModalContainer, StyledCloseButton, StyledCloseButtonContainer } from './styledComponents';
 
 const customStyles = {
   content: {
@@ -22,20 +22,14 @@ interface ReactPopUpModalPropsType {
 
 const ReactPopUpModal = (props : ReactPopUpModalPropsType) => {
   
-  const [modalIsOpen, setIsOpen] = useState(false);
-
   const {componentPassed, displayModal, onToggleLoginModal} = props
-
-  function openModal() {
-    onToggleLoginModal(true);
-  }
 
   const closeModal = ()=> {
     onToggleLoginModal(false);
   }
 
   return (
-    <div>
+    <StyeledReactModalContainer>
       <Modal
         isOpen={displayModal}
         onRequestClose={closeModal}
@@ -46,7 +40,7 @@ const ReactPopUpModal = (props : ReactPopUpModalPropsType) => {
         </StyledCloseButtonContainer>
         {componentPassed}
       </Modal>
-    </div>
+    </StyeledReactModalContainer>
   );
 }
 

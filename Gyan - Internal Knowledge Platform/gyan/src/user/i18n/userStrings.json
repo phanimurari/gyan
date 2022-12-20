@@ -2,5 +2,12 @@
     "displayEmptyPostsText" : "No Posts",
     "displayEmptyTagsText": "No Tags",
     "writeAPostButtonText": "Write a Post",
-    "typeButton": "button"
+    "typeButton": "button",
+    "postButtonContent": "Post",
+    "typeSubmit": "submit",
+    "createAModalHeadingContent" : "Write a Post",
+    "titleInputElementPlaceHolderText" : "Write your Post Title",
+    "descriptionInputElemenetPlaceHolderText" : "Write your Post Description",
+    "tagsInputElementPlaceHolderText" : "Write your Post Tag",
+    "createPostFormSubmitErrorMessage": "*Invalid Values"
 }

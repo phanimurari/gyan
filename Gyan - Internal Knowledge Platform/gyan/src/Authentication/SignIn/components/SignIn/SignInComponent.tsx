@@ -1,10 +1,11 @@
 import InputElement from "../../../../common/components/InputElement"
-import { StyledErrorMessageElement, StyledFormContainer, StyledInputElementContainer } from "./styledComponents"
+import { StyledErrorMessageElement, StyledFormContainer, StyledFormHeadingElement, StyledInputElementContainer } from "./styledComponents"
 import strings from '../../../i18n/strings.json'
 import InputLableElement from "../../../../common/components/InputLableElement"
 import { useState } from "react"
 import { API_SUCCESS } from "@ib/api-constants"
 import SubmitButtonElement from "../../../../common/components/SubmitButtonElement"
+import { getAccessToken } from "../../../../utilis/StorageUtilis"
 
 interface signInComponentProps {
     userLogin: (loginObject: {}) => void,
@@ -15,6 +16,8 @@ interface signInComponentProps {
 const SignInComponent = (props: signInComponentProps) => {
 
 const {userLogin, onToggleLoginModal, userLoginApiStatus} = props
+
+    console.log(userLoginApiStatus, "SigninComponent")
 
 const [userNameInputElementValue, setUserNameInputElementValue ] = useState("")
 const [userPasswordInputElementValue, setUserPasswordInputElement] = useState("")
@@ -31,11 +34,9 @@ const [displayErrorMessage, setDisplayingErrorMessage] = useState(false)
           }
           await userLogin(loginObject)
 
-          if (userLoginApiStatus === API_SUCCESS) {
-              console.log("iam calling")
+          if (getAccessToken() !== undefined) {
               onToggleLoginModal(false)
           }
-          
       }
       else {
           setDisplayingErrorMessage(true)
@@ -47,7 +48,8 @@ const [displayErrorMessage, setDisplayingErrorMessage] = useState(false)
     const setPassword = (event: React.ChangeEvent<HTMLInputElement>) => setUserPasswordInputElement(event.target.value)
 
 
-return <StyledFormContainer onSubmit={onLogin}>
+    return <StyledFormContainer onSubmit={onLogin}>
+        <StyledFormHeadingElement>{strings.loginFormHeadingContent}</StyledFormHeadingElement>
     <InputLableElement labelDisplayText={strings.UserNameInputlabelDisplayText} />
    <StyledInputElementContainer>
         <InputElement placeHolderText={strings.userNameInputElementPlaceHolderText} value={userNameInputElementValue} onChangeMethod={setUserName} />
