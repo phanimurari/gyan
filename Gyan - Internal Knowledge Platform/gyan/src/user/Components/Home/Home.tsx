@@ -1,6 +1,7 @@
 import SignInComponent from "../../../Authentication/SignIn/components/SignIn";
 import Header from "../../../common/components/Header";
 import ReactPopUpModal from "../../../common/components/ReactPopUpModal";
+import { postObjectType } from "../../stores/types";
 import CreateAPostContainer from "../CreateAPostContainer";
 import PostsContainer from "../PostContainer";
 import TagsContainer from "../TagsContainer";
@@ -14,18 +15,19 @@ interface HomeProps {
     onToggleLoginModal: (value: boolean) => void,
     onToggleCreateAPostModal : (value: boolean) => void,
     isUerLoggedIn: boolean,
-    userLoginApiStatus: number
+    userLoginApiStatus: number,
+    listOfPosts : Array<postObjectType>
 }
 
 const Home = (props: HomeProps) => {
 
-const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus } = props
+const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts } = props
     
 return <StyledHomeContainer> 
     <Header onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
     <StyledTagsAndPostContainer>
         <TagsContainer />
-        <PostsContainer onToggleLoginModal={onToggleLoginModal} />
+        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
          <ReactPopUpModal
             componentPassed={<CreateAPostContainer/>}
             displayModal={displayCreateApostModal}

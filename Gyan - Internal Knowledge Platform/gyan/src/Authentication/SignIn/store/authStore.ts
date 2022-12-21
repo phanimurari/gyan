@@ -13,6 +13,7 @@ class AuthStore {
     constructor(authService:any) {
         makeAutoObservable(this, {
             userLoginApiStatus: observable,
+            userSignInApiError : observable,  
             init: action,
             userLogin: action,
             setUserLoginApiError : action,

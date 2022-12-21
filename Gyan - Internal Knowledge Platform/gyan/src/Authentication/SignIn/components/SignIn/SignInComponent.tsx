@@ -17,8 +17,6 @@ const SignInComponent = (props: signInComponentProps) => {
 
 const {userLogin, onToggleLoginModal, userLoginApiStatus} = props
 
-    console.log(userLoginApiStatus, "SigninComponent")
-
 const [userNameInputElementValue, setUserNameInputElementValue ] = useState("")
 const [userPasswordInputElementValue, setUserPasswordInputElement] = useState("")
 const [errorMessage , setErrorMessage] = useState("")

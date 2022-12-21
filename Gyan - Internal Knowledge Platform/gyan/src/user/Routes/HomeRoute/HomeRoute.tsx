@@ -1,19 +1,30 @@
 import Home from "../../Components/Home"
 import { inject, observer } from "mobx-react";
-import { RouteComponentProps } from "react-router-dom";
-import { AuthStore } from "../../../Authentication/SignIn/store/authStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getAccessToken } from "../../../utilis/StorageUtilis";
+import { toJS } from "mobx";
 
 
-const HomeRoute = inject("authStore")(observer((props : any) => {
+const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     
     const [displayLoginModal, setDisplayLoginModal] = useState(false)
     const [displayCreateApostModal, setDisplayCreateApostModal] = useState(false)
-
-    const getInjectedProps = () => props;
+    const [listOfPosts, setListOfPosts] = useState([])
     
+    const getInjectedProps = () => props;
     const getAuthStore = () => getInjectedProps().authStore
+    const getPostsStore = () => getInjectedProps().postsStore
+
+    useEffect(() => {
+        const getListOfPosts = async () => {
+            await getPostsStore().getPosts()
+            setListOfPosts(toJS(getPostsStore().listOfPosts))
+        }
+        getListOfPosts()
+    }, [])
+
+    
+   
 
     const onToggleLoginModal = (value: boolean) => {
         setDisplayLoginModal(value)
@@ -29,9 +40,10 @@ const HomeRoute = inject("authStore")(observer((props : any) => {
         userLogin={getAuthStore().userLogin}
         displayLoginModal={displayLoginModal}
         onToggleLoginModal={onToggleLoginModal}
-        displayCreateApostModal = {displayCreateApostModal}
-        onToggleCreateAPostModal = {onToggleCreateAPostModal}
+        displayCreateApostModal={displayCreateApostModal}
+        onToggleCreateAPostModal={onToggleCreateAPostModal}
         userLoginApiStatus={getAuthStore().userLoginApiStatus}
+        listOfPosts={listOfPosts}
        />    
 }))
 
