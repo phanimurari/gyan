@@ -44,6 +44,7 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
         onToggleCreateAPostModal={onToggleCreateAPostModal}
         userLoginApiStatus={getAuthStore().userLoginApiStatus}
         listOfPosts={listOfPosts}
+        postFetchingApiStatus = {getPostsStore().postFetchingApiStatus}
        />    
 }))
 

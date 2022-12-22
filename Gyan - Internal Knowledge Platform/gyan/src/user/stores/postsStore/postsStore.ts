@@ -1,13 +1,12 @@
 import { API_FAILED, API_FETCHING, API_INITIAL, API_SUCCESS } from "@ib/api-constants"
 import { action, makeAutoObservable, observable } from "mobx"
-import { bindPromiseWithOnSuccess } from '@ib/mobx-promise'
 import { PostApiService } from "../../postsService/PostsApiService"
 import { PostsFixtureService } from "../../postsService/PostsFixtureService"
-import { postObjectType } from "../types"
+import { PostModel } from "./postModel"
 
 class PostsStore {
     postFetchingApiStatus: number
-    listOfPosts: Array<postObjectType>
+    listOfPosts: Array<PostModel>
     postsService: PostsFixtureService | PostApiService
     postsApiError : Error | null | string
     newPostItem: any 
@@ -42,10 +41,9 @@ class PostsStore {
         this.postsApiError = error
     }
     
-    setPostsResponse(response : any) {
-
-        this.listOfPosts = response
-        console.log(this.listOfPosts)
+    setPostsResponse(response: any) {
+        this.postFetchingApiStatus = API_SUCCESS
+        this.listOfPosts = response.posts.map( (post :any) => new PostModel(post) )
     }
 
     getPosts = async () => {

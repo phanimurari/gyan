@@ -16,18 +16,19 @@ interface HomeProps {
     onToggleCreateAPostModal : (value: boolean) => void,
     isUerLoggedIn: boolean,
     userLoginApiStatus: number,
+    postFetchingApiStatus : number
     listOfPosts : Array<postObjectType>
 }
 
 const Home = (props: HomeProps) => {
 
-const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts } = props
+const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus } = props
     
 return <StyledHomeContainer> 
     <Header onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
     <StyledTagsAndPostContainer>
         <TagsContainer />
-        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
+        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus}/>
          <ReactPopUpModal
             componentPassed={<CreateAPostContainer/>}
             displayModal={displayCreateApostModal}
