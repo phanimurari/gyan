@@ -2,14 +2,15 @@ import { StyledProfileOrLogo } from "./styledComponents"
 
 interface ProfileOrLogoMakerProps {
     url: string
+    size : number
 }
 
 const ProfileOrLogoMaker = (props: ProfileOrLogoMakerProps) => {
     
-    const {url} = props
+    const {url, size} = props
     
     return <>
-        <StyledProfileOrLogo src= {url}/>
+        <StyledProfileOrLogo src={url} size={size}/>
     </>
     
 }

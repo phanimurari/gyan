@@ -13,7 +13,8 @@ import InputElement from "../InputElement";
 interface headerProps {
     onToggleLoginModal: (value: boolean) => void,
     onToggleCreateAPostModal: (value: boolean) => void
-    isUerLoggedIn: boolean
+    isUerLoggedIn: boolean,
+    onSearchPost : (searchText : string) => void
 }
 
 
@@ -21,14 +22,16 @@ const Header = (props: headerProps) => {
     
     const [searchInputValue, onSetSearchValue] = useState('')
 
-    const { onToggleLoginModal, onToggleCreateAPostModal } = props
+    const { onToggleLoginModal, onToggleCreateAPostModal, onSearchPost } = props
 
-    const onSearchPost = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchPost = (event: React.ChangeEvent<HTMLInputElement>) => {
         onSetSearchValue(event.target.value)
+        console.log("iam")
+        onSearchPost(searchInputValue)
     }
 
     const renderLoginButtonOrUserProfileLogo = () => {
-        return getAccessToken() !== undefined ? <ProfileOrLogoMaker url={imageUrls.profile} /> : <ButtonElement text={commonStrings.loginButtonText} type={commonStrings.typeButton} onClickMethod={onToggleLoginModal} />
+        return getAccessToken() !== undefined ? <ProfileOrLogoMaker url={imageUrls.profile} size={40}/> : <ButtonElement text={commonStrings.loginButtonText} type={commonStrings.typeButton} onClickMethod={onToggleLoginModal}/>
     }
 
     const renderWriteAPostButtonBasedOnLogin = () => {
@@ -40,11 +43,11 @@ const Header = (props: headerProps) => {
     
     
     return <StyledHeaderContainer>
-        <ProfileOrLogoMaker url={imageUrls.logo} />
+        <ProfileOrLogoMaker url={imageUrls.logo} size={40} />
         <>
             <StyledInputElementContainer>
                 <AiOutlineSearch />
-                <InputElement placeHolderText={commonStrings.searchInputElementPlaceHolderText} value={searchInputValue} onChangeMethod={onSearchPost} />
+                <InputElement placeHolderText={commonStrings.searchInputElementPlaceHolderText} value={searchInputValue} onChangeMethod={searchPost} />
             </StyledInputElementContainer>
         </>
         <>

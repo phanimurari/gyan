@@ -17,17 +17,21 @@ interface HomeProps {
     isUerLoggedIn: boolean,
     userLoginApiStatus: number,
     postFetchingApiStatus : number
-    listOfPosts : Array<postObjectType>
+    listOfPosts: Array<postObjectType>,
+    listOfPostTags: Array<string>,
+    setSelectedTag: (tag: string) => void,
+    selectedPostsTag: string,
+    onSearchPost : (searchText : string) => void
 }
 
 const Home = (props: HomeProps) => {
 
-const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus } = props
+const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost} = props
     
 return <StyledHomeContainer> 
-    <Header onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
+    <Header onSearchPost={onSearchPost}onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
     <StyledTagsAndPostContainer>
-        <TagsContainer />
+        <TagsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag}/>
         <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus}/>
          <ReactPopUpModal
             componentPassed={<CreateAPostContainer/>}

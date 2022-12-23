@@ -9,5 +9,6 @@
     "titleInputElementPlaceHolderText" : "Write your Post Title",
     "descriptionInputElemenetPlaceHolderText" : "Write your Post Description",
     "tagsInputElementPlaceHolderText" : "Write your Post Tag",
-    "createPostFormSubmitErrorMessage": "*Invalid Values"
+    "createPostFormSubmitErrorMessage": "*Invalid Values",
+    "commentsText": "Comments"
 }

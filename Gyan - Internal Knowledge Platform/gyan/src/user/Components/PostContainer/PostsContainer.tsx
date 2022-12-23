@@ -28,7 +28,7 @@ const PostsContainer = (props: postsContainerProps) => {
     
     const renderListOfPosts = () => {
         return <ul>
-            {listOfPosts.map((post : any) => <PostItem post={post}/> )}
+            {listOfPosts.map((post: any) => <PostItem post={post} key={post.id}/> )}
         </ul>
     }
     
@@ -49,8 +49,6 @@ const PostsContainer = (props: postsContainerProps) => {
     </>
         
     const renderSuccessView = () => {
-
-        console.log(listOfPosts, "lostoFposts")
 
         return listOfPosts.length > 0 ? renderListOfPosts() : renderEmptyView()
     }

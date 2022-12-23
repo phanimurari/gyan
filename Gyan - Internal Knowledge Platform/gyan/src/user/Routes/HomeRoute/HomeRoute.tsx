@@ -10,21 +10,32 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     const [displayLoginModal, setDisplayLoginModal] = useState(false)
     const [displayCreateApostModal, setDisplayCreateApostModal] = useState(false)
     const [listOfPosts, setListOfPosts] = useState([])
-    
+    const [selectedPostsTag, setSelectedPostTag] = useState('')
+
     const getInjectedProps = () => props;
     const getAuthStore = () => getInjectedProps().authStore
     const getPostsStore = () => getInjectedProps().postsStore
 
+    const settingListOfPosts = () =>    setListOfPosts(toJS(getPostsStore().listOfPosts))
+
     useEffect(() => {
         const getListOfPosts = async () => {
             await getPostsStore().getPosts()
-            setListOfPosts(toJS(getPostsStore().listOfPosts))
+            settingListOfPosts()
         }
         getListOfPosts()
     }, [])
 
-    
-   
+    const onChangeSelectedTag = async (tag : string) => {
+        await getPostsStore().setSelectedTag(tag)
+        setSelectedPostTag(tag)
+        settingListOfPosts()
+    }
+
+    const onSearchPost = async (searchText: string) => {
+        await getPostsStore().onSearchPost(searchText)
+        settingListOfPosts()
+    }
 
     const onToggleLoginModal = (value: boolean) => {
         setDisplayLoginModal(value)
@@ -44,7 +55,11 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
         onToggleCreateAPostModal={onToggleCreateAPostModal}
         userLoginApiStatus={getAuthStore().userLoginApiStatus}
         listOfPosts={listOfPosts}
-        postFetchingApiStatus = {getPostsStore().postFetchingApiStatus}
+        postFetchingApiStatus={getPostsStore().postFetchingApiStatus}
+        listOfPostTags={getPostsStore().listOfPostTags}
+        setSelectedTag={onChangeSelectedTag}
+        selectedPostsTag={selectedPostsTag}
+        onSearchPost={onSearchPost}
        />    
 }))
 

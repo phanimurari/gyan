@@ -39,7 +39,7 @@
             ]
      },
      {
-        "id" : 1,
+        "id" : 2,
         "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",
@@ -77,7 +77,7 @@
             ]
      },
      {
-        "id" : 1,
+        "id" : 3,
         "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",
@@ -115,7 +115,7 @@
             ]
      },
      {
-        "id" : 1,
+        "id" : 4,
         "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",
@@ -153,13 +153,13 @@
             ]
      },
      {
-        "id" : 1,
+        "id" : 5,
         "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",
-        "title": "What is Zero UI? (And Why is it Crucial to the Future of Design?)",
-        "description": "What is user interface (UI)? The user interface (UI) is the point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also the way through which a user interacts with an application or a website",
-        "tags" : ["ui discuss", "frontend"],
+        "title": "Web 3.0",
+        "description": "What is Gam Developement? The user interface (UI) is the point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also the way through which a user interacts with an application or a website",
+        "tags" : ["Game Developement", "Backend"],
         "liked_by" : ["https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg"],
         "commented_by": ["Phani", "Tallam", "Dinesh"],
             "comments" : [
