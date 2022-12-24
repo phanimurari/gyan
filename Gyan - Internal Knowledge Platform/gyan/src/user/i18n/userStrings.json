@@ -10,5 +10,8 @@
     "descriptionInputElemenetPlaceHolderText" : "Write your Post Description",
     "tagsInputElementPlaceHolderText" : "Write your Post Tag",
     "createPostFormSubmitErrorMessage": "*Invalid Values",
-    "commentsText": "Comments"
+    "commentsText": "Comments",
+    "approvedByText": "Approved by",
+    "commnetBoxPlaceHolderText": "Write your comment",
+    "commentsButtonText" : "Comment"
 }

@@ -85,7 +85,13 @@ class PostsStore {
                 return post
             }
         }) 
-        this.listOfPosts = searchedPosts
+        if (postText !== '') {
+            this.listOfPosts = searchedPosts    
+        }
+        else {
+            this.listOfPosts = this.initialListOfPosts
+        }
+        
     }
 
     getPosts = async () => {

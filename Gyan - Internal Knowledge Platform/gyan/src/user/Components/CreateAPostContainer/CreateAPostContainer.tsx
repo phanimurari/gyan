@@ -62,7 +62,7 @@ const CreateAPostContainer = () => {
         <InputElement placeHolderText={strings.tagsInputElementPlaceHolderText} value={tagsInputElementValue} onChangeMethod={onChangeValueOfTagInputElement} />
         </StyledInputElementContainer>
         <StyledInputElementContainer>
-            <TextBoxElement placeHolderText={strings.descriptionInputElemenetPlaceHolderText} onChangeMethod={onChangeValueOfDescriptionInputElement}/>
+            <TextBoxElement placeHolderText={strings.descriptionInputElemenetPlaceHolderText} onChangeMethod={onChangeValueOfDescriptionInputElement} value={descriptionInputElementValue}/>
         </StyledInputElementContainer>
         <SubmitButtonElement text={strings.postButtonContent} type={strings.typeSubmit} />
         {renderValidationErrorMessage()}

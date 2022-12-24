@@ -6,7 +6,7 @@ import LoadingView from "../../../common/components/LoadingView"
 import userStrings from '../../i18n/userStrings.json'
 import { postObjectType } from "../../stores/types"
 import PostTagItem from "../PostTagItem"
-import { StyledTagElementContainer, StyledTagsContainer } from "./styledComponents"
+import { StyledLoadingViewContainer, StyledTagElementContainer, StyledTagsContainer } from "./styledComponents"
 
 
 interface tagsContainerPropsType {
@@ -28,7 +28,7 @@ const TagsContainer = (props: tagsContainerPropsType) => {
         <EmptyView displayText={userStrings.displayEmptyTagsText} />
     </StyledTagsContainer>
     
-    const renderLodingView = () => <LoadingView />
+    const renderLodingView = () => <StyledLoadingViewContainer><LoadingView /></StyledLoadingViewContainer>
 
     const renderErrorView = () => <>
         <ErrorView />

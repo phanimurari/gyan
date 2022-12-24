@@ -39,3 +39,18 @@ export const StyledLikesContainer = styled.div`${tw`flex items-center mr-2`}`
 
 export const StyledUITagsELemenntsContainer = styled.div`${tw`flex w-1/2 mr-1`}
 `
+
+export const StyledCommentsAndCommentBoxContainer = styled.div`${tw``}`
+
+export const StyledTextBoxElementContainer = styled.div`${tw`w-full flex items-center`}
+`
+
+export const StyledLikedIcon = styled.button`${tw`bg-none`}
+border: none;
+color : #f40b39 `
+
+export const StyledUnLikedIcon = styled.button`${tw`bg-none`}
+border: none`
+
+export const StyledCommentBoxConatiner = styled.div`${tw` flex p-4 py-6`}
+border: 1px solid #e3e9ef`

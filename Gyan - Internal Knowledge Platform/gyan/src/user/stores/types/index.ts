@@ -1,7 +1,9 @@
 export interface commentType {
+    "id": number,
     "comment_author": string,
     "commenter_image_url": string,
     "commented_date_and_time": string,
+    "comment_content" : string,
     "is_approved" : boolean,
     "approved_by": string,
     "no_of_likes": number
@@ -26,9 +28,11 @@ export interface postObjectType {
 
 
 export interface caseConvertedCommentTypes {
-       "commentAuthor": string,
+    "id" : number,
+    "commentAuthor": string,
     "commenterImageUrl": string,
     "commentedDateAndTime": string,
+    "commentContent" : string,
     "isApproved" : boolean,
     "approvedBy": string,
     "noOfLikes": number

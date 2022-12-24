@@ -1,9 +1,8 @@
+import { useState } from "react"
 import InputElement from "../../../../common/components/InputElement"
 import { StyledErrorMessageElement, StyledFormContainer, StyledFormHeadingElement, StyledInputElementContainer } from "./styledComponents"
 import strings from '../../../i18n/strings.json'
 import InputLableElement from "../../../../common/components/InputLableElement"
-import { useState } from "react"
-import { API_SUCCESS } from "@ib/api-constants"
 import SubmitButtonElement from "../../../../common/components/SubmitButtonElement"
 import { getAccessToken } from "../../../../utilis/StorageUtilis"
 
@@ -50,11 +49,11 @@ const [displayErrorMessage, setDisplayingErrorMessage] = useState(false)
         <StyledFormHeadingElement>{strings.loginFormHeadingContent}</StyledFormHeadingElement>
     <InputLableElement labelDisplayText={strings.UserNameInputlabelDisplayText} />
    <StyledInputElementContainer>
-        <InputElement placeHolderText={strings.userNameInputElementPlaceHolderText} value={userNameInputElementValue} onChangeMethod={setUserName} />
+        <InputElement placeHolderText={strings.userNameInputElementPlaceHolderText} value={userNameInputElementValue} onChangeMethod={setUserName} type={strings.textInputElementType}/>
     </StyledInputElementContainer>
     <InputLableElement labelDisplayText={strings.UserPasswordInputlabelDisplayText} />
     <StyledInputElementContainer>
-        <InputElement placeHolderText={strings.userPasswordElementPlaceHolderText} value={userPasswordInputElementValue} onChangeMethod={setPassword}  />
+            <InputElement placeHolderText={strings.userPasswordElementPlaceHolderText} value={userPasswordInputElementValue} onChangeMethod={setPassword} type={strings.passwordInputElementType} />
     </StyledInputElementContainer>
     <SubmitButtonElement text={strings.loginButtonText} type={strings.loginButtonType}/>
     {renderErrorMessage()}

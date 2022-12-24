@@ -31,13 +31,14 @@ class PostModel {
 
     caseConvertedComment = (comment:commentType) => {
         const caseConvertedComment = {
+            id: comment.id,
             commentAuthor: comment.comment_author,
             commenterImageUrl: comment.commenter_image_url,
             commentedDateAndTime: comment.commented_date_and_time,
+            commentContent: comment.comment_content,
             isApproved: comment.is_approved,
             approvedBy: comment.approved_by,
             noOfLikes: comment.no_of_likes
-            
         }
 
     return caseConvertedComment

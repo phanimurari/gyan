@@ -5,4 +5,6 @@ export const StyledTagsContainer = styled.div`${tw`w-1/4 flex items-center justi
 border-right: 1px solid #d6dfe8
 `
 
-export const StyledTagElementContainer = styled.ul`${tw ``}`
+export const StyledTagElementContainer = styled.ul`${tw``}`
+
+export const StyledLoadingViewContainer = styled.div`${tw `flex items-center justify-items-center`}`

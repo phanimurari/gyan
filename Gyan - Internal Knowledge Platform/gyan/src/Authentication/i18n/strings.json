@@ -6,5 +6,7 @@
     "UserNameInputlabelDisplayText": "User Name",
     "UserPasswordInputlabelDisplayText": "Password",
     "invalidCredentials": "Invalid Username or Password",
-    "loginFormHeadingContent" : "Hi there! Please login"
+    "loginFormHeadingContent" : "Hi there! Please login",
+    "passwordInputElementType" : "password",
+    "textInputElementType" : "text"
 }
