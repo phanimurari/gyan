@@ -26,7 +26,8 @@ class PostsStore {
             setPostsApiError: action,
             setPostsResponse: action,
             setSelectedTag: action.bound,
-            onSearchPost : action.bound,
+            onSearchPost: action.bound,
+            addPostToListOfPosts : action.bound,
             listOfPostsBasedOnSelectedTags: action,
             listOfPostTags: computed
         })
@@ -106,6 +107,10 @@ class PostsStore {
             this.setPostApiStatus(API_FAILED)
         }
     };
+
+    addPostToListOfPosts = () => {
+
+    }
 
 }
 
