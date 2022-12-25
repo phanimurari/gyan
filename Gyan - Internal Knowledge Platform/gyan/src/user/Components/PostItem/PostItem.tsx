@@ -2,6 +2,8 @@ import { AiFillHeart, AiOutlineHeart, AiOutlineTags } from 'react-icons/ai'
 import { BiCommentDetail } from 'react-icons/bi'
 import {GrSend} from 'react-icons/gr'
 
+
+import colors from '../../styleGuide/themes/colors.json'
 import userDetails from '../../../common/constants/userConstants/userContants.json'
 import imageUrls from '../../../common/constants/imageUrls/imageUrls.json'
 import ProfileOrLogoMaker from "../../../common/components/ProfileOrLogoMaker"
@@ -38,7 +40,13 @@ const PostItem = (props: postItemProps) => {
     }
 
     const renderUITags = () => {
-        return tags.length > 0 ? tags.map(tag => <StyledTagElement key={tag}>
+
+        const colorsArray  = [colors.backgroundGrey, colors.blue, colors.green, colors.orange]
+        const randomBackgroundColor = colorsArray[Math.floor(Math.random()*colorsArray.length)]
+        const randomFontColor = colorsArray[Math.floor(Math.random()*colorsArray.length)]
+
+
+        return tags.length > 0 ? tags.map(tag => <StyledTagElement key={tag} >
             <AiOutlineTags/>
             {tag}</StyledTagElement>) : null
     }

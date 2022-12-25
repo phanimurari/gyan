@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import tw from "twin.macro";
 
-export const StyledTagsContainer = styled.div`${tw`w-1/4 flex items-center justify-center`}
-border-right: 1px solid #d6dfe8
+import colors from '../../styleGuide/themes/colors.json'
+
+export const StyledTagsContainer = styled.div`${tw `w-1/3`}
+border-right : 1px solid ${colors.liteGrey}
 `
 
 export const StyledTagElementContainer = styled.ul`${tw``}`

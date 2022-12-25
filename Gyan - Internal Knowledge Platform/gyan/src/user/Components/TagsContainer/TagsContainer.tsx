@@ -24,15 +24,11 @@ const TagsContainer = (props: tagsContainerPropsType) => {
  
     const { postFetchingApiStatus, listOfPostTags, setSelectedTag , selectedPostsTag} = props
       
-    const renderEmptyView = () => <StyledTagsContainer>
-        <EmptyView displayText={userStrings.displayEmptyTagsText} />
-    </StyledTagsContainer>
+    const renderEmptyView = () => <EmptyView displayText={userStrings.displayEmptyTagsText} />
     
     const renderLodingView = () => <StyledLoadingViewContainer><LoadingView /></StyledLoadingViewContainer>
 
-    const renderErrorView = () => <>
-        <ErrorView />
-    </>
+    const renderErrorView = () => <ErrorView />
     
     const renderListOfTags = () => {
         return listOfPostTags.map(tag => <PostTagItem tag={tag} key={tag} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag}/> )
@@ -54,9 +50,9 @@ const TagsContainer = (props: tagsContainerPropsType) => {
         }
     }
 
-    return <>
+    return <StyledTagsContainer>
         {renderPostsContainerView()}
-    </>
+    </StyledTagsContainer>
 }
 
 export { TagsContainer }
