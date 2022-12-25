@@ -22,10 +22,10 @@ const PostsContainer = (props: postsContainerProps) => {
 
     const { onToggleLoginModal, listOfPosts , onToggleCreateAPostModal, postFetchingApiStatus, addComment} = props
     
-     const renderWriteAPostButtonBasedOnLogin = () => {
+    const renderWriteAPostButtonBasedOnLogin = () => {
         const onClickMethodForWriteAPostButton = getAccessToken() !== undefined ? onToggleCreateAPostModal : onToggleLoginModal
         return <ButtonElement text={userStrings.writeAPostButtonText} type={userStrings.typeButton} onClickMethod={onClickMethodForWriteAPostButton} />
-     }
+    }
     
     const renderListOfPosts = () => {
         return <ul>
@@ -34,24 +34,15 @@ const PostsContainer = (props: postsContainerProps) => {
     }
     
     
-    
     const renderEmptyView = () =>  <> <EmptyView displayText={userStrings.displayEmptyPostsText} />
         {renderWriteAPostButtonBasedOnLogin()}
     </>
     
-
     const renderLodingView = () => <LoadingView/>
     
-
-
-    const renderErrorView = () => <>
-        <ErrorView/>
-    </>
+    const renderErrorView = () => <ErrorView/>
         
-    const renderSuccessView = () => {
-
-        return listOfPosts.length > 0 ? renderListOfPosts() : renderEmptyView()
-    }
+    const renderSuccessView = () => listOfPosts.length > 0 ? renderListOfPosts() : renderEmptyView()
 
     const renderPostsContainerView = () => {
         switch (postFetchingApiStatus) {
@@ -61,7 +52,6 @@ const PostsContainer = (props: postsContainerProps) => {
                 return renderErrorView()
             case API_SUCCESS:
                 return renderSuccessView()
-            
        }   
     }
 

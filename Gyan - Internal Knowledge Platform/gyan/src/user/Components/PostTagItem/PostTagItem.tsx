@@ -9,7 +9,6 @@ interface postTagItemPropsTypes {
 const PostTagItem = (props: postTagItemPropsTypes) => {
     const { tag , setSelectedTag, selectedPostsTag} = props
     const onSelectTagItem = () => {
-        console.log(tag)
         setSelectedTag(tag)
     }
 

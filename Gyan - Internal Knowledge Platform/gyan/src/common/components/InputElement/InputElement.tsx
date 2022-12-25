@@ -8,11 +8,8 @@ interface InputElementProps {
 }
 
 const InputElement = (props: InputElementProps) => {
-    
     const {placeHolderText, value, onChangeMethod, type} = props
-
     return <StyledInputElement placeholder={placeHolderText} value={value} onChange={onChangeMethod} type={type}/>
-
 }
 
 export {InputElement}

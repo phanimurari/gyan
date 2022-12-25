@@ -35,7 +35,6 @@ const PostItem = (props: postItemProps) => {
 
     const onClickShowComments = () => {
         setShowComments(!showComments)
-        console.log("show comments")
     }
 
     const renderUITags = () => {

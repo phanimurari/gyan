@@ -25,8 +25,6 @@ export function getRefreshTokenInLocalStorage() {
 }
 
 export function setRefreshTokenInLocalStorage(refreshToken) {
-   
-   console.log("setRefreshTokenInLocalStorage")
    localStorage.setItem(REFRESH_TOKEN, refreshToken)
 }
 
@@ -44,7 +42,6 @@ export function removeRefreshTokenFromLocalStorage() {
 }
 
 export function setAccessToken(response) {
-   console.log(response, "response of")
    const { access_token, refresh_token, refresh_token_expiration_time_limit } = response
    setRefreshTokenInLocalStorage(refresh_token)
    setTimeout(removeRefreshTokenFromLocalStorage, refresh_token_expiration_time_limit)

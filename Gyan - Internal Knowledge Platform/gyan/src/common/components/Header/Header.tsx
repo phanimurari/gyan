@@ -26,7 +26,6 @@ const Header = (props: headerProps) => {
 
     const searchPost = (event: React.ChangeEvent<HTMLInputElement>) => {
         onSetSearchValue(event.target.value)
-        console.log("iam")
         onSearchPost(searchInputValue)
     }
 
@@ -43,7 +42,7 @@ const Header = (props: headerProps) => {
     
     
     return <StyledHeaderContainer>
-        <ProfileOrLogoMaker url={imageUrls.logo} size={40} />
+        <ProfileOrLogoMaker url={imageUrls.logo} size={60} />
         <>
             <StyledInputElementContainer>
                 <AiOutlineSearch />
