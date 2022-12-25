@@ -1,20 +1,23 @@
 import { AiFillHeart, AiOutlineHeart, AiOutlineTags } from 'react-icons/ai'
-import {BiCommentDetail} from 'react-icons/bi'
+import { BiCommentDetail } from 'react-icons/bi'
+import {GrSend} from 'react-icons/gr'
 
+import userDetails from '../../../common/constants/userConstants/userContants.json'
 import imageUrls from '../../../common/constants/imageUrls/imageUrls.json'
 import ProfileOrLogoMaker from "../../../common/components/ProfileOrLogoMaker"
-import { caseConvertedPostTypes } from "../../stores/types"
-import { StyledAuthorName, StyledCommentBoxConatiner, StyledCommentsAndCommentBoxContainer, StyledCommentsAndCountCountainer, StyledCommentsCount, StyledLikeAndCommentsCountContainer, StyledLikedIcon, StyledLikesContainer, StyledPostContentContainer, StyledPostCreationTime, StyledPostElement, StyledPostHeading, StyledPostMainContentElement, StyledPostTagsAndLikesAndCommentCountContainer, StyledPostTextContentContainer, StyledTagElement, StyledTextBoxElementContainer, StyledUITagsELemenntsContainer, StyledUnLikedIcon, SyledPostAuthorImageContainer } from "./styledComponents"
+import { caseConvertedPostTypes, commentType } from "../../stores/types"
+import { StyledAuthorName, StyledCommentBoxConatiner, StyledCommentsAndCommentBoxContainer, StyledCommentsAndCountCountainer, StyledCommentsCount, StyledLikeAndCommentsCountContainer, StyledLikedIcon, StyledLikesContainer, StyledPostContentContainer, StyledPostCreationTime, StyledPostElement, StyledPostHeading, StyledPostMainContentElement, StyledPostTagsAndLikesAndCommentCountContainer, StyledPostTextContentContainer, StyledSendButtonElement, StyledTagElement, StyledTextBoxElementContainer, StyledUITagsELemenntsContainer, StyledUnLikedIcon, SyledPostAuthorImageContainer } from "./styledComponents"
 
 import strings from '../../i18n/userStrings.json'
 import { useState } from 'react'
 import CommentItem from '../CommentItem'
 import TextBoxElement from '../../../common/components/TextBoxElement'
-import ButtonElement from '../../../common/components/ButtonElement'
+import { GetCurrentDateAndTimeUtil } from '../../../utilis/getCurrentTimeAndDateUtilis'
 
 
 interface postItemProps {
-    post: caseConvertedPostTypes
+    post: caseConvertedPostTypes,
+    addComment : (commentObject : commentType, id: string) => void
 }
 
 
@@ -23,7 +26,7 @@ const PostItem = (props: postItemProps) => {
     const [commentContent, setCommentContent] = useState('')
     const [isPostLiked, setisPostLiked] = useState(false)
 
-    const { post } = props
+    const { post, addComment } = props
 
     const [showComments, setShowComments] = useState(false)
 
@@ -67,10 +70,10 @@ const PostItem = (props: postItemProps) => {
     }
 
     const renderComments = () => {
-        return commentedBy.length > 0 ?<StyledCommentsAndCountCountainer onClick={onClickShowComments}>
+        return <StyledCommentsAndCountCountainer onClick={onClickShowComments}>
             <BiCommentDetail />
             <StyledCommentsCount>{commentedBy.length} {strings.commentsText}</StyledCommentsCount>
-        </StyledCommentsAndCountCountainer> : null
+        </StyledCommentsAndCountCountainer> 
     }
 
 
@@ -79,7 +82,16 @@ const PostItem = (props: postItemProps) => {
     }
 
     const postThisCommentToThePost = () => {
-        console.log("comment posted")
+        const commentObject = {
+        comment_author: userDetails.userName,
+        commenter_image_url: imageUrls.profile,
+        comment_content : commentContent,
+        commented_date_and_time: GetCurrentDateAndTimeUtil(),
+        is_approved : null,
+        approved_by : null,
+        no_of_likes : null
+        }
+        addComment(commentObject, post.id)
     }
 
     const renderCommentBox = () => <StyledCommentBoxConatiner>
@@ -88,13 +100,13 @@ const PostItem = (props: postItemProps) => {
         </SyledPostAuthorImageContainer>
         <StyledTextBoxElementContainer>
             <TextBoxElement value={commentContent} placeHolderText={strings.commnetBoxPlaceHolderText} onChangeMethod={onChangeTextBoxElementValue} />
-            <ButtonElement text={strings.commentsText} type={strings.typeButton} onClickMethod={postThisCommentToThePost}/>
+            <StyledSendButtonElement onClick={postThisCommentToThePost}><GrSend/></StyledSendButtonElement>
         </StyledTextBoxElementContainer>
     </StyledCommentBoxConatiner>
 
     const renderListOfComments = () => {
         return showComments ? <StyledCommentsAndCommentBoxContainer>
-            {comments.map(commentItem => <CommentItem commentItem={commentItem} key={commentItem.id} />)}
+            {comments.map(commentItem => <CommentItem commentItem={commentItem} key={commentItem.commentedDateAndTime} />)}
             {renderCommentBox()}
         </StyledCommentsAndCommentBoxContainer> : null
     }

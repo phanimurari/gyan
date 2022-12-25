@@ -8,8 +8,8 @@ interface textBoxElementProps {
 
 const TextBoxElement = (props: textBoxElementProps) => {
  
-    const {placeHolderText, value} = props
-    return <StyledTextArea placeholder={placeHolderText} value={value}></StyledTextArea>
+    const {placeHolderText, value, onChangeMethod} = props
+    return <StyledTextArea placeholder={placeHolderText} value={value} onChange={onChangeMethod}/>
 
 }
 

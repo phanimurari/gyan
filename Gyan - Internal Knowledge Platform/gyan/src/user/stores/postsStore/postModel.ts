@@ -1,11 +1,12 @@
 import { caseConvertedCommentTypes, commentType, postType } from "../types"
+import { CommentModal } from "./commentModel"
        
 
 
 
 class PostModel {
 
-    id: number
+    id: string
     authorImageUrl: string
     authorName: string
     dateAndTime: string
@@ -26,22 +27,7 @@ class PostModel {
         this.tags = postObject.tags
         this.likedBy = postObject.liked_by
         this.commentedBy = postObject.commented_by
-        this.comments = postObject.comments.map(comment => this.caseConvertedComment(comment))     
-    }
-
-    caseConvertedComment = (comment:commentType) => {
-        const caseConvertedComment = {
-            id: comment.id,
-            commentAuthor: comment.comment_author,
-            commenterImageUrl: comment.commenter_image_url,
-            commentedDateAndTime: comment.commented_date_and_time,
-            commentContent: comment.comment_content,
-            isApproved: comment.is_approved,
-            approvedBy: comment.approved_by,
-            noOfLikes: comment.no_of_likes
-        }
-
-    return caseConvertedComment
+        this.comments = postObject.comments.map(comment => new CommentModal(comment))     
     }
 }
 

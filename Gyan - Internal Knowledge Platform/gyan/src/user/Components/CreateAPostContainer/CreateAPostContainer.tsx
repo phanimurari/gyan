@@ -8,15 +8,16 @@ import strings from '../../i18n/userStrings.json'
 import React, { useState } from "react"
 import { StyledErrorMessageElement, StyledInputElementContainer } from "../../../Authentication/SignIn/components/SignIn/styledComponents"
 
-interface InputElementProps {
-    placeHolderText: string,
-    value: string,
-    onChangeMethod: (event: React.ChangeEvent<HTMLInputElement>) => void
+interface CreateAPostContainer {
+    addPostToListOfPosts: (postObject: any) => void,
+    onToggleCreateAPostModal : (value: boolean) => void
 }
 
 
 
-const CreateAPostContainer = () => {
+const CreateAPostContainer = (props : CreateAPostContainer) => {
+
+    const {addPostToListOfPosts, onToggleCreateAPostModal} = props
 
     const [titleInputElementValue, settitleInputElementValue] = useState("")
     const [tagsInputElementValue, setTagsInputElementValue] = useState("")
@@ -30,7 +31,14 @@ const CreateAPostContainer = () => {
                 title: titleInputElementValue,
                 tag: tagsInputElementValue,
                 description: descriptionInputElementValue
-         }   
+            }   
+            addPostToListOfPosts(postObject)
+
+            settitleInputElementValue('')
+            setTagsInputElementValue('')
+            setDescriptionInputElementValue('')
+            onToggleCreateAPostModal(false)
+
         }
         else {
             setDisplayErrorMessage(true)

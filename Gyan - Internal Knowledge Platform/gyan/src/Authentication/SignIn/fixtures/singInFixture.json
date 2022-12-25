@@ -1,5 +1,5 @@
 {
     "access_token": "ACCESS_TOKEN",
-    "refereh_token": "REFRESH_TOKEN",
-    "time_limit": "60"
+    "refresh_token": "REFRESH_TOKEN",
+    "refresh_token_expiration_time_limit": "10000"
 }

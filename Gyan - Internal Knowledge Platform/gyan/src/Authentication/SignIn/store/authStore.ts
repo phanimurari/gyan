@@ -38,7 +38,7 @@ class AuthStore {
   setUserLoginApiResponse(response: any) {
         this.userSignInApiError = ''
         this.userLoginApiStatus = API_SUCCESS
-        setAccessToken(response.access_token)
+        setAccessToken(response)
     }
 
     userLogin = async (loginObject: {

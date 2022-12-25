@@ -14,11 +14,10 @@ interface signInComponentProps {
 
 const SignInComponent = (props: signInComponentProps) => {
 
-const {userLogin, onToggleLoginModal, userLoginApiStatus} = props
+const {userLogin, onToggleLoginModal} = props
 
 const [userNameInputElementValue, setUserNameInputElementValue ] = useState("")
 const [userPasswordInputElementValue, setUserPasswordInputElement] = useState("")
-const [errorMessage , setErrorMessage] = useState("")
 const [displayErrorMessage, setDisplayingErrorMessage] = useState(false)
     
     const onLogin = async (event: any) => {

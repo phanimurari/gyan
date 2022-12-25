@@ -3,6 +3,7 @@ import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
 import { getAccessToken } from "../../../utilis/StorageUtilis";
 import { toJS } from "mobx";
+import { commentType } from "../../stores/types";
 
 
 const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
@@ -45,7 +46,20 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
         setDisplayCreateApostModal(value)
     }
 
+    const addPostToListOfPosts = async(postObject: any) => {
+        await getPostsStore().addPostToListOfPosts(postObject)
+        settingListOfPosts()
+    }
+
+
+    const addComment = async(commentObject : commentType, id : string) => {
+        await getPostsStore().addCommentToPost(commentObject, id)   
+        settingListOfPosts()
+    }
+
     const isUserLoggedIn = () => getAccessToken() !== undefined
+
+
 
     return <Home isUerLoggedIn={isUserLoggedIn()}
         userLogin={getAuthStore().userLogin}
@@ -60,6 +74,8 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
         setSelectedTag={onChangeSelectedTag}
         selectedPostsTag={selectedPostsTag}
         onSearchPost={onSearchPost}
+        addPostToListOfPosts={addPostToListOfPosts}
+        addComment={addComment}
        />    
 }))
 

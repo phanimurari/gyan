@@ -1,7 +1,7 @@
 import SignInComponent from "../../../Authentication/SignIn/components/SignIn";
 import Header from "../../../common/components/Header";
 import ReactPopUpModal from "../../../common/components/ReactPopUpModal";
-import { postObjectType } from "../../stores/types";
+import { commentType, postObjectType } from "../../stores/types";
 import CreateAPostContainer from "../CreateAPostContainer";
 import PostsContainer from "../PostContainer";
 import TagsContainer from "../TagsContainer";
@@ -21,20 +21,22 @@ interface HomeProps {
     listOfPostTags: Array<string>,
     setSelectedTag: (tag: string) => void,
     selectedPostsTag: string,
-    onSearchPost : (searchText : string) => void
+    onSearchPost: (searchText: string) => void,
+    addPostToListOfPosts: (postObject: any) => void,
+    addComment : (commentObject : commentType, id : string) => void
 }
 
 const Home = (props: HomeProps) => {
 
-const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost} = props
+const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost, addPostToListOfPosts, addComment} = props
     
 return <StyledHomeContainer> 
     <Header onSearchPost={onSearchPost}onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
     <StyledTagsAndPostContainer>
         <TagsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag}/>
-        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus}/>
+        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment}/>
          <ReactPopUpModal
-            componentPassed={<CreateAPostContainer/>}
+            componentPassed={<CreateAPostContainer addPostToListOfPosts={addPostToListOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal}/>}
             displayModal={displayCreateApostModal}
             onToggleLoginModal={onToggleCreateAPostModal} />
 

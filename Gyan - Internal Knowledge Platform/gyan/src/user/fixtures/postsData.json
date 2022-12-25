@@ -1,7 +1,7 @@
 {
  "posts" : [
      {
-        "id" : 1,
+        "id" : "1",
         "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",
@@ -42,7 +42,7 @@
             ]
      },
      {
-        "id" : 2,
+        "id" : "2",
         "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",
@@ -83,7 +83,7 @@
             ]
      },
      {
-        "id" : 3,
+        "id" : "3",
         "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",
@@ -124,7 +124,7 @@
             ]
      },
      {
-        "id" : 4,
+        "id" : "4",
         "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",
@@ -165,7 +165,7 @@
             ]
      },
      {
-        "id" : 5,
+        "id" : "5",
         "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",

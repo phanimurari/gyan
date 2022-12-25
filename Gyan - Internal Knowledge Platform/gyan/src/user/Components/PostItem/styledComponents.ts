@@ -54,3 +54,6 @@ border: none`
 
 export const StyledCommentBoxConatiner = styled.div`${tw` flex p-4 py-6`}
 border: 1px solid #e3e9ef`
+
+export const StyledSendButtonElement = styled.button`${tw`bg-none border-0`}
+color: #2c68fe`

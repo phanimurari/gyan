@@ -6,7 +6,7 @@ import LoadingView from "../../../common/components/LoadingView"
 import { getAccessToken } from "../../../utilis/StorageUtilis"
 
 import userStrings from '../../i18n/userStrings.json'
-import { postObjectType, postType } from "../../stores/types"
+import { commentType, postObjectType, postType } from "../../stores/types"
 import PostItem from "../PostItem"
 import { StyledPostsContainer } from "./styledComponents"
 
@@ -14,12 +14,13 @@ interface postsContainerProps {
     onToggleLoginModal: (value: boolean) => void,
     onToggleCreateAPostModal : (value: boolean) => void,
     listOfPosts: Array<postObjectType>,
-    postFetchingApiStatus : number
+    postFetchingApiStatus: number,
+    addComment: (commentObject : commentType, id: string) => void
 }
 
 const PostsContainer = (props: postsContainerProps) => {
 
-    const { onToggleLoginModal, listOfPosts , onToggleCreateAPostModal, postFetchingApiStatus} = props
+    const { onToggleLoginModal, listOfPosts , onToggleCreateAPostModal, postFetchingApiStatus, addComment} = props
     
      const renderWriteAPostButtonBasedOnLogin = () => {
         const onClickMethodForWriteAPostButton = getAccessToken() !== undefined ? onToggleCreateAPostModal : onToggleLoginModal
@@ -28,15 +29,14 @@ const PostsContainer = (props: postsContainerProps) => {
     
     const renderListOfPosts = () => {
         return <ul>
-            {listOfPosts.map((post: any) => <PostItem post={post} key={post.id}/> )}
+            {listOfPosts.map((post: any) => <PostItem post={post} key={post.id} addComment={addComment}/> )}
         </ul>
     }
     
     
     
     const renderEmptyView = () =>  <> <EmptyView displayText={userStrings.displayEmptyPostsText} />
-                                    {renderWriteAPostButtonBasedOnLogin()}
-
+        {renderWriteAPostButtonBasedOnLogin()}
     </>
     
 
