@@ -1,0 +1,1 @@
+export const REACT_ICON_SIZE = 20

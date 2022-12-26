@@ -3,6 +3,7 @@ import tw from "twin.macro";
 
 import { device } from "../../constants/devicesBreakPoints";
 
+import colors from '../../StyledGuide/themes/colors.json'
 
 export const StyledHeaderContainer = styled.div`
 ${tw`flex items-center justify-between p-2 flex-wrap`}
@@ -20,8 +21,12 @@ ${tw `order-3 w-4/12`}
 
 `
 
-export const StyledButtonAndProfileImageContainer = styled.div`${tw`flex items-center justify-between w-1/5`}
+export const StyledButtonAndProfileImageContainer = styled.div`${tw `flex items-center`}
 @media ${device.mobileL} { 
-${tw `order-4`}    
-}
+${tw`order-4`}    
+};
+jutsify-content: flex-end
 `
+
+export const StyledInputSearchInputElementContainer = styled.div`${tw`flex items-center w-1/2 p-2 rounded`}
+border : 1px solid ${colors.liteGrey};`

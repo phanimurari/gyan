@@ -150,13 +150,12 @@ class PostsStore {
         const updatedListOfPosts = listOfPosts.map(post =>
         {
             if (post.id == id) {
-             post.comments = [...post.comments, caseConvertedCommentObjectModal] 
+                post.comments = [...post.comments, caseConvertedCommentObjectModal] 
             }
             return post
         })
         this.listOfPosts = updatedListOfPosts
     }
-
 }
 
 export {PostsStore}

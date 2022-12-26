@@ -15,6 +15,7 @@ import { useState } from 'react'
 import CommentItem from '../CommentItem'
 import TextBoxElement from '../../../common/components/TextBoxElement'
 import { GetCurrentDateAndTimeUtil } from '../../../utilis/getCurrentTimeAndDateUtilis'
+import { REACT_ICON_SIZE } from '../../constants'
 
 
 interface postItemProps {
@@ -41,12 +42,13 @@ const PostItem = (props: postItemProps) => {
 
     const renderUITags = () => {
 
-        const colorsArray  = [colors.backgroundGrey, colors.blue, colors.green, colors.orange]
-        const randomBackgroundColor = colorsArray[Math.floor(Math.random()*colorsArray.length)]
-        const randomFontColor = colorsArray[Math.floor(Math.random()*colorsArray.length)]
+        const backgroundColorsArray = [colors.backgroundGrey, colors.Opal, colors.SandyTan, colors.crystal]
+        const fontColorsArray = [colors.brightBlue, colors.orange, colors.darkBlueGrey, colors.neonRed]
+        const randomBackgroundColor = backgroundColorsArray[Math.floor(Math.random()*backgroundColorsArray.length)]
+        const randomFontColor = fontColorsArray[Math.floor(Math.random()*fontColorsArray.length)]
 
 
-        return tags.length > 0 ? tags.map(tag => <StyledTagElement key={tag} >
+        return tags.length > 0 ? tags.map(tag => <StyledTagElement key={tag} randomBackgroundColor={randomBackgroundColor} randomFontColor={randomFontColor}>
             <AiOutlineTags/>
             {tag}</StyledTagElement>) : null
     }
@@ -65,7 +67,7 @@ const PostItem = (props: postItemProps) => {
     }
 
     const renderLikeIcon = () => {
-        return isPostLiked ? <StyledLikedIcon onClick={onClickLikeOfThePost}><AiFillHeart/></StyledLikedIcon> : <StyledUnLikedIcon onClick={onClickLikeOfThePost}><AiOutlineHeart/></StyledUnLikedIcon>
+        return isPostLiked ? <StyledLikedIcon onClick={onClickLikeOfThePost}><AiFillHeart  size={REACT_ICON_SIZE}/></StyledLikedIcon> : <StyledUnLikedIcon onClick={onClickLikeOfThePost}><AiOutlineHeart size={REACT_ICON_SIZE}/></StyledUnLikedIcon>
     }
     
     const renderLikes = () => {
@@ -78,8 +80,8 @@ const PostItem = (props: postItemProps) => {
 
     const renderComments = () => {
         return <StyledCommentsAndCountCountainer onClick={onClickShowComments}>
-            <BiCommentDetail />
-            <StyledCommentsCount>{commentedBy.length} {strings.commentsText}</StyledCommentsCount>
+            <BiCommentDetail size={REACT_ICON_SIZE}/>
+            <StyledCommentsCount>{comments.length} {strings.commentsText}</StyledCommentsCount>
         </StyledCommentsAndCountCountainer> 
     }
 
@@ -89,16 +91,19 @@ const PostItem = (props: postItemProps) => {
     }
 
     const postThisCommentToThePost = () => {
-        const commentObject = {
-        comment_author: userDetails.userName,
-        commenter_image_url: imageUrls.profile,
-        comment_content : commentContent,
-        commented_date_and_time: GetCurrentDateAndTimeUtil(),
-        is_approved : null,
-        approved_by : null,
-        no_of_likes : null
+        if (commentContent !== '') {
+            const commentObject = {
+                comment_author: userDetails.userName,
+                commenter_image_url: imageUrls.profile,
+                comment_content: commentContent,
+                commented_date_and_time: GetCurrentDateAndTimeUtil(),
+                is_approved: null,
+                approved_by: null,
+                no_of_likes: null
+            }
+            addComment(commentObject, post.id)
+            setCommentContent('')
         }
-        addComment(commentObject, post.id)
     }
 
     const renderCommentBox = () => <StyledCommentBoxConatiner>
@@ -107,7 +112,7 @@ const PostItem = (props: postItemProps) => {
         </SyledPostAuthorImageContainer>
         <StyledTextBoxElementContainer>
             <TextBoxElement value={commentContent} placeHolderText={strings.commnetBoxPlaceHolderText} onChangeMethod={onChangeTextBoxElementValue} />
-            <StyledSendButtonElement onClick={postThisCommentToThePost}><GrSend/></StyledSendButtonElement>
+            <StyledSendButtonElement onClick={postThisCommentToThePost}><GrSend size={REACT_ICON_SIZE}/></StyledSendButtonElement>
         </StyledTextBoxElementContainer>
     </StyledCommentBoxConatiner>
 
@@ -121,7 +126,7 @@ const PostItem = (props: postItemProps) => {
     return <StyledPostElement>
         <StyledPostMainContentElement>
         <SyledPostAuthorImageContainer>
-                <ProfileOrLogoMaker url={authorImageUrl} size={40}/>
+          <ProfileOrLogoMaker url={authorImageUrl} size={40}/>
         </SyledPostAuthorImageContainer>
         <StyledPostTextContentContainer>
         <StyledPostContentContainer>

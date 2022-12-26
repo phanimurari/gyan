@@ -1,9 +1,10 @@
 import { AiFillCheckCircle } from "react-icons/ai"
 import ProfileOrLogoMaker from "../../../common/components/ProfileOrLogoMaker"
 import { caseConvertedCommentTypes } from "../../stores/types"
-import { StyledApprovedByContainer, StyledCommentApprovedByAuthor, StyledCommentByImageContainer, StyledCommentContent, StyledCommentContentContainer, StyledCommentedDateAndTime, StyledCommenterAndCommentDateAndTimeContainer, StyledCommenterName, StyledCommentsContainer } from "./styledComponent"
+import { StyledApprovedByContainer, StyledApprovedByTextElement, StyledApprovedIconContainer, StyledCommentApprovedByAuthor, StyledCommentByImageContainer, StyledCommentContent, StyledCommentContentContainer, StyledCommentedDateAndTime, StyledCommenterAndCommentDateAndTimeContainer, StyledCommenterName, StyledCommentsContainer } from "./styledComponent"
 
 import strings from '../../i18n/userStrings.json'
+import { REACT_ICON_SIZE } from "../../constants"
 
 interface CommentItemProps {
     commentItem : caseConvertedCommentTypes
@@ -18,7 +19,14 @@ const CommentItem = (props: CommentItemProps) => {
     
 
     const isCommentApproved = () => {
-        return isApproved ? <StyledApprovedByContainer><AiFillCheckCircle /> {strings.approvedByText} <StyledCommentApprovedByAuthor>{approvedBy}</StyledCommentApprovedByAuthor></StyledApprovedByContainer> : null
+        return isApproved ? <StyledApprovedByContainer>
+            <StyledApprovedIconContainer>
+                <AiFillCheckCircle size={REACT_ICON_SIZE} />
+            </StyledApprovedIconContainer>
+            <StyledApprovedByTextElement>
+                {strings.approvedByText}
+            </StyledApprovedByTextElement>
+            <StyledCommentApprovedByAuthor>{approvedBy}</StyledCommentApprovedByAuthor></StyledApprovedByContainer> : null
     }
 
     return <StyledCommentsContainer>

@@ -1,13 +1,18 @@
 import styled from "styled-components";
 import tw from "twin.macro";
 
-export const StyledFormContainer = styled.form`${tw`flex flex-col`}`
 
-export const StyledInputElementContainer = styled.div`${tw`py-2 px-3 mb-3 w-1/2 flex items-center rounded`}
+import colors from '../../../StyledGuide/themes/colors.json'
+
+export const StyledFormContainer = styled.form`${tw`flex flex-col font-sans`}`
+
+export const StyledLogoContainer = styled.div`${tw `flex justify-center`}`
+
+export const StyledInputElementContainer = styled.div`${tw`py-2 px-3 flex items-center rounded w-11/12 mb-3`}
 border: 1px solid #dfe4ed;
 `
 export const StyledErrorMessageElement = styled.p`${tw`text-center`}
 color: #f52950`
 
-export const StyledFormHeadingElement = styled.h1`${tw``}
-color: #7e98c3`
+export const StyledFormHeadingElement = styled.p`${tw`text-4xl mt-0`}
+color: ${colors.black}`
