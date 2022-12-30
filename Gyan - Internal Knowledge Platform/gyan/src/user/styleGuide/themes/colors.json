@@ -4,7 +4,7 @@
    "neonRed": "#ff0b37",
    "darkBlueGrey": "#171f46",
    "steel": "#7e858e",
-   "greenishTela": "#2dca73",
+   "greenishTela": "#f3fff8",
    "brightBlue": "#0b69ff",
    "black" : "#000000",
    "liteBlue" : "#e6f0fe",
@@ -14,9 +14,10 @@
    "green" : "#14BB5F",
    "orange" : "#B96F14",
    "yellow" : "#E3E912",
-   "brightGreen" : "#27C131",
+   "brightGreen" : "#5ed792",
    "crystal" : "#ACDDDE",
    "SandyTan" : "#F7D8BA",
-   "Opal": "#A8C1C1"
+   "Opal": "#A8C1C1",
+   "liteGreen": "#13B337"
 
 }

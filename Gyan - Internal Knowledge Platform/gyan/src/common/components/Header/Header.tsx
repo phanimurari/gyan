@@ -30,7 +30,7 @@ const Header = (props: headerProps) => {
     }
 
     const renderLoginButtonOrUserProfileLogo = () => {
-        return getAccessToken() !== undefined ? <ProfileOrLogoMaker url={imageUrls.profile} size={40}/> : <ButtonElement text={commonStrings.loginButtonText} type={commonStrings.typeButton} onClickMethod={onToggleLoginModal}/>
+        return getAccessToken() !== undefined ? <ProfileOrLogoMaker url={imageUrls.profile} size={50}/> : <ButtonElement text={commonStrings.loginButtonText} type={commonStrings.typeButton} onClickMethod={onToggleLoginModal}/>
     }
 
     const renderWriteAPostButtonBasedOnLogin = () => {
@@ -45,7 +45,7 @@ const Header = (props: headerProps) => {
         <ProfileOrLogoMaker url={imageUrls.logo} size={60} />
         <>
             <StyledInputSearchInputElementContainer>
-                <AiOutlineSearch />
+                <AiOutlineSearch size={20}/>
                 <InputElement placeHolderText={commonStrings.searchInputElementPlaceHolderText} value={searchInputValue} onChangeMethod={searchPost} />
             </StyledInputSearchInputElementContainer>
         </>

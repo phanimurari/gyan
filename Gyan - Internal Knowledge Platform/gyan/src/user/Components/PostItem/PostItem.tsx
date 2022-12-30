@@ -42,14 +42,11 @@ const PostItem = (props: postItemProps) => {
 
     const renderUITags = () => {
 
-        const backgroundColorsArray = [colors.backgroundGrey, colors.Opal, colors.SandyTan, colors.crystal]
-        const fontColorsArray = [colors.brightBlue, colors.orange, colors.darkBlueGrey, colors.neonRed]
-        const randomBackgroundColor = backgroundColorsArray[Math.floor(Math.random()*backgroundColorsArray.length)]
-        const randomFontColor = fontColorsArray[Math.floor(Math.random()*fontColorsArray.length)]
+        const backgroundColorsArray = [colors.liteBlue, colors.greenishTela, colors.greenishTela]
+        const fontColorsArray = [colors.brightBlue, colors.brightGreen, colors.neonRed]
 
-
-        return tags.length > 0 ? tags.map(tag => <StyledTagElement key={tag} randomBackgroundColor={randomBackgroundColor} randomFontColor={randomFontColor}>
-            <AiOutlineTags/>
+        return tags.length > 0 ? tags.map(tag => <StyledTagElement key={tag} randomBackgroundColor={backgroundColorsArray[tags.indexOf(tag) ? tags.indexOf(tag) : 0]} randomFontColor={fontColorsArray[tags.indexOf(tag) ? tags.indexOf(tag) : 0]}>
+            <AiOutlineTags size={15}/>
             {tag}</StyledTagElement>) : null
     }
 
@@ -126,7 +123,7 @@ const PostItem = (props: postItemProps) => {
     return <StyledPostElement>
         <StyledPostMainContentElement>
         <SyledPostAuthorImageContainer>
-          <ProfileOrLogoMaker url={authorImageUrl} size={40}/>
+          <ProfileOrLogoMaker url={authorImageUrl} size={50}/>
         </SyledPostAuthorImageContainer>
         <StyledPostTextContentContainer>
         <StyledPostContentContainer>

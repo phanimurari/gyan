@@ -3,24 +3,29 @@ import tw from "twin.macro";
 
 import colors from '../../styleGuide/themes/colors.json'
 
+import { device } from "../../../common/constants/devicesBreakPoints/index";
+
+
 interface StyledTagElementProps {
     randomBackgroundColor: string,
     randomFontColor : string
 }
 
-export const StyledPostElement = styled.li`${tw`list-none p-8 my-2 font-sans w-full bg-blue`}
+export const StyledPostElement = styled.li`${tw`list-none p-8 my-2 font-sans rounded`}
 background-color: ${colors.white};
 border: 1px solid ${colors.liteGrey};
+@media ${device.laptopL} { 
+min-width:1300px
+}
 `
 
 export const SyledPostAuthorImageContainer = styled.div`${tw`my-2`}`
 
 export const StyledPostContentContainer = styled.div`${tw`flex flex-col`}`
 
-export const StyledAuthorName = styled.p`${tw`font-medium mb-0`}
-`
+export const StyledAuthorName = styled.p`${tw`font-medium mb-0`}`
 
-export const StyledPostMainContentElement = styled.div`${tw `flex w-full`}`
+export const StyledPostMainContentElement = styled.div`${tw `flex w-full pb-4`}`
 
 export const StyledPostCreationTime = styled.p`${tw`mb-0`}
 color: #a7aab0`

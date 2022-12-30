@@ -8,7 +8,7 @@ import { getAccessToken } from "../../../utilis/StorageUtilis"
 import userStrings from '../../i18n/userStrings.json'
 import { commentType, postObjectType, postType } from "../../stores/types"
 import PostItem from "../PostItem"
-import { StyledPostsContainer } from "./styledComponents"
+import { StyledListOfPostsContainer, StyledPostsContainer } from "./styledComponents"
 
 interface postsContainerProps {
     onToggleLoginModal: (value: boolean) => void,
@@ -28,9 +28,9 @@ const PostsContainer = (props: postsContainerProps) => {
     }
     
     const renderListOfPosts = () => {
-        return <ul>
+        return <StyledListOfPostsContainer>
             {listOfPosts.map((post: any) => <PostItem post={post} key={post.id} addComment={addComment}/> )}
-        </ul>
+        </StyledListOfPostsContainer>
     }
     
     

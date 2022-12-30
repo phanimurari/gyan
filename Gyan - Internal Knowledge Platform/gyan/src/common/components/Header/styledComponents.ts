@@ -6,7 +6,7 @@ import { device } from "../../constants/devicesBreakPoints";
 import colors from '../../StyledGuide/themes/colors.json'
 
 export const StyledHeaderContainer = styled.div`
-${tw`flex items-center justify-between p-2 flex-wrap`}
+${tw`flex items-center justify-between p-2 py-4 flex-wrap px-12`}
 border-bottom: 1px solid #dfe4ed;
 `
 
@@ -25,7 +25,8 @@ export const StyledButtonAndProfileImageContainer = styled.div`${tw `flex items-
 @media ${device.mobileL} { 
 ${tw`order-4`}    
 };
-jutsify-content: flex-end
+  display: flex;
+  justify-content: space-between;
 `
 
 export const StyledInputSearchInputElementContainer = styled.div`${tw`flex items-center w-1/2 p-2 rounded`}

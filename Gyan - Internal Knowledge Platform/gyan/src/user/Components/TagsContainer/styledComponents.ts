@@ -7,6 +7,6 @@ export const StyledTagsContainer = styled.div`${tw `w-1/5`}
 border-right : 1px solid ${colors.liteGrey}
 `
 
-export const StyledTagElementContainer = styled.ul`${tw``}`
+export const StyledTagElementContainer = styled.ul`${tw`p-0`}`
 
-export const StyledLoadingViewContainer = styled.div`${tw `flex items-center justify-items-center h-screen`}`
+export const StyledLoadingViewContainer = styled.div`${tw `flex h-screen flex items-center justify-center`}`

@@ -3,5 +3,9 @@ import tw from "twin.macro";
 
 import colors from '../../styleGuide/themes/colors.json'
 
-export const StyledPostsContainer = styled.div`${tw`flex-1 flex flex-col items-center`}
+export const StyledPostsContainer = styled.div`${tw`flex justify-center`}
+flex-grow: 1;
 background-color: ${colors.backgroundGrey}`
+
+export const StyledListOfPostsContainer = styled.ul`${tw``};
+padding: 0`
