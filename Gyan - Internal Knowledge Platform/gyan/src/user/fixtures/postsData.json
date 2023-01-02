@@ -2,7 +2,7 @@
  "posts" : [
      {
         "id" : "1",
-        "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
+        "author_image_url" : "",
         "author_name" : "Phani",
         "date_and_time": "31/11/2022 at 09:00 AM",
         "title": "What is Zero UI? (And Why is it Crucial to the Future of Design?)",
