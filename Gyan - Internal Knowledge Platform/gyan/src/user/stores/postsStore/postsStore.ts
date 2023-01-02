@@ -6,9 +6,10 @@ import { PostsFixtureService } from "../../postsService/PostsFixtureService"
 import { PostModel } from "./postModel"
 import images from '../../../common/constants/imageUrls/imageUrls.json'
 import userDetails from '../../../common/constants/userConstants/userContants.json'
-import { commentType, postType } from '../types';
+import { commentType, postObjectType, postType } from '../types';
 import { GetCurrentDateAndTimeUtil } from '../../../utilis/getCurrentTimeAndDateUtilis';
 import { CommentModal } from './commentModel';
+import { DEFAULT_SELECTED_TAG } from '../../constants';
 
 class PostsStore {
     postFetchingApiStatus: number
@@ -43,7 +44,7 @@ class PostsStore {
         this.postsService = postsService
         this.postFetchingApiStatus = API_INITIAL
         this.postsApiError = null
-        this.selectedTag = ''
+        this.selectedTag = DEFAULT_SELECTED_TAG
     }
 
     init() {
@@ -68,8 +69,8 @@ class PostsStore {
 
     get listOfPostTags() {
         const tagsArray = this.initialListOfPosts.map(post => post.tags).flat(2)
-        const uniqueTags = tagsArray.filter( (tag : string, index: number) => tagsArray.indexOf(tag) === index  ) 
-        return uniqueTags
+        const uniqueTags = tagsArray.filter((tag: string, index: number) => tagsArray.indexOf(tag) === index)
+        return [DEFAULT_SELECTED_TAG, ...uniqueTags]
     }
 
     listOfPostsBasedOnSelectedTags() {
@@ -78,13 +79,21 @@ class PostsStore {
 
     setSelectedTag(tag: string) {
         this.selectedTag = tag
-        const postsWithSelectedTags = this.initialListOfPosts.filter(post => {
-            if (post.tags.includes(tag)) {
-                return post
-            }
+        let postsWithSelectedTags : Array<PostModel> = []
+        if (tag !== DEFAULT_SELECTED_TAG) {
+             postsWithSelectedTags = this.initialListOfPosts.filter(post => {
+                if (post.tags.includes(tag)) {
+                    return post
+                }
             
-        })
-        this.listOfPosts = postsWithSelectedTags
+            })
+        }
+        if (postsWithSelectedTags.length > 0) {
+            this.listOfPosts = postsWithSelectedTags
+        }
+        else {
+            this.listOfPosts = this.initialListOfPosts
+        }
     }
 
     onSearchPost(postText: string) {

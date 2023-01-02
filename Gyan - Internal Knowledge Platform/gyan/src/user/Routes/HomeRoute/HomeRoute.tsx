@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getAccessToken } from "../../../utilis/StorageUtilis";
 import { toJS } from "mobx";
 import { commentType } from "../../stores/types";
+import { DEFAULT_SELECTED_TAG } from "../../constants";
 
 
 const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
@@ -11,7 +12,7 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     const [displayLoginModal, setDisplayLoginModal] = useState(false)
     const [displayCreateApostModal, setDisplayCreateApostModal] = useState(false)
     const [listOfPosts, setListOfPosts] = useState([])
-    const [selectedPostsTag, setSelectedPostTag] = useState('')
+    const [selectedPostsTag, setSelectedPostTag] = useState(DEFAULT_SELECTED_TAG)
 
     const getInjectedProps = () => props;
     const getAuthStore = () => getInjectedProps().authStore

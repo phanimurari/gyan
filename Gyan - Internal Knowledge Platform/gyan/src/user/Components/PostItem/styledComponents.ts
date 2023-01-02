@@ -11,15 +11,18 @@ interface StyledTagElementProps {
     randomFontColor : string
 }
 
-export const StyledPostElement = styled.li`${tw`list-none p-8 my-2 font-sans rounded`}
+export const StyledPostElement = styled.li`${tw`list-none py-4 px-5 my-2 font-sans rounded`}
 background-color: ${colors.white};
-border: 1px solid ${colors.liteGrey};
+border: 1px solid ${colors.borderLinerGrey};
 @media ${device.laptopL} { 
 min-width:1300px
 }
 `
 
-export const SyledPostAuthorImageContainer = styled.div`${tw`my-2`}`
+export const SyledPostAuthorImageContainer = styled.div`${tw`my-2 mr-2`}`
+
+export const StyledPostTextContentAndOptionIconContainer = styled.div`${tw`flex items-center w-full`}
+justify-content: space-between`
 
 export const StyledPostContentContainer = styled.div`${tw`flex flex-col`}`
 
@@ -46,30 +49,45 @@ background-color: ${props => props.randomBackgroundColor}`
         
 export const StyledPostTagsAndLikesAndCommentCountContainer = styled.div`${tw`flex justify-items-end w-full`}`
 
-export const StyledCommentsCount = styled.p`${tw`mx-1`}`
+export const StyledCommentsCount = styled.p`${tw`mx-1 text-xl font-medium`}`
 
 export const StyledCommentsAndCountCountainer = styled.div`${tw`flex items-center font-medium`}
 color: ${colors.brightBlue}`
 
-export const StyledLikesContainer = styled.div`${tw`flex items-center mr-2 font-medium`}`
+export const StyledLikesContainer = styled.div`${tw`flex items-center mr-2`}`
 
 export const StyledUITagsELemenntsContainer = styled.div`${tw`flex w-1/2 mr-1`}
 `
 
 export const StyledCommentsAndCommentBoxContainer = styled.div`${tw``}`
 
-export const StyledTextBoxElementContainer = styled.div`${tw`w-full flex items-center`}
+export const StyledTextBoxElementContainer = styled.div`${tw`w-9/12 flex items-center rounded-md p-2`}
+border: 1px solid ${colors.borderLinerGrey}
 `
 
-export const StyledLikedIcon = styled.button`${tw`bg-none`}
+export const StyledLikedIcon = styled.button`${tw`bg-white m-0 p-0`}
 border: none;
 color : ${colors.neonRed}`
 
-export const StyledUnLikedIcon = styled.button`${tw`bg-none`}
+export const StyledUnLikedIcon = styled.button`${tw`bg-white m-0 p-0`}
 border: none`
 
 export const StyledCommentBoxConatiner = styled.div`${tw` flex p-4 py-6`}
-border: 1px solid #e3e9ef`
+border-top: 1px solid ${colors.borderLinerGrey}`
 
-export const StyledSendButtonElement = styled.button`${tw`bg-none border-0`}
+export const StyledSendButtonElement = styled.button`${tw`bg-white border-0`}
+color: ${colors.brightBlue}`
+
+export const StyledLikeCountElement = styled.p`${tw`p-2 rounded-lg text-sm`}
+background-color: ${colors.backgroundGrey}`
+
+export const StyledHighlightedNumberOfLikesCount = styled.p`${tw`p-0 m-0 font-medium text-xl`}
+color: ${colors.neonRed}`
+
+export const StyledNumberOfLikesCount = styled.p`${tw`p-0 m-0 font-medium text-xl`}
+color: ${colors.black}`
+
+export const StyledLikeIconCountContainer = styled.div`${tw`flex items-center px-3`}`
+
+export const StyledSendIconContainer = styled.div`${tw ``}
 color: ${colors.brightBlue}`

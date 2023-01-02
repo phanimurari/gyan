@@ -14,10 +14,11 @@
    "green" : "#14BB5F",
    "orange" : "#B96F14",
    "yellow" : "#E3E912",
-   "brightGreen" : "#5ed792",
+   "brightGreen" : "#3fcb72",
    "crystal" : "#ACDDDE",
    "SandyTan" : "#F7D8BA",
    "Opal": "#A8C1C1",
-   "liteGreen": "#13B337"
-
+   "liteGreen": "#13B337",
+   "likesCountBorderColor": "#fffefe",
+   "borderLinerGrey" : "#e2e8ef"
 }

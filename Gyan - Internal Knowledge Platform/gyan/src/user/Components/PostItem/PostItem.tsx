@@ -1,4 +1,5 @@
 import { AiFillHeart, AiOutlineHeart, AiOutlineTags } from 'react-icons/ai'
+import {BsThreeDots} from 'react-icons/bs'
 import { BiCommentDetail } from 'react-icons/bi'
 import {GrSend} from 'react-icons/gr'
 
@@ -8,7 +9,7 @@ import userDetails from '../../../common/constants/userConstants/userContants.js
 import imageUrls from '../../../common/constants/imageUrls/imageUrls.json'
 import ProfileOrLogoMaker from "../../../common/components/ProfileOrLogoMaker"
 import { caseConvertedPostTypes, commentType } from "../../stores/types"
-import { StyledAuthorName, StyledCommentBoxConatiner, StyledCommentsAndCommentBoxContainer, StyledCommentsAndCountCountainer, StyledCommentsCount, StyledLikeAndCommentsCountContainer, StyledLikedIcon, StyledLikesContainer, StyledPostContentContainer, StyledPostCreationTime, StyledPostElement, StyledPostHeading, StyledPostMainContentElement, StyledPostTagsAndLikesAndCommentCountContainer, StyledPostTextContentContainer, StyledSendButtonElement, StyledTagElement, StyledTextBoxElementContainer, StyledUITagsELemenntsContainer, StyledUnLikedIcon, SyledPostAuthorImageContainer } from "./styledComponents"
+import { StyledAuthorName, StyledCommentBoxConatiner, StyledCommentsAndCommentBoxContainer, StyledCommentsAndCountCountainer, StyledCommentsCount, StyledHighlightedNumberOfLikesCount, StyledLikeAndCommentsCountContainer, StyledLikeCountElement, StyledLikedIcon, StyledLikeIconCountContainer, StyledLikesContainer, StyledNumberOfLikesCount, StyledPostContentContainer, StyledPostCreationTime, StyledPostElement, StyledPostHeading, StyledPostMainContentElement, StyledPostTagsAndLikesAndCommentCountContainer, StyledPostTextContentAndOptionIconContainer, StyledPostTextContentContainer, StyledSendButtonElement, StyledTagElement, StyledTextBoxElementContainer, StyledUITagsELemenntsContainer, StyledUnLikedIcon, SyledPostAuthorImageContainer } from "./styledComponents"
 
 import strings from '../../i18n/userStrings.json'
 import { useState } from 'react'
@@ -55,7 +56,7 @@ const PostItem = (props: postItemProps) => {
     }
 
     const renderLikedCount = () => {
-        return likedBy.length > 0 ? `${likedBy.length -3}+` : null
+        return likedBy.length > 0 ? <StyledLikeCountElement>+{likedBy.length -3}</StyledLikeCountElement> : null
     }
 
 
@@ -66,12 +67,17 @@ const PostItem = (props: postItemProps) => {
     const renderLikeIcon = () => {
         return isPostLiked ? <StyledLikedIcon onClick={onClickLikeOfThePost}><AiFillHeart  size={REACT_ICON_SIZE}/></StyledLikedIcon> : <StyledUnLikedIcon onClick={onClickLikeOfThePost}><AiOutlineHeart size={REACT_ICON_SIZE}/></StyledUnLikedIcon>
     }
+
+    const renderLikesCount = () => likedBy.length > 0 ? isPostLiked ? <StyledHighlightedNumberOfLikesCount>{likedBy.length}</StyledHighlightedNumberOfLikesCount> : <StyledNumberOfLikesCount>{likedBy.length}</StyledNumberOfLikesCount> : null
     
     const renderLikes = () => {
         return <StyledLikesContainer>
             {renderLikeImages()}
-            {renderLikeIcon()}
             {renderLikedCount()}
+            <StyledLikeIconCountContainer>
+                {renderLikeIcon()}
+                {renderLikesCount()}
+            </StyledLikeIconCountContainer>
       </StyledLikesContainer>
     }
 
@@ -109,8 +115,8 @@ const PostItem = (props: postItemProps) => {
         </SyledPostAuthorImageContainer>
         <StyledTextBoxElementContainer>
             <TextBoxElement value={commentContent} placeHolderText={strings.commnetBoxPlaceHolderText} onChangeMethod={onChangeTextBoxElementValue} />
-            <StyledSendButtonElement onClick={postThisCommentToThePost}><GrSend size={REACT_ICON_SIZE}/></StyledSendButtonElement>
         </StyledTextBoxElementContainer>
+        <StyledSendButtonElement onClick={postThisCommentToThePost}><GrSend size={REACT_ICON_SIZE} /></StyledSendButtonElement>
     </StyledCommentBoxConatiner>
 
     const renderListOfComments = () => {
@@ -126,14 +132,17 @@ const PostItem = (props: postItemProps) => {
           <ProfileOrLogoMaker url={authorImageUrl} size={50}/>
         </SyledPostAuthorImageContainer>
         <StyledPostTextContentContainer>
-        <StyledPostContentContainer>
+        <StyledPostTextContentAndOptionIconContainer>
+          <StyledPostContentContainer>  
             <StyledAuthorName>
                 {authorName}
             </StyledAuthorName>
             <StyledPostCreationTime>
                 {dateAndTime}
             </StyledPostCreationTime>
-        </StyledPostContentContainer>
+          </StyledPostContentContainer>
+            <BsThreeDots size={25}/>
+        </StyledPostTextContentAndOptionIconContainer>        
         <StyledPostContentContainer>
                 <StyledPostHeading>
                     {title}
