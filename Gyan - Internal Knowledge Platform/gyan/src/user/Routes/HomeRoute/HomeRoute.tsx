@@ -77,6 +77,7 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
         onSearchPost={onSearchPost}
         addPostToListOfPosts={addPostToListOfPosts}
         addComment={addComment}
+        onPostLike={getPostsStore().onPostLike}
        />    
 }))
 

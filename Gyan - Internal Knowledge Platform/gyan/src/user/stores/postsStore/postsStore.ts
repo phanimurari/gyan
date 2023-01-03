@@ -6,10 +6,11 @@ import { PostsFixtureService } from "../../postsService/PostsFixtureService"
 import { PostModel } from "./postModel"
 import images from '../../../common/constants/imageUrls/imageUrls.json'
 import userDetails from '../../../common/constants/userConstants/userContants.json'
-import { commentType, postObjectType, postType } from '../types';
+import { commentType } from '../types';
 import { GetCurrentDateAndTimeUtil } from '../../../utilis/getCurrentTimeAndDateUtilis';
 import { CommentModal } from './commentModel';
 import { DEFAULT_SELECTED_TAG } from '../../constants';
+import imageUrls from "../../../common/constants/imageUrls/imageUrls.json"
 
 class PostsStore {
     postFetchingApiStatus: number
@@ -33,11 +34,12 @@ class PostsStore {
             setPostsApiError: action,
             setPostsResponse: action,
             setSelectedTag: action.bound,
+            onPostLike : action.bound,
             onSearchPost: action.bound,
             addPostToListOfPosts: action.bound,
             addCommentToPost : action.bound,
             listOfPostsBasedOnSelectedTags: action,
-            listOfPostTags: computed
+            listOfPostTags: computed,
         })
         this.listOfPosts = []    
         this.initialListOfPosts = []
@@ -65,6 +67,41 @@ class PostsStore {
         this.postFetchingApiStatus = API_SUCCESS
         this.listOfPosts = response.posts.map((post: any) => new PostModel(post))
         this.initialListOfPosts = this.listOfPosts
+    }
+
+    onPostLike(likeOrUnLikeBoolean: boolean, postId: string) {    
+        
+        const likedPost = this.listOfPosts.find(post => post.id === postId)
+        
+        const likedBy = likedPost?.likedBy
+        
+        const likedImage = imageUrls.profile
+
+        const isLikeImagePresentInList = likedBy?.includes(likedImage)
+
+
+        
+
+        if (isLikeImagePresentInList && likedBy?.length) {
+            const updatedLikes = [...likedBy, likedImage]
+            const listOfPostsWithUpdateLikes = this.listOfPosts.map(post => {
+                if (post.id === postId) {
+                    post.likedBy = updatedLikes
+                }
+                return post
+            })
+            this.listOfPosts = listOfPostsWithUpdateLikes
+        }
+        else if(likedBy?.length){
+            const updatedLikes = likedBy.filter(likeByItem => likeByItem !== likedImage)
+            const listOfPostsWithUpdateLikes = this.listOfPosts.map(post => {
+                if (post.id === postId) {
+                    post.likedBy = updatedLikes
+                }
+                return post
+            })
+            this.listOfPosts = listOfPostsWithUpdateLikes
+         }
     }
 
     get listOfPostTags() {

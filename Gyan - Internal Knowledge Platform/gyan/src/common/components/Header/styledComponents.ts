@@ -6,7 +6,7 @@ import { device } from "../../constants/devicesBreakPoints";
 import colors from '../../StyledGuide/themes/colors.json'
 
 export const StyledHeaderContainer = styled.div`
-${tw`flex items-center justify-between p-2 py-4 flex-wrap px-12`}
+${tw`flex items-center justify-between p-2 py-4 flex-wrap px-12 sticky top-0 bg-white`}
 border-bottom: 1px solid #dfe4ed;
 `
 

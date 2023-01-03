@@ -21,7 +21,8 @@ import { REACT_ICON_SIZE } from '../../constants'
 
 interface postItemProps {
     post: caseConvertedPostTypes,
-    addComment : (commentObject : commentType, id: string) => void
+    addComment: (commentObject: commentType, id: string) => void,
+    onPostLike : (likeOrUnlike: boolean, postId : string) => void
 }
 
 
@@ -30,11 +31,11 @@ const PostItem = (props: postItemProps) => {
     const [commentContent, setCommentContent] = useState('')
     const [isPostLiked, setisPostLiked] = useState(false)
 
-    const { post, addComment } = props
+    const { post, addComment, onPostLike } = props
 
     const [showComments, setShowComments] = useState(false)
 
-    const {authorImageUrl,authorName, dateAndTime , title , description, tags, likedBy, commentedBy, comments} = post
+    const {authorImageUrl,authorName, dateAndTime , title , description, tags, likedBy, commentedBy, comments, id} = post
 
 
     const onClickShowComments = () => {
@@ -62,6 +63,7 @@ const PostItem = (props: postItemProps) => {
 
     const onClickLikeOfThePost = () => {
         setisPostLiked(!isPostLiked)
+        onPostLike(!isPostLiked, id)
     }
 
     const renderLikeIcon = () => {

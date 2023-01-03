@@ -2,13 +2,13 @@
  "posts" : [
      {
         "id" : "1",
-        "author_image_url" : "",
-        "author_name" : "Phani",
+        "author_image_url" : "https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg",
+        "author_name" : "Phani Murari",
         "date_and_time": "31/11/2022 at 09:00 AM",
         "title": "What is Zero UI? (And Why is it Crucial to the Future of Design?)",
         "description": "What is user interface (UI)? The user interface (UI) is the point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also the way through which a user interacts with an application or a website",
         "tags" : ["ui discuss", "frontend"],
-        "liked_by" : ["https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg","https://res.cloudinary.com/imphanimurari/image/upload/v1671255146/Gyan/profile_vyavmu.jpg"],
+        "liked_by" : ["https://res.cloudinary.com/imphanimurari/image/upload/v1672677107/Gyan/download_dpcbyx.jpg", "https://res.cloudinary.com/imphanimurari/image/upload/v1672677106/Gyan/download_1_k36jcw.jpg", "https://res.cloudinary.com/imphanimurari/image/upload/v1672677104/Gyan/download_2_xqfovn.jpg", "https://res.cloudinary.com/imphanimurari/image/upload/v1672677103/Gyan/download_3_gf0pci.jpg", "https://res.cloudinary.com/imphanimurari/image/upload/v1672677102/Gyan/images_nkavfd.jpg"],
         "commented_by": ["Phani", "Tallam", "Dinesh"],
             "comments" : [
     {

@@ -23,18 +23,19 @@ interface HomeProps {
     selectedPostsTag: string,
     onSearchPost: (searchText: string) => void,
     addPostToListOfPosts: (postObject: any) => void,
-    addComment : (commentObject : commentType, id : string) => void
+    addComment: (commentObject: commentType, id: string) => void,
+    onPostLike : (likeOrUnlike: boolean, postId : string) => void
 }
 
 const Home = (props: HomeProps) => {
 
-const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost, addPostToListOfPosts, addComment} = props
+const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost, addPostToListOfPosts, addComment, onPostLike} = props
     
 return <StyledHomeContainer> 
     <Header onSearchPost={onSearchPost}onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
     <StyledTagsAndPostContainer>
         <TagsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag}/>
-        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment}/>
+        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment} onPostLike={onPostLike}/>
          <ReactPopUpModal
             componentPassed={<CreateAPostContainer addPostToListOfPosts={addPostToListOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal}/>}
             displayModal={displayCreateApostModal}

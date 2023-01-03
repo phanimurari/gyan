@@ -3,7 +3,7 @@ import tw from "twin.macro";
 
 import colors from '../../styleGuide/themes/colors.json'
 
-export const StyledPostsContainer = styled.div`${tw`flex justify-center`}
+export const StyledPostsContainer = styled.div`${tw`flex justify-center overflow-auto`}
 flex-grow: 1;
 background-color: ${colors.backgroundGrey}`
 

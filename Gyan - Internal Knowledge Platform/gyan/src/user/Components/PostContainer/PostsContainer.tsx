@@ -15,12 +15,13 @@ interface postsContainerProps {
     onToggleCreateAPostModal : (value: boolean) => void,
     listOfPosts: Array<postObjectType>,
     postFetchingApiStatus: number,
-    addComment: (commentObject : commentType, id: string) => void
+    addComment: (commentObject: commentType, id: string) => void,
+    onPostLike: (likeOrUnlike: boolean, postId : string) => void
 }
 
 const PostsContainer = (props: postsContainerProps) => {
 
-    const { onToggleLoginModal, listOfPosts , onToggleCreateAPostModal, postFetchingApiStatus, addComment} = props
+    const { onToggleLoginModal, listOfPosts , onToggleCreateAPostModal, postFetchingApiStatus, addComment, onPostLike} = props
     
     const renderWriteAPostButtonBasedOnLogin = () => {
         const onClickMethodForWriteAPostButton = getAccessToken() !== undefined ? onToggleCreateAPostModal : onToggleLoginModal
@@ -29,7 +30,7 @@ const PostsContainer = (props: postsContainerProps) => {
     
     const renderListOfPosts = () => {
         return <StyledListOfPostsContainer>
-            {listOfPosts.map((post: any) => <PostItem post={post} key={post.id} addComment={addComment}/> )}
+            {listOfPosts.map((post: any) => <PostItem post={post} key={post.id} addComment={addComment} onPostLike={onPostLike}/> )}
         </StyledListOfPostsContainer>
     }
     
