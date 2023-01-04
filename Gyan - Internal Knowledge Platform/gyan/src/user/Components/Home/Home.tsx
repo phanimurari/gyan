@@ -24,7 +24,7 @@ interface HomeProps {
     onSearchPost: (searchText: string) => void,
     addPostToListOfPosts: (postObject: any) => void,
     addComment: (commentObject: commentType, id: string) => void,
-    onPostLike : (likeOrUnlike: boolean, postId : string) => void
+    onPostLike : ( postId : string) => void
 }
 
 const Home = (props: HomeProps) => {

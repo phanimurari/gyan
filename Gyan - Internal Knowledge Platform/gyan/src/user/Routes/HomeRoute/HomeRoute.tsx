@@ -61,6 +61,10 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     const isUserLoggedIn = () => getAccessToken() !== undefined
 
 
+    const onPostLike =( id: string) => {
+         getPostsStore().onPostLike(id)
+    }
+
 
     return <Home isUerLoggedIn={isUserLoggedIn()}
         userLogin={getAuthStore().userLogin}
@@ -77,7 +81,7 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
         onSearchPost={onSearchPost}
         addPostToListOfPosts={addPostToListOfPosts}
         addComment={addComment}
-        onPostLike={getPostsStore().onPostLike}
+        onPostLike={onPostLike}
        />    
 }))
 

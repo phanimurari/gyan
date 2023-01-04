@@ -22,7 +22,7 @@ import { REACT_ICON_SIZE } from '../../constants'
 interface postItemProps {
     post: caseConvertedPostTypes,
     addComment: (commentObject: commentType, id: string) => void,
-    onPostLike : (likeOrUnlike: boolean, postId : string) => void
+    onPostLike : (postId : string) => void
 }
 
 
@@ -63,7 +63,7 @@ const PostItem = (props: postItemProps) => {
 
     const onClickLikeOfThePost = () => {
         setisPostLiked(!isPostLiked)
-        onPostLike(!isPostLiked, id)
+        onPostLike(id)
     }
 
     const renderLikeIcon = () => {

@@ -16,7 +16,7 @@ interface postsContainerProps {
     listOfPosts: Array<postObjectType>,
     postFetchingApiStatus: number,
     addComment: (commentObject: commentType, id: string) => void,
-    onPostLike: (likeOrUnlike: boolean, postId : string) => void
+    onPostLike: ( postId : string) => void
 }
 
 const PostsContainer = (props: postsContainerProps) => {

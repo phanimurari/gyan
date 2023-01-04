@@ -69,39 +69,44 @@ class PostsStore {
         this.initialListOfPosts = this.listOfPosts
     }
 
-    onPostLike(likeOrUnLikeBoolean: boolean, postId: string) {    
+    onPostLike(id: string) {  
         
-        const likedPost = this.listOfPosts.find(post => post.id === postId)
+        console.log(id, "idliked")
+        
+        const likedPost = this.initialListOfPosts.find(post => post.id === id)
         
         const likedBy = likedPost?.likedBy
         
-        const likedImage = imageUrls.profile
+        const likedImage = imageUrls.logo
 
         const isLikeImagePresentInList = likedBy?.includes(likedImage)
 
-
-        
-
-        if (isLikeImagePresentInList && likedBy?.length) {
-            const updatedLikes = [...likedBy, likedImage]
-            const listOfPostsWithUpdateLikes = this.listOfPosts.map(post => {
-                if (post.id === postId) {
-                    post.likedBy = updatedLikes
+        if (!isLikeImagePresentInList && likedBy) {
+            const updatedLikedBy = [...likedBy, likedImage]
+            const updatedPosts = this.initialListOfPosts.map(post => {
+                if (post.id === id) {
+                    post.likedBy = updatedLikedBy
                 }
                 return post
             })
-            this.listOfPosts = listOfPostsWithUpdateLikes
+            this.listOfPosts = updatedPosts
         }
-        else if(likedBy?.length){
-            const updatedLikes = likedBy.filter(likeByItem => likeByItem !== likedImage)
-            const listOfPostsWithUpdateLikes = this.listOfPosts.map(post => {
-                if (post.id === postId) {
-                    post.likedBy = updatedLikes
+        else {
+            const updatedLikedBy = likedBy?.filter(likeItemImage => {
+                if (likeItemImage !== likedImage) {
+                    return likeItemImage       
                 }
-                return post
             })
-            this.listOfPosts = listOfPostsWithUpdateLikes
-         }
+            if (updatedLikedBy?.length) {
+                const updatedPosts = this.initialListOfPosts.map(post => {
+                    if (post.id === id) {
+                        post.likedBy = updatedLikedBy
+                    }
+                    return post
+                })
+                this.listOfPosts = updatedPosts
+            }
+        }
     }
 
     get listOfPostTags() {
