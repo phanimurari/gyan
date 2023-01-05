@@ -5,7 +5,7 @@ import commonStrings from '../../i18n/commonStrings.json'
 import imageUrls from '../../constants/imageUrls/imageUrls.json'
 import { useState } from "react";
 import { getAccessToken } from "../../../utilis/StorageUtilis";
-import { StyledButtonAndProfileImageContainer, StyledHeaderContainer, StyledInputSearchInputElementContainer } from "./styledComponents";
+import { StyledButtonAndProfileImageContainer, StyledHeaderContainer, StyledInputSearchInputElementContainer, StyledProfileOrLogoMakerContainer } from "./styledComponents";
 import { StyledInputElementContainer } from "../../../Authentication/SignIn/components/SignIn/styledComponents";
 import { AiOutlineSearch } from "react-icons/ai";
 import InputElement from "../InputElement";
@@ -42,19 +42,17 @@ const Header = (props: headerProps) => {
     
     
     return <StyledHeaderContainer>
-        <ProfileOrLogoMaker url={imageUrls.logo} size={60} />
-        <>
+        <StyledProfileOrLogoMakerContainer>
+            <ProfileOrLogoMaker url={imageUrls.logo} size={60} />
+        </StyledProfileOrLogoMakerContainer>
             <StyledInputSearchInputElementContainer>
                 <AiOutlineSearch size={20}/>
                 <InputElement placeHolderText={commonStrings.searchInputElementPlaceHolderText} value={searchInputValue} onChangeMethod={searchPost} />
             </StyledInputSearchInputElementContainer>
-        </>
-        <>
             <StyledButtonAndProfileImageContainer>
                 {renderWriteAPostButtonBasedOnLogin()}
                 {renderLoginButtonOrUserProfileLogo()}
             </StyledButtonAndProfileImageContainer>
-        </>
     </StyledHeaderContainer>
 }
 

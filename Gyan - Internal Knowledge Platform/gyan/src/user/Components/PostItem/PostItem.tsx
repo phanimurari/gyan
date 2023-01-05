@@ -17,12 +17,14 @@ import CommentItem from '../CommentItem'
 import TextBoxElement from '../../../common/components/TextBoxElement'
 import { GetCurrentDateAndTimeUtil } from '../../../utilis/getCurrentTimeAndDateUtilis'
 import { REACT_ICON_SIZE } from '../../constants'
+import { getAccessToken } from '../../../utilis/StorageUtilis'
 
 
 interface postItemProps {
     post: caseConvertedPostTypes,
     addComment: (commentObject: commentType, id: string) => void,
-    onPostLike : (postId : string) => void
+    onPostLike: (postId: string) => void,
+    onToggleLoginModal: (value: boolean) => void,
 }
 
 
@@ -31,11 +33,11 @@ const PostItem = (props: postItemProps) => {
     const [commentContent, setCommentContent] = useState('')
     const [isPostLiked, setisPostLiked] = useState(false)
 
-    const { post, addComment, onPostLike } = props
+    const { post, addComment, onPostLike , onToggleLoginModal} = props
 
     const [showComments, setShowComments] = useState(false)
 
-    const {authorImageUrl,authorName, dateAndTime , title , description, tags, likedBy, commentedBy, comments, id} = post
+    const {authorImageUrl,authorName, dateAndTime , title , tags, likedBy, comments, id} = post
 
 
     const onClickShowComments = () => {
@@ -62,8 +64,13 @@ const PostItem = (props: postItemProps) => {
 
 
     const onClickLikeOfThePost = () => {
-        setisPostLiked(!isPostLiked)
-        onPostLike(id)
+        if (getAccessToken() === undefined) {   
+            onToggleLoginModal(true)
+        } else {
+            onToggleLoginModal(false)
+            setisPostLiked(!isPostLiked)
+            onPostLike(id)   
+       }
     }
 
     const renderLikeIcon = () => {
@@ -96,19 +103,24 @@ const PostItem = (props: postItemProps) => {
     }
 
     const postThisCommentToThePost = () => {
-        if (commentContent !== '') {
-            const commentObject = {
-                comment_author: userDetails.userName,
-                commenter_image_url: imageUrls.profile,
-                comment_content: commentContent,
-                commented_date_and_time: GetCurrentDateAndTimeUtil(),
-                is_approved: null,
-                approved_by: null,
-                no_of_likes: null
+
+        if (getAccessToken() !== undefined) {
+            onToggleLoginModal(true)
+            if (commentContent !== '') {
+                const commentObject = {
+                    comment_author: userDetails.userName,
+                    commenter_image_url: imageUrls.profile,
+                    comment_content: commentContent,
+                    commented_date_and_time: GetCurrentDateAndTimeUtil(),
+                    is_approved: null,
+                    approved_by: null,
+                    no_of_likes: null
+                }
+                addComment(commentObject, post.id)
+                setCommentContent('')
             }
-            addComment(commentObject, post.id)
-            setCommentContent('')
         }
+       
     }
 
     const renderCommentBox = () => <StyledCommentBoxConatiner>

@@ -30,7 +30,7 @@ const PostsContainer = (props: postsContainerProps) => {
     
     const renderListOfPosts = () => {
         return <StyledListOfPostsContainer>
-            {listOfPosts.map((post: any) => <PostItem post={post} key={post.id} addComment={addComment} onPostLike={onPostLike}/> )}
+            {listOfPosts.map((post: any) => <PostItem post={post} key={post.id} addComment={addComment} onPostLike={onPostLike} onToggleLoginModal={onToggleLoginModal}/> )}
         </StyledListOfPostsContainer>
     }
     
