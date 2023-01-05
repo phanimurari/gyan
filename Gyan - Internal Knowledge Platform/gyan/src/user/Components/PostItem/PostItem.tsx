@@ -125,7 +125,7 @@ const PostItem = (props: postItemProps) => {
 
     const renderCommentBox = () => <StyledCommentBoxConatiner>
          <SyledPostAuthorImageContainer>
-            <ProfileOrLogoMaker url={authorImageUrl} size={40}/>
+            <ProfileOrLogoMaker url={imageUrls.profile} size={40}/>
         </SyledPostAuthorImageContainer>
         <StyledTextBoxElementContainer>
             <TextBoxElement value={commentContent} placeHolderText={strings.commnetBoxPlaceHolderText} onChangeMethod={onChangeTextBoxElementValue} />
