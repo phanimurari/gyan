@@ -12,6 +12,7 @@ interface StyledTagElementProps {
 }
 
 export const StyledPostElement = styled.li`${tw`list-none py-4 px-5 my-2 font-sans rounded`}
+display: table;
 background-color: ${colors.white};
 border: 1px solid ${colors.borderLinerGrey};
 @media ${device.laptopL} { 

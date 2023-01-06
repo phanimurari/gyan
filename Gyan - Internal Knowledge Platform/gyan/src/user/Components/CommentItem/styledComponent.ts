@@ -4,7 +4,7 @@ import tw from "twin.macro";
 import colors from '../../styleGuide/themes/colors.json'
 
 export const StyledCommentsContainer = styled.div`${tw`px-4 flex p-4 font-sans w-full`}
-border-top: 1px solid ${colors.borderLinerGrey}`
+border-top: 1px solid ${colors.borderLinerGrey};`
 
 export const StyledCommentByImageContainer = styled.div`${tw`flex flex-col py-3 mr-2`}`
 

@@ -1,6 +1,10 @@
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+
+
 import SignInComponent from "../../../Authentication/SignIn/components/SignIn";
 import Header from "../../../common/components/Header";
 import ReactPopUpModal from "../../../common/components/ReactPopUpModal";
+import SideBar from '../../../common/components/SideBar';
 import { commentType, postObjectType } from "../../stores/types";
 import CreateAPostContainer from "../CreateAPostContainer";
 import PostsContainer from "../PostContainer";
@@ -24,17 +28,19 @@ interface HomeProps {
     onSearchPost: (searchText: string) => void,
     addPostToListOfPosts: (postObject: any) => void,
     addComment: (commentObject: commentType, id: string) => void,
-    onPostLike : ( postId : string) => void
+    onPostLike: (postId: string) => void,
+    setSideBarMenu : (displaySideBarMenu : boolean) => void
 }
 
 const Home = (props: HomeProps) => {
 
-const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost, addPostToListOfPosts, addComment, onPostLike} = props
+const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost, addPostToListOfPosts, addComment, onPostLike, setSideBarMenu} = props
     
 return <StyledHomeContainer> 
-    <Header onSearchPost={onSearchPost}onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
+    <Header setSideBarMenu={setSideBarMenu} onSearchPost={onSearchPost}onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
     <StyledTagsAndPostContainer>
-        <TagsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag}/>
+        <TagsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} />
+        <SideBar/>
         <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment} onPostLike={onPostLike}/>
          <ReactPopUpModal
             componentPassed={<CreateAPostContainer addPostToListOfPosts={addPostToListOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal}/>}
@@ -45,6 +51,7 @@ return <StyledHomeContainer>
             componentPassed={<SignInComponent userLogin={userLogin} onToggleLoginModal={onToggleLoginModal} userLoginApiStatus={userLoginApiStatus} />}
             displayModal={displayLoginModal}
             onToggleLoginModal={onToggleLoginModal} />
+        
     </StyledTagsAndPostContainer>
 </StyledHomeContainer>
 }

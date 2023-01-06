@@ -16,13 +16,15 @@ ${tw`sticky top-0 bg-white`}
 border-bottom: 1px solid ${colors.bordeGrey};  
 `
 
-export const StyledInputSearchInputElementContainer = styled.div`${tw`flex items-center w-1/2 p-2 rounded`}
+export const StyledInputSearchInputElementContainer = styled.div`${tw`flex items-center rounded`}
 border : 1px solid ${colors.liteGrey};
-@media ${device.mobileS} {
-  ${tw `w-10/12`}
+@media ${device.mobileL} {
+  ${tw`flex px-4`};
+  justify-content: flex-start;
+  flex-grow: 1
 }
 @media ${device.tablet} { 
- ${tw `w-1/2`};
+ ${tw `w-1/2 p-2`};
 }
 `
 
@@ -45,12 +47,27 @@ export const StyledButtonAndProfileImageContainer = styled.div`${tw `flex items-
 }
 @media ${device.tablet} {
   ${tw`flex w-2/12`};
-  justify-content: flex-end;
+  justify-content: flex-end;P
   flex-grow: 1;
 }
 `
 
 export const StyledProfileOrLogoMakerContainer = styled.div`${tw` flex w-1/12`}
-flex-grow: 1;
+@media ${device.mobileL} {
+  ${tw`w-1/6`};
+};
+@media ${device.tablet} {
+ flex-grow: 1;
+}
 `
 
+export const StyledHambergurIconContainer = styled.div`${tw``}
+
+@media ${device.mobileL} {
+  ${tw`w-1/6 flex justify-center items-center`};
+};
+
+@media ${device.tablet} {
+display: none
+}
+`

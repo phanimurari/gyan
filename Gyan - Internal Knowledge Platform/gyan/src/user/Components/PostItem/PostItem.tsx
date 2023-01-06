@@ -18,6 +18,7 @@ import TextBoxElement from '../../../common/components/TextBoxElement'
 import { GetCurrentDateAndTimeUtil } from '../../../utilis/getCurrentTimeAndDateUtilis'
 import { REACT_ICON_SIZE } from '../../constants'
 import { getAccessToken } from '../../../utilis/StorageUtilis'
+import { IconContext } from 'react-icons'
 
 
 interface postItemProps {
@@ -103,8 +104,7 @@ const PostItem = (props: postItemProps) => {
     }
 
     const postThisCommentToThePost = () => {
-
-        if (getAccessToken() !== undefined) {
+        if (getAccessToken() === undefined) {
             onToggleLoginModal(true)
             if (commentContent !== '') {
                 const commentObject = {
@@ -120,7 +120,6 @@ const PostItem = (props: postItemProps) => {
                 setCommentContent('')
             }
         }
-       
     }
 
     const renderCommentBox = () => <StyledCommentBoxConatiner>
@@ -130,7 +129,14 @@ const PostItem = (props: postItemProps) => {
         <StyledTextBoxElementContainer>
             <TextBoxElement value={commentContent} placeHolderText={strings.commnetBoxPlaceHolderText} onChangeMethod={onChangeTextBoxElementValue} />
         </StyledTextBoxElementContainer>
-        <StyledSendButtonElement onClick={postThisCommentToThePost}><GrSend size={REACT_ICON_SIZE} /></StyledSendButtonElement>
+        <StyledSendButtonElement onClick={postThisCommentToThePost}>
+            <IconContext.Provider value={{ color: `${colors.brightBlue}`}}>
+                <GrSend size={REACT_ICON_SIZE} color={colors.brightBlue}/>
+        </IconContext.Provider>
+        </StyledSendButtonElement>
+
+
+        
     </StyledCommentBoxConatiner>
 
     const renderListOfComments = () => {

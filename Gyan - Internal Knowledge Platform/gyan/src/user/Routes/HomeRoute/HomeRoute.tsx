@@ -1,6 +1,7 @@
-import Home from "../../Components/Home"
 import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
+
+import Home from "../../Components/Home"
 import { getAccessToken } from "../../../utilis/StorageUtilis";
 import { toJS } from "mobx";
 import { commentType } from "../../stores/types";
@@ -11,6 +12,7 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     
     const [displayLoginModal, setDisplayLoginModal] = useState(false)
     const [displayCreateApostModal, setDisplayCreateApostModal] = useState(false)
+    const [displaySideBarMenu, setDisplaySideBarMenu] = useState(true)
     const [listOfPosts, setListOfPosts] = useState([])
     const [selectedPostsTag, setSelectedPostTag] = useState(DEFAULT_SELECTED_TAG)
 
@@ -65,24 +67,28 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
          getPostsStore().onPostLike(id)
     }
 
+    const setSideBarMenu = (displaySideBarMenu: boolean) => {
+        setDisplaySideBarMenu(displaySideBarMenu)
+    }
 
     return <Home isUerLoggedIn={isUserLoggedIn()}
-        userLogin={getAuthStore().userLogin}
-        displayLoginModal={displayLoginModal}
-        onToggleLoginModal={onToggleLoginModal}
-        displayCreateApostModal={displayCreateApostModal}
-        onToggleCreateAPostModal={onToggleCreateAPostModal}
-        userLoginApiStatus={getAuthStore().userLoginApiStatus}
-        listOfPosts={listOfPosts}
-        postFetchingApiStatus={getPostsStore().postFetchingApiStatus}
-        listOfPostTags={getPostsStore().listOfPostTags}
-        setSelectedTag={onChangeSelectedTag}
-        selectedPostsTag={selectedPostsTag}
-        onSearchPost={onSearchPost}
-        addPostToListOfPosts={addPostToListOfPosts}
-        addComment={addComment}
-        onPostLike={onPostLike}
-       />    
+            userLogin={getAuthStore().userLogin}
+            displayLoginModal={displayLoginModal}
+            onToggleLoginModal={onToggleLoginModal}
+            displayCreateApostModal={displayCreateApostModal}
+            onToggleCreateAPostModal={onToggleCreateAPostModal}
+            userLoginApiStatus={getAuthStore().userLoginApiStatus}
+            listOfPosts={listOfPosts}
+            postFetchingApiStatus={getPostsStore().postFetchingApiStatus}
+            listOfPostTags={getPostsStore().listOfPostTags}
+            setSelectedTag={onChangeSelectedTag}
+            selectedPostsTag={selectedPostsTag}
+            onSearchPost={onSearchPost}
+            addPostToListOfPosts={addPostToListOfPosts}
+            addComment={addComment}
+            onPostLike={onPostLike}
+            setSideBarMenu={setSideBarMenu}
+        />
 }))
 
 export {HomeRoute}

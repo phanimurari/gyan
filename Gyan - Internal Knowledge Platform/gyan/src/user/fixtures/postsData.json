@@ -6,7 +6,7 @@
         "author_name" : "Arjun",
         "date_and_time": "7/1/2023 at 09:00 AM",
         "title": "What is Zero UI? (And Why is it Crucial to the Future of Design?)",
-        "description": "What is user interface (UI)? The user interface (UI) is the point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop. It is also the way through which a user interacts with an application or a website",
+        "description": "What is user interface (UI)? The user interface (UI) is the point of human-computer interaction and communication in a device. ",
         "tags" : ["UI Discuss", "Frontend", "Dev"],
         "liked_by" : ["https://res.cloudinary.com/imphanimurari/image/upload/v1672677107/Gyan/download_dpcbyx.jpg", "https://res.cloudinary.com/imphanimurari/image/upload/v1672677106/Gyan/download_1_k36jcw.jpg", "https://res.cloudinary.com/imphanimurari/image/upload/v1672677104/Gyan/download_2_xqfovn.jpg", "https://res.cloudinary.com/imphanimurari/image/upload/v1672677103/Gyan/download_3_gf0pci.jpg", "https://res.cloudinary.com/imphanimurari/image/upload/v1672677102/Gyan/images_nkavfd.jpg"],
         "commented_by": ["Phani", "Tallam", "Dinesh"],
@@ -14,7 +14,7 @@
     {
         "comment_author": "Sushanth",
         "commenter_image_url": "https://res.cloudinary.com/imphanimurari/image/upload/ar_1:1,b_rgb:262c35,bo_0px_solid_rgb:ff0000,c_fill,g_auto,r_max,w_1000/v1672677104/Gyan/download_2_xqfovn.jpg",
-        "comment_content" : "Zero UI refers to a paradigm where our movements, voice, glances, and even thoughts can all cause systems to respond to us through our environment",
+        "comment_content" : "Zero UI refers to a paradigm where our movements, voice, glances",
         "commented_date_and_time": "7/1/2023 at 09:00 AM",
         "is_approved" : false,
         "approved_by": "",
@@ -31,7 +31,7 @@
     },
     {
         "comment_author": "Mosh",
-        "comment_content" : "The user interface (UI) is the point of human-computer interaction and communication in a device. This can include display screens, keyboards, a mouse and the appearance of a desktop.",
+        "comment_content" : "The user interface (UI) is the point of human-computer interaction and communication in a device.",
         "commenter_image_url": "https://res.cloudinary.com/imphanimurari/image/upload/ar_1:1,bo_0px_solid_rgb:ff0000,c_fill,g_auto,r_max,w_1000/v1672677106/Gyan/download_1_k36jcw.jpg",
         "commented_date_and_time": "31/11/2022 at 09:00 AM",
         "is_approved" : true,
