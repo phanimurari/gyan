@@ -10,7 +10,7 @@ ${tw`sticky top-0 bg-white`}
 @media ${device.mobileS} { 
   ${tw `flex flex-wrap p-2`}
 }
-@media ${device.tablet} { 
+@media ${device.laptop} { 
  ${tw`p-4 flex items-center`};
 }
 border-bottom: 1px solid ${colors.bordeGrey};  
@@ -27,7 +27,7 @@ border : 1px solid ${colors.liteGrey};
  ${tw`flex mx-1`}
  flex-grow:1
 }
-@media ${device.tablet} { 
+@media ${device.laptop} { 
  ${tw`flex p-5`}
  flex-grow:1
 }
@@ -40,7 +40,7 @@ border: 1px solid ${colors.bordeGrey};
 @media ${device.mobileL} { 
   ${tw``};
 }
-@media ${device.tablet} { 
+@media ${device.laptop} { 
  ${tw`w-1/2`};
 }
 
@@ -50,7 +50,7 @@ export const StyledButtonAndProfileImageContainer = styled.div`${tw `flex items-
 @media ${device.mobileS} { 
   ${tw `flex justify-between w-full py-6`}
 }
-@media ${device.tablet} {
+@media ${device.laptop} {
   ${tw`flex w-2/12`};
   justify-content: flex-end;P
   flex-grow: 1;
@@ -65,7 +65,7 @@ export const StyledHambergurIconContainer = styled.div`${tw``}
   ${tw`w-1/6 flex justify-center items-center`};
 };
 
-@media ${device.tablet} {
+@media ${device.laptop} {
 display: none
 }
 `

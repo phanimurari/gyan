@@ -27,11 +27,11 @@ interface headerProps {
 const Header = (props: headerProps) => {
     
     const [searchInputValue, onSetSearchValue] = useState('')
-    const [showMenuIcon, onDisplayMenuIcon] = useState(false)
+    
 
-    const { onToggleLoginModal, onToggleCreateAPostModal, onSearchPost, setSideBarMenu } = props
+    const { onToggleLoginModal, onToggleCreateAPostModal, onSearchPost } = props
 
-      const { collapseSidebar } = useProSidebar();
+    const { collapseSidebar } = useProSidebar();
 
 
     const searchPost = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,18 +44,9 @@ const Header = (props: headerProps) => {
     }
 
     const renderWriteAPostButtonBasedOnLogin = () => {
-
-        const onClickMethodForWriteAPostButton = getAccessToken() !== undefined ? onToggleCreateAPostModal : onToggleLoginModal
-
+        const onClickMethodForWriteAPostButton = getAccessToken() !== undefined ?  onToggleCreateAPostModal : onToggleLoginModal
         return <ButtonElement text={commonStrings.headerButtonText} type={commonStrings.typeButton} onClickMethod={onClickMethodForWriteAPostButton} />
     }
-    
-    const onClickOnMenuIcon = () => {
-        onDisplayMenuIcon(!showMenuIcon)
-        setSideBarMenu(!showMenuIcon)
-        
-    }
-
     
     return <StyledHeaderContainer>
         <StyledProfileOrLogoMakerContainer>

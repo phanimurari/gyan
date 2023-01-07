@@ -47,7 +47,10 @@ color: ${props => props.randomFontColor};
 background-color: ${props => props.randomBackgroundColor}`
 
         
-export const StyledPostTagsAndLikesAndCommentCountContainer = styled.div`${tw`flex justify-items-end w-full`}`
+export const StyledPostTagsAndLikesAndCommentCountContainer = styled.div`${tw`flex justify-items-end w-full`}
+@media 
+
+`
 
 export const StyledCommentsCount = styled.p`${tw`mx-1 text-xl font-medium`}`
 

@@ -11,7 +11,7 @@ export const StyledTagsContainer = styled.div`
   display: none;
 }
 
-@media ${device.tablet} {
+@media ${device.laptop} {
   display: flex;
   ${tw `flex-col w-1/5`};
   border-right : 1px solid ${colors.liteGrey};

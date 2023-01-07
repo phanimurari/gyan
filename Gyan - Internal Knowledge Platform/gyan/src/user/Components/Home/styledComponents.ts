@@ -8,7 +8,7 @@ export const StyledHomeContainer = styled.div``
 export const StyledTagsAndPostContainer = styled.div` ${tw`flex min-h-screen`}`
 
 export const StyledTagsMobileViewContainer = styled.div`
-@media ${device.tablet} {
+@media ${device.laptop} {
     display: none
 }
 `
