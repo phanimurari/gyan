@@ -1,7 +1,6 @@
 import { AiOutlineSearch } from "react-icons/ai";
-import {GrMenu} from 'react-icons/gr'
 import { useState } from "react";
-import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
+import { useProSidebar } from 'react-pro-sidebar';
 
 
 
@@ -14,6 +13,7 @@ import { getAccessToken } from "../../../utilis/StorageUtilis";
 import { StyledButtonAndProfileImageContainer, StyledHambergurIconContainer, StyledHeaderContainer, StyledInputSearchInputElementContainer, StyledProfileOrLogoMakerContainer } from "./styledComponents";
 import InputElement from "../InputElement";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { REACT_ICON_SIZE } from "../../../user/constants";
 
 interface headerProps {
     onToggleLoginModal: (value: boolean) => void,
@@ -62,11 +62,11 @@ const Header = (props: headerProps) => {
             <ProfileOrLogoMaker url={imageUrls.logo} size={60} />
         </StyledProfileOrLogoMakerContainer>
         <StyledInputSearchInputElementContainer>
-                <AiOutlineSearch size={20}/>
-                <InputElement placeHolderText={commonStrings.searchInputElementPlaceHolderText} value={searchInputValue} onChangeMethod={searchPost} />
+            <AiOutlineSearch size={20}/>
+            <InputElement placeHolderText={commonStrings.searchInputElementPlaceHolderText} value={searchInputValue} onChangeMethod={searchPost} />
         </StyledInputSearchInputElementContainer>
         <StyledHambergurIconContainer>
-            <GiHamburgerMenu onClick={() => collapseSidebar()}/>
+            <GiHamburgerMenu onClick={() => collapseSidebar()}  size={REACT_ICON_SIZE}/>
         </StyledHambergurIconContainer>
         <StyledButtonAndProfileImageContainer>
                 {renderWriteAPostButtonBasedOnLogin()}

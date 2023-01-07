@@ -11,20 +11,25 @@ ${tw`sticky top-0 bg-white`}
   ${tw `flex flex-wrap p-2`}
 }
 @media ${device.tablet} { 
- ${tw`p-4`};
+ ${tw`p-4 flex items-center`};
 }
 border-bottom: 1px solid ${colors.bordeGrey};  
 `
 
-export const StyledInputSearchInputElementContainer = styled.div`${tw`flex items-center rounded`}
+export const StyledProfileOrLogoMakerContainer = styled.div`${tw`flex items-center w-1/6 px-2`}
+
+`
+
+
+export const StyledInputSearchInputElementContainer = styled.div`${tw`flex items-center rounded px-4`}
 border : 1px solid ${colors.liteGrey};
-@media ${device.mobileL} {
-  ${tw`flex px-4`};
-  justify-content: flex-start;
-  flex-grow: 1
+@media ${device.mobileL}  {
+ ${tw`flex mx-1`}
+ flex-grow:1
 }
 @media ${device.tablet} { 
- ${tw `w-1/2 p-2`};
+ ${tw`flex p-5`}
+ flex-grow:1
 }
 `
 
@@ -32,8 +37,8 @@ border : 1px solid ${colors.liteGrey};
 
 export const StyledInputElementContainer = styled.div`
 border: 1px solid ${colors.bordeGrey};
-@media ${device.mobileS} { 
-  ${tw ``}
+@media ${device.mobileL} { 
+  ${tw``};
 }
 @media ${device.tablet} { 
  ${tw`w-1/2`};
@@ -43,7 +48,7 @@ border: 1px solid ${colors.bordeGrey};
 
 export const StyledButtonAndProfileImageContainer = styled.div`${tw `flex items-center`}
 @media ${device.mobileS} { 
-  ${tw `flex justify-between w-full p-2`}
+  ${tw `flex justify-between w-full py-6`}
 }
 @media ${device.tablet} {
   ${tw`flex w-2/12`};
@@ -52,14 +57,7 @@ export const StyledButtonAndProfileImageContainer = styled.div`${tw `flex items-
 }
 `
 
-export const StyledProfileOrLogoMakerContainer = styled.div`${tw` flex w-1/12`}
-@media ${device.mobileL} {
-  ${tw`w-1/6`};
-};
-@media ${device.tablet} {
- flex-grow: 1;
-}
-`
+
 
 export const StyledHambergurIconContainer = styled.div`${tw``}
 

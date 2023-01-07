@@ -9,7 +9,7 @@ import { commentType, postObjectType } from "../../stores/types";
 import CreateAPostContainer from "../CreateAPostContainer";
 import PostsContainer from "../PostContainer";
 import TagsContainer from "../TagsContainer";
-import { StyledHomeContainer, StyledTagsAndPostContainer } from "./styledComponents";
+import { StyledHomeContainer, StyledTagsAndPostContainer, StyledTagsMobileViewContainer } from "./styledComponents";
 
 
 interface HomeProps {
@@ -40,9 +40,11 @@ return <StyledHomeContainer>
     <Header setSideBarMenu={setSideBarMenu} onSearchPost={onSearchPost}onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal}/>
     <StyledTagsAndPostContainer>
         <TagsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} />
-        <SideBar/>
-        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment} onPostLike={onPostLike}/>
-         <ReactPopUpModal
+        <StyledTagsMobileViewContainer>
+            <SideBar listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} />
+        </StyledTagsMobileViewContainer>
+        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment} onPostLike={onPostLike} />
+        <ReactPopUpModal
             componentPassed={<CreateAPostContainer addPostToListOfPosts={addPostToListOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal}/>}
             displayModal={displayCreateApostModal}
             onToggleLoginModal={onToggleCreateAPostModal} />
