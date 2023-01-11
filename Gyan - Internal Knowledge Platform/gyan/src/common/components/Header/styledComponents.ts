@@ -28,7 +28,7 @@ border : 1px solid ${colors.liteGrey};
  flex-grow:1
 }
 @media ${device.laptop} { 
- ${tw`flex p-5`}
+ ${tw`flex p-2 w-1/2`}
  flex-grow:1
 }
 `

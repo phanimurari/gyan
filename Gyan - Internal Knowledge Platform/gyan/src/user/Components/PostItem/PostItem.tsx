@@ -56,7 +56,7 @@ const PostItem = (props: postItemProps) => {
     }
 
     const renderLikeImages = () => {
-        return likedBy.length > 0 ? likedBy.slice(0, 3).map(like => <ProfileOrLogoMaker url={imageUrls.profile} size={20}/>) : null
+        return likedBy.length > 0 ? likedBy.slice(0, 3).map(like => <ProfileOrLogoMaker url={like} size={20}/>) : null
     }
 
     const renderLikedCount = () => {
@@ -103,10 +103,10 @@ const PostItem = (props: postItemProps) => {
         setCommentContent(event.target.value)
     }
 
-    const postThisCommentToThePost = () => {
-        if (getAccessToken() === undefined) {
-            onToggleLoginModal(true)
-            if (commentContent !== '') {
+
+    const onToggleLoginModalToFalseAndCommmentContentNotEmpty = () => {
+    onToggleLoginModal(false)
+    if (commentContent !== '') {
                 const commentObject = {
                     comment_author: userDetails.userName,
                     commenter_image_url: imageUrls.profile,
@@ -118,8 +118,13 @@ const PostItem = (props: postItemProps) => {
                 }
                 addComment(commentObject, post.id)
                 setCommentContent('')
-            }
         }
+    }
+
+    const postThisCommentToThePost = () => {
+        getAccessToken() === undefined ? onToggleLoginModal(true) : onToggleLoginModalToFalseAndCommmentContentNotEmpty()
+        
+    
     }
 
     const renderCommentBox = () => <StyledCommentBoxConatiner>

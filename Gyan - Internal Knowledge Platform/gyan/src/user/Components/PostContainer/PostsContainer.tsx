@@ -8,7 +8,7 @@ import { getAccessToken } from "../../../utilis/StorageUtilis"
 import userStrings from '../../i18n/userStrings.json'
 import { commentType, postObjectType, postType } from "../../stores/types"
 import PostItem from "../PostItem"
-import { StyledListOfPostsContainer, StyledPostsContainer } from "./styledComponents"
+import { StyledEmptyViewContainer, StyledListOfPostsContainer, StyledPostsContainer } from "./styledComponents"
 
 interface postsContainerProps {
     onToggleLoginModal: (value: boolean) => void,
@@ -35,9 +35,9 @@ const PostsContainer = (props: postsContainerProps) => {
     }
     
     
-    const renderEmptyView = () =>  <> <EmptyView displayText={userStrings.displayEmptyPostsText} />
+    const renderEmptyView = () =>  <StyledEmptyViewContainer> <EmptyView displayText={userStrings.displayEmptyPostsText} />
         {renderWriteAPostButtonBasedOnLogin()}
-    </>
+    </StyledEmptyViewContainer>
     
     const renderLodingView = () => <LoadingView/>
     

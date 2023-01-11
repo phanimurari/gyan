@@ -192,7 +192,7 @@ class PostsStore {
         }
         const postModelObject = new PostModel(postFormedObject)
         const {listOfPosts} = this
-        this.listOfPosts = [...listOfPosts, postModelObject]
+        this.listOfPosts = [ postModelObject, ...listOfPosts]
     }
 
     addCommentToPost = (commentObject : commentType, id: string) => {
