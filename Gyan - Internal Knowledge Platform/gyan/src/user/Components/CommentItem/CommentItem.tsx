@@ -26,7 +26,10 @@ const CommentItem = (props: CommentItemProps) => {
             <StyledApprovedByTextElement>
                 {strings.approvedByText}
             </StyledApprovedByTextElement>
-            <StyledCommentApprovedByAuthor>{approvedBy}</StyledCommentApprovedByAuthor></StyledApprovedByContainer> : null
+            <StyledCommentApprovedByAuthor>
+                {approvedBy}
+            </StyledCommentApprovedByAuthor>
+        </StyledApprovedByContainer> : null
     }
 
     return <StyledCommentsContainer>

@@ -8,5 +8,8 @@
     "invalidCredentials": "Invalid Username or Password",
     "loginFormHeadingContent" : "Hi there! Please login",
     "passwordInputElementType" : "password",
-    "textInputElementType" : "text"
+    "textInputElementType" : "text",
+    "signOutConfirmModalHeadingConfirmation" : "Are you sure you want to log out?",
+    "signOutButtonText": "Log Out",
+    "noSignOutButtonText": "No"
 }

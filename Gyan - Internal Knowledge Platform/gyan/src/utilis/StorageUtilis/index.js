@@ -50,4 +50,5 @@ export function setAccessToken(response) {
 
 export function clearUserSession() {
    Cookie.remove(ACCESS_TOKEN, { path: '/' })
+   removeRefreshTokenFromLocalStorage()
 }

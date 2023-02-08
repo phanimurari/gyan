@@ -3,7 +3,7 @@ import tw from "twin.macro";
 
 export const StyledSubmitButtonElement = styled.button`
 
-${tw `text-white text-sm px-2 bg-blue py-3 font-semibold border-0 rounded text-center w-full`}`
+${tw `text-white text-sm px-2 bg-blue py-3 font-semibold border-0 rounded text-center w-full cursor-pointer`}`
 
 export const StyledSubmitButtonContainer = styled.div`${tw`flex items-center w-full`}
 display: flex;

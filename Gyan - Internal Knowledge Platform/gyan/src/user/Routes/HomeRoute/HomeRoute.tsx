@@ -12,6 +12,7 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     
     const [displayLoginModal, setDisplayLoginModal] = useState(false)
     const [displayCreateApostModal, setDisplayCreateApostModal] = useState(false)
+    const [displayOnLogOutModal, setDisplayOnLogOutModal] = useState(false)
     const [displaySideBarMenu, setDisplaySideBarMenu] = useState(true)
     const [listOfPosts, setListOfPosts] = useState([])
     const [selectedPostsTag, setSelectedPostTag] = useState(DEFAULT_SELECTED_TAG)
@@ -49,6 +50,11 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
         setDisplayCreateApostModal(value)
     }
 
+
+    const onToggleSignOutConfirmModal = (value: boolean) => {
+        setDisplayOnLogOutModal(value)
+    }
+
     const addPostToListOfPosts = async(postObject: any) => {
         await getPostsStore().addPostToListOfPosts(postObject)
         settingListOfPosts()
@@ -74,7 +80,9 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     return <Home isUerLoggedIn={isUserLoggedIn()}
             userLogin={getAuthStore().userLogin}
             displayLoginModal={displayLoginModal}
+            displayOnLogOutModal= {displayOnLogOutModal}
             onToggleLoginModal={onToggleLoginModal}
+            onToggleSignOutConfirmModal = {onToggleSignOutConfirmModal}
             displayCreateApostModal={displayCreateApostModal}
             onToggleCreateAPostModal={onToggleCreateAPostModal}
             userLoginApiStatus={getAuthStore().userLoginApiStatus}

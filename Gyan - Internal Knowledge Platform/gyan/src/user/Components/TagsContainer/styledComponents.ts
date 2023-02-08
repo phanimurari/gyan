@@ -2,8 +2,6 @@ import styled from "styled-components";
 import tw from "twin.macro";
 
 import { device } from '../../../common/constants/devicesBreakPoints/index'
-import colors from '../../styleGuide/themes/colors.json'
-
 
 
 export const StyledTagsContainer = styled.div`
@@ -12,9 +10,7 @@ export const StyledTagsContainer = styled.div`
 }
 
 @media ${device.laptop} {
-  display: flex;
-  ${tw `flex-col w-1/5`};
-  border-right : 1px solid ${colors.liteGrey};
+  ${tw`flex flex-col w-full`};
 }
 
 `

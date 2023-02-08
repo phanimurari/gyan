@@ -16,12 +16,13 @@ interface postsContainerProps {
     listOfPosts: Array<postObjectType>,
     postFetchingApiStatus: number,
     addComment: (commentObject: commentType, id: string) => void,
-    onPostLike: ( postId : string) => void
+    onPostLike: (postId: string) => void,
+    setSelectedTag : (tag: string) => void,
 }
 
 const PostsContainer = (props: postsContainerProps) => {
 
-    const { onToggleLoginModal, listOfPosts , onToggleCreateAPostModal, postFetchingApiStatus, addComment, onPostLike} = props
+    const { onToggleLoginModal, listOfPosts , onToggleCreateAPostModal, postFetchingApiStatus, addComment, onPostLike, setSelectedTag} = props
     
     const renderWriteAPostButtonBasedOnLogin = () => {
         const onClickMethodForWriteAPostButton = getAccessToken() !== undefined ? onToggleCreateAPostModal : onToggleLoginModal
@@ -30,7 +31,7 @@ const PostsContainer = (props: postsContainerProps) => {
     
     const renderListOfPosts = () => {
         return <StyledListOfPostsContainer>
-            {listOfPosts.map((post: any) => <PostItem post={post} key={post.id} addComment={addComment} onPostLike={onPostLike} onToggleLoginModal={onToggleLoginModal}/> )}
+            {listOfPosts.map((post: any) => <PostItem post={post} key={post.id} addComment={addComment} onPostLike={onPostLike} onToggleLoginModal={onToggleLoginModal} setSelectedTag={setSelectedTag}/> )}
         </StyledListOfPostsContainer>
     }
     

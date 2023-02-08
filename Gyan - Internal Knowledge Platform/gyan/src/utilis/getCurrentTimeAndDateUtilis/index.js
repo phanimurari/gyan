@@ -4,7 +4,7 @@
         const am_pm = date.getHours() >= 12 ? "PM" : "AM";
         hours = hours < 10 ? "0" + hours : hours;
         const minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-        const timeInHours = hours + ":" + minutes + ":" + " " + am_pm;
+        const timeInHours = hours + ":" + minutes + "" + " " + am_pm;
         return timeInHours
 };
 

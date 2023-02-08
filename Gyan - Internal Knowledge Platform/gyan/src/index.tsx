@@ -10,7 +10,7 @@ ReactDOM.render(
     <Router basename="/">
     <ProSidebarProvider>
         <App />
-    </ProSidebarProvider>;
+    </ProSidebarProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

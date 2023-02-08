@@ -10,7 +10,7 @@ export const StyledCommentByImageContainer = styled.div`${tw`flex flex-col py-3 
 
 export const StyledCommentContentContainer = styled.div`${tw``}`
 
-export const StyledApprovedByContainer = styled.div`${tw `flex items-center`}`
+export const StyledApprovedByContainer = styled.div`${tw `flex items-center flex-wrap`}`
 
 export const StyledCommenterAndCommentDateAndTimeContainer = styled.div`${tw `flex`}`
 

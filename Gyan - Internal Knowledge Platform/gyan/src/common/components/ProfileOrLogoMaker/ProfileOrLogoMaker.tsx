@@ -9,9 +9,8 @@ const ProfileOrLogoMaker = (props: ProfileOrLogoMakerProps) => {
     
     const {url, size} = props
     
-    return <>
-        <StyledProfileOrLogo src={url} size={size}/>
-    </>
+    return <StyledProfileOrLogo src={url} size={size}/>
+
     
 }
 

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Modal from 'react-modal';
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 import { StyeledReactModalContainer, StyledCloseButton, StyledCloseButtonContainer } from './styledComponents';

@@ -71,8 +71,6 @@ class PostsStore {
 
     onPostLike(id: string) {  
         
-        console.log(id, "idliked")
-        
         const likedPost = this.initialListOfPosts.find(post => post.id === id)
         
         const likedBy = likedPost?.likedBy
@@ -127,7 +125,6 @@ class PostsStore {
                 if (post.tags.includes(tag)) {
                     return post
                 }
-            
             })
         }
         if (postsWithSelectedTags.length > 0) {
@@ -139,18 +136,18 @@ class PostsStore {
     }
 
     onSearchPost(postText: string) {
+        this.setSelectedTag(DEFAULT_SELECTED_TAG)
         const searchedPosts = this.initialListOfPosts.filter(post => {
             if (post.title.toLowerCase().includes(postText.toLowerCase())) {
                 return post
             }
         }) 
-        if (postText !== '') {
+        if (postText != "") {
             this.listOfPosts = searchedPosts    
         }
         else {
             this.listOfPosts = this.initialListOfPosts
         }
-        
     }
 
     getPosts = async () => {
@@ -192,7 +189,8 @@ class PostsStore {
         }
         const postModelObject = new PostModel(postFormedObject)
         const {listOfPosts} = this
-        this.listOfPosts = [ postModelObject, ...listOfPosts]
+        this.listOfPosts = [postModelObject, ...listOfPosts]
+        this.initialListOfPosts = [postModelObject, ...listOfPosts]
     }
 
     addCommentToPost = (commentObject : commentType, id: string) => {

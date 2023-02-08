@@ -3,20 +3,19 @@ import {BsThreeDots} from 'react-icons/bs'
 import { BiCommentDetail } from 'react-icons/bi'
 import {GrSend} from 'react-icons/gr'
 
-
 import colors from '../../styleGuide/themes/colors.json'
 import userDetails from '../../../common/constants/userConstants/userContants.json'
 import imageUrls from '../../../common/constants/imageUrls/imageUrls.json'
 import ProfileOrLogoMaker from "../../../common/components/ProfileOrLogoMaker"
 import { caseConvertedPostTypes, commentType } from "../../stores/types"
-import { StyledAuthorName, StyledCommentBoxConatiner, StyledCommentsAndCommentBoxContainer, StyledCommentsAndCountCountainer, StyledCommentsCount, StyledHighlightedNumberOfLikesCount, StyledLikeAndCommentsCountContainer, StyledLikeCountElement, StyledLikedIcon, StyledLikeIconCountContainer, StyledLikesContainer, StyledNumberOfLikesCount, StyledPostContentContainer, StyledPostCreationTime, StyledPostElement, StyledPostHeading, StyledPostMainContentElement, StyledPostTagsAndLikesAndCommentCountContainer, StyledPostTextContentAndOptionIconContainer, StyledPostTextContentContainer, StyledSendButtonElement, StyledTagElement, StyledTextBoxElementContainer, StyledUITagsELemenntsContainer, StyledUnLikedIcon, SyledPostAuthorImageContainer } from "./styledComponents"
+import { StyledAuthorName, StyledCommentBoxConatiner, StyledCommentsAndCommentBoxContainer, StyledCommentsAndCountCountainer, StyledCommentsCount, StyledHighlightedNumberOfLikesCount, StyledIconImagesCountContainer, StyledLikeAndCommentsCountContainer, StyledLikeCountElement, StyledLikedIcon, StyledLikeIconCountContainer, StyledLikesContainer, StyledNumberOfLikesCount, StyledPostContentContainer, StyledPostContentContainerMobileView, StyledPostCreationTime, StyledPostElement, StyledPostHeading, StyledPostMainContentElement, StyledPostTagsAndLikesAndCommentCountContainer, StyledPostTextContentAndOptionIconContainer, StyledPostTextContentContainer, StyledProfileImageContinaerInMobileView, StyledSendButtonElement, StyledTagElement, StyledTextBoxElementContainer, StyledUITagsELemenntsContainer, StyledUnLikedIcon, SyledPostAuthorImageContainer } from "./styledComponents"
 
 import strings from '../../i18n/userStrings.json'
 import { useState } from 'react'
 import CommentItem from '../CommentItem'
 import TextBoxElement from '../../../common/components/TextBoxElement'
 import { GetCurrentDateAndTimeUtil } from '../../../utilis/getCurrentTimeAndDateUtilis'
-import { REACT_ICON_SIZE } from '../../constants'
+import { REACT_ICON_SIZE , EVENT_TYPE_ENTER} from '../../constants'
 import { getAccessToken } from '../../../utilis/StorageUtilis'
 import { IconContext } from 'react-icons'
 
@@ -26,6 +25,7 @@ interface postItemProps {
     addComment: (commentObject: commentType, id: string) => void,
     onPostLike: (postId: string) => void,
     onToggleLoginModal: (value: boolean) => void,
+    setSelectedTag :(id: string) => void
 }
 
 
@@ -34,33 +34,33 @@ const PostItem = (props: postItemProps) => {
     const [commentContent, setCommentContent] = useState('')
     const [isPostLiked, setisPostLiked] = useState(false)
 
-    const { post, addComment, onPostLike , onToggleLoginModal} = props
+    const { post, addComment, onPostLike , onToggleLoginModal, setSelectedTag} = props
 
     const [showComments, setShowComments] = useState(false)
 
     const {authorImageUrl,authorName, dateAndTime , title , tags, likedBy, comments, id} = post
 
-
     const onClickShowComments = () => {
         setShowComments(!showComments)
-    }
+    }    
 
     const renderUITags = () => {
-
         const backgroundColorsArray = [colors.liteBlue, colors.greenishTela, colors.greenishTela]
         const fontColorsArray = [colors.brightBlue, colors.brightGreen, colors.neonRed]
-
-        return tags.length > 0 ? tags.map(tag => <StyledTagElement key={tag} randomBackgroundColor={backgroundColorsArray[tags.indexOf(tag) ? tags.indexOf(tag) : 0]} randomFontColor={fontColorsArray[tags.indexOf(tag) ? tags.indexOf(tag) : 0]}>
-            <AiOutlineTags size={15}/>
-            {tag}</StyledTagElement>) : null
+        return tags.length > 0 ? tags.map(tag => {   
+            const onClickSelectedTag = () => setSelectedTag(tag)
+            return <StyledTagElement key={tag} randomBackgroundColor={backgroundColorsArray[tags.indexOf(tag) ? tags.indexOf(tag) : 0]} randomFontColor={fontColorsArray[tags.indexOf(tag) ? tags.indexOf(tag) : 0]} onClick={onClickSelectedTag} >
+                <AiOutlineTags size={15} />
+                {tag}</StyledTagElement>
+        }) : null
     }
 
     const renderLikeImages = () => {
-        return likedBy.length > 0 ? likedBy.slice(0, 3).map(like => <ProfileOrLogoMaker url={like} size={20}/>) : null
+        return likedBy.length > 2 ? likedBy.slice(0, 3).map(like => <ProfileOrLogoMaker url={like} size={20}/>) : null
     }
 
     const renderLikedCount = () => {
-        return likedBy.length > 0 ? <StyledLikeCountElement>+{likedBy.length -3}</StyledLikeCountElement> : null
+        return likedBy.length > 2  ? <StyledLikeCountElement>+{likedBy.length -3}</StyledLikeCountElement> : null
     }
 
 
@@ -82,8 +82,10 @@ const PostItem = (props: postItemProps) => {
     
     const renderLikes = () => {
         return <StyledLikesContainer>
-            {renderLikeImages()}
-            {renderLikedCount()}
+            <StyledIconImagesCountContainer>
+                {renderLikeImages()}
+                {renderLikedCount()}
+            </StyledIconImagesCountContainer>
             <StyledLikeIconCountContainer>
                 {renderLikeIcon()}
                 {renderLikesCount()}
@@ -121,10 +123,21 @@ const PostItem = (props: postItemProps) => {
         }
     }
 
+    const onToogleLoginModalAndAddTheComment = async () => {
+        await onToggleLoginModal(true)
+        getAccessToken() == undefined ? onToggleLoginModal(true) : onToggleLoginModalToFalseAndCommmentContentNotEmpty()
+    }
+
     const postThisCommentToThePost = () => {
-        getAccessToken() === undefined ? onToggleLoginModal(true) : onToggleLoginModalToFalseAndCommmentContentNotEmpty()
-        
-    
+        getAccessToken() === undefined ? onToogleLoginModalAndAddTheComment() : onToggleLoginModalToFalseAndCommmentContentNotEmpty()
+    }
+
+    const detectCtrlAndEnterKeys = (event:any) => {
+        if (event.ctrlKey && event.key === "Enter") {
+          if(commentContent !== "") {
+            postThisCommentToThePost()
+          }
+        } 
     }
 
     const renderCommentBox = () => <StyledCommentBoxConatiner>
@@ -132,17 +145,16 @@ const PostItem = (props: postItemProps) => {
             <ProfileOrLogoMaker url={imageUrls.profile} size={40}/>
         </SyledPostAuthorImageContainer>
         <StyledTextBoxElementContainer>
-            <TextBoxElement value={commentContent} placeHolderText={strings.commnetBoxPlaceHolderText} onChangeMethod={onChangeTextBoxElementValue} />
+            <TextBoxElement value={commentContent} placeHolderText={strings.commnetBoxPlaceHolderText} onChangeMethod={onChangeTextBoxElementValue} onKeyDownMethod={detectCtrlAndEnterKeys} />
         </StyledTextBoxElementContainer>
         <StyledSendButtonElement onClick={postThisCommentToThePost}>
             <IconContext.Provider value={{ color: `${colors.brightBlue}`}}>
-                <GrSend size={REACT_ICON_SIZE} color={colors.brightBlue}/>
+            <GrSend size={REACT_ICON_SIZE} color={colors.brightBlue}/>
         </IconContext.Provider>
         </StyledSendButtonElement>
-
-
-        
     </StyledCommentBoxConatiner>
+
+
 
     const renderListOfComments = () => {
         return showComments ? <StyledCommentsAndCommentBoxContainer>
@@ -158,14 +170,17 @@ const PostItem = (props: postItemProps) => {
         </SyledPostAuthorImageContainer>
         <StyledPostTextContentContainer>
         <StyledPostTextContentAndOptionIconContainer>
-          <StyledPostContentContainer>  
+          <StyledPostContentContainerMobileView>  
+            <StyledProfileImageContinaerInMobileView>
+                <ProfileOrLogoMaker url={authorImageUrl} size={50}/>
+            </StyledProfileImageContinaerInMobileView>
             <StyledAuthorName>
                 {authorName}
             </StyledAuthorName>
             <StyledPostCreationTime>
                 {dateAndTime}
             </StyledPostCreationTime>
-          </StyledPostContentContainer>
+          </StyledPostContentContainerMobileView>
             <BsThreeDots size={25}/>
         </StyledPostTextContentAndOptionIconContainer>        
         <StyledPostContentContainer>
@@ -188,8 +203,6 @@ const PostItem = (props: postItemProps) => {
             {renderListOfComments()}
         </StyledPostContentContainer>
     </StyledPostElement>
-
-
 }
 
 export  {PostItem}

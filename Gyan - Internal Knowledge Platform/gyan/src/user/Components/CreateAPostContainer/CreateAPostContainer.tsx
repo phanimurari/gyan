@@ -1,12 +1,15 @@
-import ButtonElement from "../../../common/components/ButtonElement"
+
 import InputElement from "../../../common/components/InputElement"
 import SubmitButtonElement from "../../../common/components/SubmitButtonElement"
 import TextBoxElement from "../../../common/components/TextBoxElement"
-import { StyledCreateAPostForm, StyledCreateAPostModalHeading } from "./styledComponents"
+import { StyledCreateAPostForm, StyledCreateAPostModalHeading, StyledProfileImageContainer } from "./styledComponents"
+
+import imageUrls from '../../../common/constants/imageUrls/imageUrls.json'
 
 import strings from '../../i18n/userStrings.json'
 import React, { useState } from "react"
 import { StyledErrorMessageElement, StyledInputElementContainer } from "../../../Authentication/SignIn/components/SignIn/styledComponents"
+import ProfileOrLogoMaker from "../../../common/components/ProfileOrLogoMaker"
 
 interface CreateAPostContainer {
     addPostToListOfPosts: (postObject: any) => void,
@@ -62,6 +65,9 @@ const CreateAPostContainer = (props : CreateAPostContainer) => {
     const renderValidationErrorMessage = () => displayErrorMessage ? <StyledErrorMessageElement>{strings.createPostFormSubmitErrorMessage}</StyledErrorMessageElement>: null
     
     return <StyledCreateAPostForm onSubmit={onSubmitPost}>
+        <StyledProfileImageContainer>
+            <ProfileOrLogoMaker url={imageUrls.logo} size={100} />
+        </StyledProfileImageContainer>
         <StyledCreateAPostModalHeading>{strings.createAModalHeadingContent}</StyledCreateAPostModalHeading>
         <StyledInputElementContainer>
         <InputElement placeHolderText={strings.titleInputElementPlaceHolderText} value={titleInputElementValue} onChangeMethod={onChangeValueOfTitleInputElement} />
