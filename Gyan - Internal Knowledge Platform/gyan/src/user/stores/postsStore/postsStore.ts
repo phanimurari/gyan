@@ -36,8 +36,9 @@ class PostsStore {
             setSelectedTag: action.bound,
             onPostLike : action.bound,
             onSearchPost: action.bound,
+            onReportPost : action.bound,
             addPostToListOfPosts: action.bound,
-            addCommentToPost : action.bound,
+            addCommentToPost: action.bound,
             listOfPostsBasedOnSelectedTags: action,
             listOfPostTags: computed,
         })
@@ -67,6 +68,11 @@ class PostsStore {
         this.postFetchingApiStatus = API_SUCCESS
         this.listOfPosts = response.posts.map((post: any) => new PostModel(post))
         this.initialListOfPosts = this.listOfPosts
+    }
+
+
+    onReportPost() {
+        console.log('reported')
     }
 
     onPostLike(id: string) {  

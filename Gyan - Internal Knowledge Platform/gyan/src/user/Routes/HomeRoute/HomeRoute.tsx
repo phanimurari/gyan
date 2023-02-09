@@ -89,6 +89,7 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
             listOfPosts={listOfPosts}
             postFetchingApiStatus={getPostsStore().postFetchingApiStatus}
             listOfPostTags={getPostsStore().listOfPostTags}
+            onReportPost={getPostsStore().onReportPost}
             setSelectedTag={onChangeSelectedTag}
             selectedPostsTag={selectedPostsTag}
             onSearchPost={onSearchPost}

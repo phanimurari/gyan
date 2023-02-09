@@ -10,7 +10,7 @@ interface StyledTagElementProps {
     randomFontColor : string
 }
 
-export const StyledPostElement = styled.li`${tw`list-none py-4 px-5 my-2 font-sans rounded`}
+export const StyledPostElement = styled.li`${tw`list-none py-4 px-5 my-2 font-sans rounded relative`}
 background-color: ${colors.white};
 border: 1px solid ${colors.borderLinerGrey};
 
@@ -170,3 +170,14 @@ export const StyledIconImagesCountContainer = styled.div`${tw``}
 }
 
 `
+
+
+export const StyledPostOptionsButton = styled.button`${tw`bg-none border-none bg-white cursor-pointer`}`
+
+export const StyledPostOptionsContainer = styled.ul`${tw`absolute bg-white list-none p-0 rounded`}
+border: 1px solid ${colors.liteGrey};
+top:60px;
+right: 35px
+`
+
+export const StyledPostOptionItem = styled.li`${tw `px-4 py-4 cursor-pointer`}`

@@ -13,5 +13,8 @@
     "commentsText": "Comments",
     "approvedByText": "Approved by",
     "commnetBoxPlaceHolderText": "Write your comment",
-    "commentsButtonText" : "Comment"
+    "commentsButtonText" : "Comment",
+    "reportPostOptionText": "Report",
+    "deletePostOptionText" : "Delete",
+    "sharePostOptionText": "Share"
 }

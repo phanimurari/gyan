@@ -30,12 +30,13 @@ interface HomeProps {
     addPostToListOfPosts: (postObject: any) => void,
     addComment: (commentObject: commentType, id: string) => void,
     onPostLike: (postId: string) => void,
-    setSideBarMenu : (displaySideBarMenu : boolean) => void
+    setSideBarMenu: (displaySideBarMenu: boolean) => void,
+    onReportPost: ()=> void
 }
 
 const Home = (props: HomeProps) => {
 
-const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost, addPostToListOfPosts, addComment, onPostLike, setSideBarMenu, displayOnLogOutModal, onToggleSignOutConfirmModal} = props
+const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost, addPostToListOfPosts, addComment, onPostLike, setSideBarMenu, displayOnLogOutModal, onToggleSignOutConfirmModal, onReportPost} = props
     
 return <StyledHomeContainer> 
     <Header setSideBarMenu={setSideBarMenu} onSearchPost={onSearchPost} onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal} onToggleSignOutConfirmModal={onToggleSignOutConfirmModal}/>
@@ -46,7 +47,7 @@ return <StyledHomeContainer>
         <StyledTagsMobileViewContainer>
             <SideBar listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} />
         </StyledTagsMobileViewContainer>
-        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment} onPostLike={onPostLike} setSelectedTag={setSelectedTag}/>
+        <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment} onPostLike={onPostLike} setSelectedTag={setSelectedTag} onReportPost={onReportPost}/>
         <ReactPopUpModal
             componentPassed={<SignOutConfirmModal onToggleLoginModal={onToggleSignOutConfirmModal}/>}
             displayModal={displayOnLogOutModal}

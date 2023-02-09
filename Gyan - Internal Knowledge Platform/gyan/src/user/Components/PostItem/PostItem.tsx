@@ -1,5 +1,5 @@
 import { AiFillHeart, AiOutlineHeart, AiOutlineTags } from 'react-icons/ai'
-import {BsThreeDots} from 'react-icons/bs'
+import {BsThreeDotsVertical} from 'react-icons/bs'
 import { BiCommentDetail } from 'react-icons/bi'
 import {GrSend} from 'react-icons/gr'
 
@@ -8,16 +8,17 @@ import userDetails from '../../../common/constants/userConstants/userContants.js
 import imageUrls from '../../../common/constants/imageUrls/imageUrls.json'
 import ProfileOrLogoMaker from "../../../common/components/ProfileOrLogoMaker"
 import { caseConvertedPostTypes, commentType } from "../../stores/types"
-import { StyledAuthorName, StyledCommentBoxConatiner, StyledCommentsAndCommentBoxContainer, StyledCommentsAndCountCountainer, StyledCommentsCount, StyledHighlightedNumberOfLikesCount, StyledIconImagesCountContainer, StyledLikeAndCommentsCountContainer, StyledLikeCountElement, StyledLikedIcon, StyledLikeIconCountContainer, StyledLikesContainer, StyledNumberOfLikesCount, StyledPostContentContainer, StyledPostContentContainerMobileView, StyledPostCreationTime, StyledPostElement, StyledPostHeading, StyledPostMainContentElement, StyledPostTagsAndLikesAndCommentCountContainer, StyledPostTextContentAndOptionIconContainer, StyledPostTextContentContainer, StyledProfileImageContinaerInMobileView, StyledSendButtonElement, StyledTagElement, StyledTextBoxElementContainer, StyledUITagsELemenntsContainer, StyledUnLikedIcon, SyledPostAuthorImageContainer } from "./styledComponents"
+import { StyledAuthorName, StyledCommentBoxConatiner, StyledCommentsAndCommentBoxContainer, StyledCommentsAndCountCountainer, StyledCommentsCount, StyledHighlightedNumberOfLikesCount, StyledIconImagesCountContainer, StyledLikeAndCommentsCountContainer, StyledLikeCountElement, StyledLikedIcon, StyledLikeIconCountContainer, StyledLikesContainer, StyledNumberOfLikesCount, StyledPostContentContainer, StyledPostContentContainerMobileView, StyledPostCreationTime, StyledPostElement, StyledPostHeading, StyledPostMainContentElement, StyledPostOptionItem, StyledPostOptionsButton, StyledPostOptionsContainer, StyledPostTagsAndLikesAndCommentCountContainer, StyledPostTextContentAndOptionIconContainer, StyledPostTextContentContainer, StyledProfileImageContinaerInMobileView, StyledSendButtonElement, StyledTagElement, StyledTextBoxElementContainer, StyledUITagsELemenntsContainer, StyledUnLikedIcon, SyledPostAuthorImageContainer } from "./styledComponents"
 
 import strings from '../../i18n/userStrings.json'
 import { useState } from 'react'
 import CommentItem from '../CommentItem'
 import TextBoxElement from '../../../common/components/TextBoxElement'
 import { GetCurrentDateAndTimeUtil } from '../../../utilis/getCurrentTimeAndDateUtilis'
-import { REACT_ICON_SIZE , EVENT_TYPE_ENTER} from '../../constants'
+import { REACT_ICON_SIZE , EVENT_TYPE_ENTER, USER_POST_OPTION, POST_OPTION} from '../../constants'
 import { getAccessToken } from '../../../utilis/StorageUtilis'
 import { IconContext } from 'react-icons'
+import { checkWhetherPostIsCreatedByLoggedInUser } from '../../../utilis/checkUserPostUtilis'
 
 
 interface postItemProps {
@@ -25,16 +26,18 @@ interface postItemProps {
     addComment: (commentObject: commentType, id: string) => void,
     onPostLike: (postId: string) => void,
     onToggleLoginModal: (value: boolean) => void,
-    setSelectedTag :(id: string) => void
+    setSelectedTag: (id: string) => void,
+    onReportPost:() => void
 }
 
 
 const PostItem = (props: postItemProps) => {
     
     const [commentContent, setCommentContent] = useState('')
+    const [showPostItemOptions, setShowPostItemOptions ] = useState(false)
     const [isPostLiked, setisPostLiked] = useState(false)
 
-    const { post, addComment, onPostLike , onToggleLoginModal, setSelectedTag} = props
+    const { post, addComment, onPostLike , onToggleLoginModal, setSelectedTag, onReportPost} = props
 
     const [showComments, setShowComments] = useState(false)
 
@@ -163,6 +166,27 @@ const PostItem = (props: postItemProps) => {
         </StyledCommentsAndCommentBoxContainer> : null
     }
 
+    const toggleDisplayPostOptions = () => {
+        setShowPostItemOptions(!showPostItemOptions)
+    }
+
+    const renderPostOptions = () => {
+
+        const options =  checkWhetherPostIsCreatedByLoggedInUser(authorName) ? USER_POST_OPTION : POST_OPTION
+
+        const renderListItems = options.map(optionItem => {
+            const onClickPostOption = () => {
+            
+            }
+            return <StyledPostOptionItem key={optionItem} onClick={onClickPostOption}>{optionItem}</StyledPostOptionItem>
+        })
+            
+        return showPostItemOptions ?
+            <StyledPostOptionsContainer>
+                {renderListItems}
+            </StyledPostOptionsContainer>: null
+    }
+
     return <StyledPostElement>
         <StyledPostMainContentElement>
         <SyledPostAuthorImageContainer>
@@ -181,7 +205,10 @@ const PostItem = (props: postItemProps) => {
                 {dateAndTime}
             </StyledPostCreationTime>
           </StyledPostContentContainerMobileView>
-            <BsThreeDots size={25}/>
+            <StyledPostOptionsButton onClick={toggleDisplayPostOptions}>
+                <BsThreeDotsVertical size={25} />
+            </StyledPostOptionsButton>
+                {renderPostOptions() }
         </StyledPostTextContentAndOptionIconContainer>        
         <StyledPostContentContainer>
                 <StyledPostHeading>
