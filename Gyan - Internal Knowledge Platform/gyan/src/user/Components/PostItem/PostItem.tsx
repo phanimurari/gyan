@@ -133,7 +133,7 @@ const PostItem = (props: postItemProps) => {
     }
 
     const detectCtrlAndEnterKeys = (event:any) => {
-        if (event.ctrlKey && event.key === "Enter") {
+        if ( (event.ctrlKey || event.metaKey) &&  event.key === "Enter") {
           if(commentContent !== "") {
             postThisCommentToThePost()
           }

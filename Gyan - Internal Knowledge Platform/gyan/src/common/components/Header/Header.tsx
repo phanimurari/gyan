@@ -38,8 +38,9 @@ const Header = (props: headerProps) => {
 
 
     const searchPost = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.value)
         onSetSearchValue(event.target.value)
-        onSearchPost(searchInputValue)
+        onSearchPost(event.target.value)
     }
 
     const onClickProfileIcon = () => {

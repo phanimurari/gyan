@@ -136,6 +136,8 @@ class PostsStore {
     }
 
     onSearchPost(postText: string) {
+
+
         this.setSelectedTag(DEFAULT_SELECTED_TAG)
         const searchedPosts = this.initialListOfPosts.filter(post => {
             if (post.title.toLowerCase().includes(postText.toLowerCase())) {
@@ -188,9 +190,9 @@ class PostsStore {
             comments : comments,
         }
         const postModelObject = new PostModel(postFormedObject)
-        const {listOfPosts} = this
-        this.listOfPosts = [postModelObject, ...listOfPosts]
-        this.initialListOfPosts = [postModelObject, ...listOfPosts]
+        const {initialListOfPosts} = this
+        this.listOfPosts = [postModelObject, ...initialListOfPosts]
+        this.initialListOfPosts = [postModelObject, ...initialListOfPosts]
     }
 
     addCommentToPost = (commentObject : commentType, id: string) => {
