@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { API_FAILED, API_FETCHING, API_INITIAL, API_SUCCESS } from "@ib/api-constants"
 import { action, computed, makeAutoObservable, observable } from "mobx"
+import { toJS } from "mobx";
 import { PostApiService } from "../../postsService/PostsApiService"
 import { PostsFixtureService } from "../../postsService/PostsFixtureService"
 import { PostModel } from "./postModel"
@@ -16,6 +17,8 @@ class PostsStore {
     postFetchingApiStatus: number
     listOfPosts: Array<PostModel>
     initialListOfPosts: Array<PostModel>
+    sharedPosts: Array<PostModel>
+    reportedPosts : Array<PostModel>
     postsService: PostsFixtureService | PostApiService
     postsApiError : Error | null | string
     newPostItem: any 
@@ -25,7 +28,9 @@ class PostsStore {
             postFetchingApiStatus: observable,
             postsApiError: observable,
             listOfPosts: observable,
-            initialListOfPosts : observable,
+            initialListOfPosts: observable,
+            sharedPosts: observable,
+            reportedPosts : observable,
             newPostItem: observable,
             selectedTag : observable,
             init: action,
@@ -44,6 +49,8 @@ class PostsStore {
         })
         this.listOfPosts = []    
         this.initialListOfPosts = []
+        this.sharedPosts = []
+        this.reportedPosts = []
         this.postsService = postsService
         this.postFetchingApiStatus = API_INITIAL
         this.postsApiError = null
@@ -68,11 +75,6 @@ class PostsStore {
         this.postFetchingApiStatus = API_SUCCESS
         this.listOfPosts = response.posts.map((post: any) => new PostModel(post))
         this.initialListOfPosts = this.listOfPosts
-    }
-
-
-    onReportPost() {
-        console.log('reported')
     }
 
     onPostLike(id: string) {  
@@ -142,8 +144,6 @@ class PostsStore {
     }
 
     onSearchPost(postText: string) {
-
-
         this.setSelectedTag(DEFAULT_SELECTED_TAG)
         const searchedPosts = this.initialListOfPosts.filter(post => {
             if (post.title.toLowerCase().includes(postText.toLowerCase())) {
@@ -212,6 +212,19 @@ class PostsStore {
             return post
         })
         this.listOfPosts = updatedListOfPosts
+    }
+
+    onReportPost(id: string) {
+        const filteSharedPostsFromInitialPosts  = this.initialListOfPosts.filter(post => post.id === id)
+        const { reportedPosts } = this
+        this.reportedPosts = toJS([...filteSharedPostsFromInitialPosts, ...reportedPosts])
+    }
+    
+    onAddPostToSharedPostsList = (id: string) => {
+        const filteSharedPostsFromInitialPosts = this.initialListOfPosts.filter(post => post.id === id)
+        const { sharedPosts } = this
+        this.sharedPosts = [...sharedPosts, ...filteSharedPostsFromInitialPosts]
+        console.log(this.sharedPosts)
     }
 }
 

@@ -174,8 +174,7 @@ export const StyledIconImagesCountContainer = styled.div`${tw``}
 
 export const StyledPostOptionsButton = styled.button`${tw`bg-none border-none bg-white cursor-pointer`}`
 
-export const StyledPostOptionsContainer = styled.ul`${tw`absolute bg-white list-none p-0 rounded`}
-border: 1px solid ${colors.liteGrey};
+export const StyledPostOptionsContainer = styled.ul`${tw`absolute bg-white list-none p-0 rounded shadow-xl drop-shadow-2xl`}
 top:60px;
 right: 35px
 `

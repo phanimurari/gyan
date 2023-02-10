@@ -1,7 +1,7 @@
 import { AiFillHeart, AiOutlineHeart, AiOutlineTags } from 'react-icons/ai'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import { BiCommentDetail } from 'react-icons/bi'
-import {GrSend} from 'react-icons/gr'
+import { GrSend } from 'react-icons/gr'
 
 import colors from '../../styleGuide/themes/colors.json'
 import userDetails from '../../../common/constants/userConstants/userContants.json'
@@ -22,12 +22,13 @@ import { checkWhetherPostIsCreatedByLoggedInUser } from '../../../utilis/checkUs
 
 
 interface postItemProps {
-    post: caseConvertedPostTypes,
-    addComment: (commentObject: commentType, id: string) => void,
-    onPostLike: (postId: string) => void,
-    onToggleLoginModal: (value: boolean) => void,
-    setSelectedTag: (id: string) => void,
-    onReportPost:() => void
+    post: caseConvertedPostTypes
+    addComment: (commentObject: commentType, id: string) => void
+    onPostLike: (postId: string) => void
+    onToggleLoginModal: (value: boolean) => void
+    setSelectedTag: (id: string) => void
+    onReportPost: (id: string) => void
+    onAddPostToSharedPostsList : (id: string) => void
 }
 
 
@@ -37,7 +38,7 @@ const PostItem = (props: postItemProps) => {
     const [showPostItemOptions, setShowPostItemOptions ] = useState(false)
     const [isPostLiked, setisPostLiked] = useState(false)
 
-    const { post, addComment, onPostLike , onToggleLoginModal, setSelectedTag, onReportPost} = props
+    const { post, addComment, onPostLike , onToggleLoginModal, setSelectedTag, onReportPost, onAddPostToSharedPostsList} = props
 
     const [showComments, setShowComments] = useState(false)
 
@@ -176,6 +177,13 @@ const PostItem = (props: postItemProps) => {
 
         const renderListItems = options.map(optionItem => {
             const onClickPostOption = () => {
+                if (optionItem === strings.sharePostOptionText)
+                {
+                    onAddPostToSharedPostsList(post.id)
+                }
+                else if (optionItem === strings.reportPostOptionText) {
+                        onReportPost(post.id)
+                }
             
             }
             return <StyledPostOptionItem key={optionItem} onClick={onClickPostOption}>{optionItem}</StyledPostOptionItem>
