@@ -16,5 +16,10 @@
     "commentsButtonText" : "Comment",
     "reportPostOptionText": "Report",
     "deletePostOptionText" : "Delete",
-    "sharePostOptionText": "Share"
+    "sharePostOptionText": "Share",
+    "mypostsText" : "My Posts",
+    "sharedPoststText" : "Shared Posts",
+    "reportedPostsText" : "Reported Posts",
+    "myActionSectionHeadingText" : "Actions",
+    "domainsSectionHeadingText" : "Domains"
 }

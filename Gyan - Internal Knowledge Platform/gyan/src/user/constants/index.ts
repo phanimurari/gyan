@@ -9,3 +9,6 @@ export const EVENT_TYPE_ENTER = "Enter"
 export const POST_OPTION = [userStrings.sharePostOptionText, userStrings.reportPostOptionText]
 
 export const USER_POST_OPTION = [userStrings.sharePostOptionText, userStrings.deletePostOptionText]
+
+
+export const LIST_OF_ACTIONS_OPTIONS = [userStrings.mypostsText,  userStrings.sharedPoststText, userStrings.reportedPostsText]

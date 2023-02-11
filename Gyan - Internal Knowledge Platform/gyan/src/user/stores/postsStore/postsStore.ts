@@ -44,6 +44,9 @@ class PostsStore {
             onReportPost : action.bound,
             addPostToListOfPosts: action.bound,
             addCommentToPost: action.bound,
+            onSetMyPosts: action,
+            onSetReportedPosts: action,
+            onSetSharedPosts : action,
             listOfPostsBasedOnSelectedTags: action,
             listOfPostTags: computed,
         })
@@ -218,14 +221,30 @@ class PostsStore {
         const filteSharedPostsFromInitialPosts  = this.initialListOfPosts.filter(post => post.id === id)
         const { reportedPosts } = this
         this.reportedPosts = toJS([...filteSharedPostsFromInitialPosts, ...reportedPosts])
+        console.log(this.reportedPosts)
     }
     
     onAddPostToSharedPostsList = (id: string) => {
         const filteSharedPostsFromInitialPosts = this.initialListOfPosts.filter(post => post.id === id)
         const { sharedPosts } = this
-        this.sharedPosts = [...sharedPosts, ...filteSharedPostsFromInitialPosts]
-        console.log(this.sharedPosts)
+        const postsShared = toJS([...sharedPosts, ...filteSharedPostsFromInitialPosts])
     }
+
+    onSetMyPosts = () => {
+        
+    }
+
+    onSetReportedPosts = () => {
+        const { reportedPosts } = this
+        this.listOfPosts = toJS([...reportedPosts])
+    }
+
+    onSetSharedPosts = () => {
+        const { sharedPosts } = this
+        this.listOfPosts = toJS([...sharedPosts])
+        console.log(this.listOfPosts)
+    }
+
 }
 
 export {PostsStore}

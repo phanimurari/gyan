@@ -91,6 +91,9 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
             listOfPostTags={getPostsStore().listOfPostTags}
             onReportPost={getPostsStore().onReportPost}
             onAddPostToSharedPostsList={getPostsStore().onAddPostToSharedPostsList}
+            onSetMyPosts={getPostsStore().onSetMyPosts}
+            onSetReportedPosts = {getPostsStore().onSetReportedPosts}
+            onSetSharedPosts = {getPostsStore().onSetSharedPosts}
             setSelectedTag={onChangeSelectedTag}
             selectedPostsTag={selectedPostsTag}
             onSearchPost={onSearchPost}
