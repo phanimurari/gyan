@@ -1,8 +1,8 @@
-import { AiOutlineSearch } from "react-icons/ai";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useProSidebar } from 'react-pro-sidebar';
-
-
+import { GiHamburgerMenu } from "react-icons/gi";
+import { AiOutlineSearch } from "react-icons/ai";
 
 import ButtonElement from "../ButtonElement";
 import ProfileOrLogoMaker from "../ProfileOrLogoMaker";
@@ -10,12 +10,12 @@ import ProfileOrLogoMaker from "../ProfileOrLogoMaker";
 import commonStrings from '../../i18n/commonStrings.json'
 import imageUrls from '../../constants/imageUrls/imageUrls.json'
 import { getAccessToken } from "../../../utilis/StorageUtilis";
-import { StyledButtonAndProfileImageContainer, StyledHambergurIconContainer, StyledHeaderContainer, StyledInputSearchInputElementContainer, StyledLogoutButtonContainer, StyledProfileIconButton, StyledProfileOrLogoMakerContainer } from "./styledComponents";
 import InputElement from "../InputElement";
-import { GiHamburgerMenu } from "react-icons/gi";
+
 import { REACT_ICON_SIZE } from "../../../user/constants";
-import { Link } from "react-router-dom";
 import { HOME_PATH } from "../../constants/routePathConstants";
+
+import { StyledButtonAndProfileImageContainer, StyledHambergurIconContainer, StyledHeaderContainer, StyledInputSearchInputElementContainer, StyledLogoutButtonContainer, StyledProfileIconButton, StyledProfileOrLogoMakerContainer } from "./styledComponents";
 
 interface headerProps {
     onToggleLoginModal: (value: boolean) => void,
@@ -23,7 +23,6 @@ interface headerProps {
     onToggleSignOutConfirmModal:(value: boolean) => void
     isUerLoggedIn: boolean,
     onSearchPost: (searchText: string) => void,
-    setSideBarMenu : (displaySideBarMenu: boolean) => void
 }
 
 

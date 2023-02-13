@@ -19,7 +19,7 @@ interface postsContainerProps {
     onPostLike: (postId: string) => void,
     setSelectedTag: (tag: string) => void,
     onReportPost: (id: string) => void
-    onAddPostToSharedPostsList : (id : string) => void
+    onAddPostToSharedPostsList: (id: string) => void,
 }
 
 const PostsContainer = (props: postsContainerProps) => {
@@ -49,6 +49,7 @@ const PostsContainer = (props: postsContainerProps) => {
     const renderSuccessView = () => listOfPosts.length > 0 ? renderListOfPosts() : renderEmptyView()
 
     const renderPostsContainerView = () => {
+
         switch (postFetchingApiStatus) {
             case API_FETCHING:
                 return renderLodingView()

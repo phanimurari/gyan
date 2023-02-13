@@ -6,7 +6,7 @@ import { device } from "../../constants/devicesBreakPoints";
 import colors from '../../StyledGuide/themes/colors.json'
 
 export const StyledHeaderContainer = styled.div`
-${tw`sticky top-0 bg-white w-full`};
+${tw`sticky top-0 bg-white w-full z-10`};
 @media ${device.mobileS} { 
   ${tw `flex flex-wrap p-2`}
 }

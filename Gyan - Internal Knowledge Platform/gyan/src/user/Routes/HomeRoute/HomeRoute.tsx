@@ -1,11 +1,13 @@
 import { inject, observer } from "mobx-react";
 import { useEffect, useState } from "react";
+import { toJS } from "mobx";
+
+import { getAccessToken } from "../../../utilis/StorageUtilis";
 
 import Home from "../../Components/Home"
-import { getAccessToken } from "../../../utilis/StorageUtilis";
-import { toJS } from "mobx";
 import { commentType } from "../../stores/types";
 import { DEFAULT_SELECTED_TAG } from "../../constants";
+import strings from '../../i18n/userStrings.json'
 
 
 const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
@@ -13,9 +15,9 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     const [displayLoginModal, setDisplayLoginModal] = useState(false)
     const [displayCreateApostModal, setDisplayCreateApostModal] = useState(false)
     const [displayOnLogOutModal, setDisplayOnLogOutModal] = useState(false)
-    const [displaySideBarMenu, setDisplaySideBarMenu] = useState(true)
     const [listOfPosts, setListOfPosts] = useState([])
     const [selectedPostsTag, setSelectedPostTag] = useState(DEFAULT_SELECTED_TAG)
+
 
     const getInjectedProps = () => props;
     const getAuthStore = () => getInjectedProps().authStore
@@ -73,34 +75,47 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
          getPostsStore().onPostLike(id)
     }
 
-    const setSideBarMenu = (displaySideBarMenu: boolean) => {
-        setDisplaySideBarMenu(displaySideBarMenu)
+    const onSetSelectedAction = (selectedAction: string) => {
+        
+        setSelectedPostTag(selectedAction)
+        if (selectedAction === strings.mypostsText) {
+            getPostsStore().onSetMyPosts()
+        }
+        else if (selectedAction === strings.reportedPostsText) {
+            getPostsStore().onSetReportedPosts()
+            
+        }
+        else if (selectedAction === strings.sharedPoststText) {
+            getPostsStore().onSetSharedPosts()
+        }
+        settingListOfPosts()
     }
 
     return <Home isUerLoggedIn={isUserLoggedIn()}
-            userLogin={getAuthStore().userLogin}
-            displayLoginModal={displayLoginModal}
-            displayOnLogOutModal= {displayOnLogOutModal}
-            onToggleLoginModal={onToggleLoginModal}
-            onToggleSignOutConfirmModal = {onToggleSignOutConfirmModal}
-            displayCreateApostModal={displayCreateApostModal}
-            onToggleCreateAPostModal={onToggleCreateAPostModal}
-            userLoginApiStatus={getAuthStore().userLoginApiStatus}
-            listOfPosts={listOfPosts}
-            postFetchingApiStatus={getPostsStore().postFetchingApiStatus}
-            listOfPostTags={getPostsStore().listOfPostTags}
-            onReportPost={getPostsStore().onReportPost}
-            onAddPostToSharedPostsList={getPostsStore().onAddPostToSharedPostsList}
-            onSetMyPosts={getPostsStore().onSetMyPosts}
-            onSetReportedPosts = {getPostsStore().onSetReportedPosts}
-            onSetSharedPosts = {getPostsStore().onSetSharedPosts}
-            setSelectedTag={onChangeSelectedTag}
-            selectedPostsTag={selectedPostsTag}
-            onSearchPost={onSearchPost}
-            addPostToListOfPosts={addPostToListOfPosts}
-            addComment={addComment}
-            onPostLike={onPostLike}
-            setSideBarMenu={setSideBarMenu}
+        userLogin={getAuthStore().userLogin}
+        displayLoginModal={displayLoginModal}
+        displayOnLogOutModal={displayOnLogOutModal}
+        onToggleLoginModal={onToggleLoginModal}
+        onToggleSignOutConfirmModal={onToggleSignOutConfirmModal}
+        displayCreateApostModal={displayCreateApostModal}
+        onToggleCreateAPostModal={onToggleCreateAPostModal}
+        userLoginApiStatus={getAuthStore().userLoginApiStatus}
+        listOfPosts={listOfPosts}
+        postFetchingApiStatus={getPostsStore().postFetchingApiStatus}
+        listOfPostTags={getPostsStore().listOfPostTags}
+        onReportPost={getPostsStore().onReportPost}
+        onAddPostToSharedPostsList={getPostsStore().onAddPostToSharedPostsList}
+        onSetMyPosts={getPostsStore().onSetMyPosts}
+        onSetReportedPosts={getPostsStore().onSetReportedPosts}
+        onSetSharedPosts={getPostsStore().onSetSharedPosts}
+        setSelectedTag={onChangeSelectedTag}
+        selectedPostsTag={selectedPostsTag}
+        onSearchPost={onSearchPost}
+        addPostToListOfPosts={addPostToListOfPosts}
+        addComment={addComment}
+        onPostLike={onPostLike}
+        onSetSelectedAction={onSetSelectedAction}
+        selectedAction={selectedPostsTag}
         />
 }))
 

@@ -2,6 +2,7 @@ import { API_FAILED, API_FETCHING, API_SUCCESS } from "@ib/api-constants"
 import EmptyView from "../../../common/components/EmptyView"
 import ErrorView from "../../../common/components/ErrorView"
 import LoadingView from "../../../common/components/LoadingView"
+import { getAccessToken } from "../../../utilis/StorageUtilis"
 import { LIST_OF_ACTIONS_OPTIONS } from "../../constants"
 
 import userStrings from '../../i18n/userStrings.json'
@@ -19,15 +20,17 @@ interface tagsContainerPropsType {
     listOfPostTags: Array<string>,
     setSelectedTag: (tag: string) => void,
     selectedPostsTag: string,
+    selectedAction : string,
     onSetMyPosts: () => void,
     onSetReportedPosts: () => void,
-    onSetSharedPosts : () => void
+    onSetSharedPosts: () => void,
+    onSetSelectedAction : (selectedAction : string) => void
 }
 
 
 const TagsContainer = (props: tagsContainerPropsType) => {
  
-    const { onSetMyPosts,onSetReportedPosts,onSetSharedPosts,  postFetchingApiStatus, listOfPostTags, setSelectedTag , selectedPostsTag} = props
+    const { postFetchingApiStatus, listOfPostTags, setSelectedTag , selectedPostsTag, onSetSelectedAction, selectedAction} = props
       
     const renderEmptyView = () => <EmptyView displayText={userStrings.displayEmptyTagsText} />
     
@@ -40,29 +43,46 @@ const TagsContainer = (props: tagsContainerPropsType) => {
     }
     
 
+    const onSetMyPosts = () => {
+            onSetSelectedAction(userStrings.mypostsText)
+    }
+
+    const onSetReportedPosts = () => {
+        onSetSelectedAction(userStrings.reportedPostsText)
+    }
+
+    const onSetSharedPosts = () => {
+        onSetSelectedAction(userStrings.sharedPoststText)
+    }
+
     const renderPostOptions = () => {
 
         return <StyledTagElementContainer>{LIST_OF_ACTIONS_OPTIONS.map(optionText => {
             const optionOnClickMethod = () => {
                 if (optionText === userStrings.mypostsText) {
-                    return <button key={optionText} onClick={onSetMyPosts}>{optionText}</button>    
+                    return <PostTagItem tag={optionText} key={optionText} setSelectedTag={onSetMyPosts} selectedPostsTag={selectedAction}/>
                 }
                 else if (optionText === userStrings.reportedPostsText) {
-                    return <button key={optionText} onClick={onSetReportedPosts}>{optionText}</button>    
+                    return <PostTagItem tag={optionText} key={optionText} setSelectedTag={onSetReportedPosts} selectedPostsTag={selectedAction}/>
                 }
                 else if (optionText === userStrings.sharedPoststText) {
-                    return <button key={optionText} onClick={onSetSharedPosts}>{optionText}</button>    
+                    return <PostTagItem tag={optionText} key={optionText} setSelectedTag={onSetSharedPosts} selectedPostsTag={selectedAction}/>
                 }
             }
             return optionOnClickMethod()
         })}</StyledTagElementContainer>
     }
 
+    const renderActionsBasedOnUserLogin = () => {
+        return  getAccessToken() !== undefined ?<>
+            <TagsContainerSectionHeading sectionHeading={userStrings.myActionSectionHeadingText} />            
+            {renderPostOptions()}
+        </> : null
+    }
 
     const renderSuccessView = () => {
         return <>
-            <TagsContainerSectionHeading sectionHeading={userStrings.myActionSectionHeadingText}/>            
-            {renderPostOptions()}
+            {renderActionsBasedOnUserLogin()}
             <TagsContainerSectionHeading sectionHeading={userStrings.domainsSectionHeadingText}/>
             {listOfPostTags.length > 0 ? <StyledTagElementContainer>{renderListOfTags()}</StyledTagElementContainer> : renderEmptyView()}
         </>

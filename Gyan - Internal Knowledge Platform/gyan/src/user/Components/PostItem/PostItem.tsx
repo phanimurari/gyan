@@ -28,7 +28,7 @@ interface postItemProps {
     onToggleLoginModal: (value: boolean) => void
     setSelectedTag: (id: string) => void
     onReportPost: (id: string) => void
-    onAddPostToSharedPostsList : (id: string) => void
+    onAddPostToSharedPostsList: (id: string) => void,
 }
 
 
@@ -182,9 +182,9 @@ const PostItem = (props: postItemProps) => {
                     onAddPostToSharedPostsList(post.id)
                 }
                 else if (optionItem === strings.reportPostOptionText) {
-                        onReportPost(post.id)
+                     onReportPost(post.id)
                 }
-            
+                setShowPostItemOptions(false)
             }
             return <StyledPostOptionItem key={optionItem} onClick={onClickPostOption}>{optionItem}</StyledPostOptionItem>
         })

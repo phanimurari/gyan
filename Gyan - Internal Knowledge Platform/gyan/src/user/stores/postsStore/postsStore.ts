@@ -18,7 +18,8 @@ class PostsStore {
     listOfPosts: Array<PostModel>
     initialListOfPosts: Array<PostModel>
     sharedPosts: Array<PostModel>
-    reportedPosts : Array<PostModel>
+    reportedPosts: Array<PostModel>
+    myPosts : Array<PostModel>
     postsService: PostsFixtureService | PostApiService
     postsApiError : Error | null | string
     newPostItem: any 
@@ -29,6 +30,7 @@ class PostsStore {
             postsApiError: observable,
             listOfPosts: observable,
             initialListOfPosts: observable,
+            myPosts: observable,
             sharedPosts: observable,
             reportedPosts : observable,
             newPostItem: observable,
@@ -44,6 +46,7 @@ class PostsStore {
             onReportPost : action.bound,
             addPostToListOfPosts: action.bound,
             addCommentToPost: action.bound,
+            onAddPostToSharedPostsList : action.bound,
             onSetMyPosts: action,
             onSetReportedPosts: action,
             onSetSharedPosts : action,
@@ -54,6 +57,7 @@ class PostsStore {
         this.initialListOfPosts = []
         this.sharedPosts = []
         this.reportedPosts = []
+        this.myPosts = []
         this.postsService = postsService
         this.postFetchingApiStatus = API_INITIAL
         this.postsApiError = null
@@ -199,7 +203,9 @@ class PostsStore {
             comments : comments,
         }
         const postModelObject = new PostModel(postFormedObject)
-        const {initialListOfPosts} = this
+        const { initialListOfPosts } = this
+        const { myPosts } = this
+        this.myPosts = [postModelObject, ...myPosts]
         this.listOfPosts = [postModelObject, ...initialListOfPosts]
         this.initialListOfPosts = [postModelObject, ...initialListOfPosts]
     }
@@ -218,31 +224,33 @@ class PostsStore {
     }
 
     onReportPost(id: string) {
-        const filteSharedPostsFromInitialPosts  = this.initialListOfPosts.filter(post => post.id === id)
         const { reportedPosts } = this
-        this.reportedPosts = toJS([...filteSharedPostsFromInitialPosts, ...reportedPosts])
-        console.log(this.reportedPosts)
+        const isPostAlreadyInReportedPosts = reportedPosts.find(post => post.id == id) 
+        if (!isPostAlreadyInReportedPosts) {
+           const filteSharedPostsFromInitialPosts = this.initialListOfPosts.filter(post => post.id === id)
+            this.reportedPosts = [...filteSharedPostsFromInitialPosts, ...reportedPosts]
+        }
     }
     
     onAddPostToSharedPostsList = (id: string) => {
-        const filteSharedPostsFromInitialPosts = this.initialListOfPosts.filter(post => post.id === id)
         const { sharedPosts } = this
-        const postsShared = toJS([...sharedPosts, ...filteSharedPostsFromInitialPosts])
+        const isPostAlreadyInSharedPosts = sharedPosts.find(post => post.id == id) 
+        if (!isPostAlreadyInSharedPosts) {
+            const filteSharedPostsFromInitialPosts = this.initialListOfPosts.filter(post => post.id === id)
+            this.sharedPosts = [...sharedPosts, ...filteSharedPostsFromInitialPosts]
+        }
     }
 
     onSetMyPosts = () => {
-        
+        this.listOfPosts = this.myPosts
     }
 
     onSetReportedPosts = () => {
-        const { reportedPosts } = this
-        this.listOfPosts = toJS([...reportedPosts])
+        this.listOfPosts = this.reportedPosts
     }
 
     onSetSharedPosts = () => {
-        const { sharedPosts } = this
-        this.listOfPosts = toJS([...sharedPosts])
-        console.log(this.listOfPosts)
+        this.listOfPosts = this.sharedPosts
     }
 
 }
