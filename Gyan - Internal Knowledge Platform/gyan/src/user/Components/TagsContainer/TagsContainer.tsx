@@ -7,6 +7,7 @@ import { LIST_OF_ACTIONS_OPTIONS } from "../../constants"
 
 import userStrings from '../../i18n/userStrings.json'
 import { postObjectType } from "../../stores/types"
+import ActionsContainerComponent from "../Common/ActionsContainerComponent"
 import TagsContainerSectionHeading from "../Common/TagsContainerSectionHeadig"
 import PostTagItem from "../PostTagItem"
 import { StyledLoadingViewContainer, StyledTagElementContainer, StyledTagsContainer } from "./styledComponents"
@@ -55,34 +56,12 @@ const TagsContainer = (props: tagsContainerPropsType) => {
         onSetSelectedAction(userStrings.sharedPoststText)
     }
 
-    const renderPostOptions = () => {
+   
 
-        return <StyledTagElementContainer>{LIST_OF_ACTIONS_OPTIONS.map(optionText => {
-            const optionOnClickMethod = () => {
-                if (optionText === userStrings.mypostsText) {
-                    return <PostTagItem tag={optionText} key={optionText} setSelectedTag={onSetMyPosts} selectedPostsTag={selectedAction}/>
-                }
-                else if (optionText === userStrings.reportedPostsText) {
-                    return <PostTagItem tag={optionText} key={optionText} setSelectedTag={onSetReportedPosts} selectedPostsTag={selectedAction}/>
-                }
-                else if (optionText === userStrings.sharedPoststText) {
-                    return <PostTagItem tag={optionText} key={optionText} setSelectedTag={onSetSharedPosts} selectedPostsTag={selectedAction}/>
-                }
-            }
-            return optionOnClickMethod()
-        })}</StyledTagElementContainer>
-    }
-
-    const renderActionsBasedOnUserLogin = () => {
-        return  getAccessToken() !== undefined ?<>
-            <TagsContainerSectionHeading sectionHeading={userStrings.myActionSectionHeadingText} />            
-            {renderPostOptions()}
-        </> : null
-    }
-
+    
     const renderSuccessView = () => {
         return <>
-            {renderActionsBasedOnUserLogin()}
+        <ActionsContainerComponent onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts}/>
             <TagsContainerSectionHeading sectionHeading={userStrings.domainsSectionHeadingText}/>
             {listOfPostTags.length > 0 ? <StyledTagElementContainer>{renderListOfTags()}</StyledTagElementContainer> : renderEmptyView()}
         </>
