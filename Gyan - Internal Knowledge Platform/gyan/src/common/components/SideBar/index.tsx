@@ -1,6 +1,9 @@
 import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
 import ActionsContainerComponent from '../../../user/Components/Common/ActionsContainerComponent';
+import TagsContainerSectionHeading from '../../../user/Components/Common/TagsContainerSectionHeadig';
 import PostTagItem from '../../../user/Components/PostTagItem';
+
+import strings from "../../../user/i18n/userStrings.json"
 
 interface SideBarPropsTypes {
     listOfPostTags: Array<string>,
@@ -25,9 +28,12 @@ const SideBar = (props: SideBarPropsTypes) => {
 
   return (
     <div style={{ display: 'flex' }}>
-          <Sidebar collapsedWidth={'0'} defaultCollapsed={true} >
+        <Sidebar collapsedWidth={'0'} defaultCollapsed={true} >
         <Menu>
-          <ActionsContainerComponent onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts}/>
+          <MenuItem>
+            <ActionsContainerComponent onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts} />
+          </MenuItem>
+          <TagsContainerSectionHeading sectionHeading={strings.domainsSectionHeadingText}/>
           {renderMenuItems()}
         </Menu>
       </Sidebar>

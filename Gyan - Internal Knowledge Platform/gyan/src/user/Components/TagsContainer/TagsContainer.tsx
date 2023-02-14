@@ -61,7 +61,7 @@ const TagsContainer = (props: tagsContainerPropsType) => {
     
     const renderSuccessView = () => {
         return <>
-        <ActionsContainerComponent onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts}/>
+            <ActionsContainerComponent onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts}/>
             <TagsContainerSectionHeading sectionHeading={userStrings.domainsSectionHeadingText}/>
             {listOfPostTags.length > 0 ? <StyledTagElementContainer>{renderListOfTags()}</StyledTagElementContainer> : renderEmptyView()}
         </>
