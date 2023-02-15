@@ -2,8 +2,6 @@ import { API_FAILED, API_FETCHING, API_SUCCESS } from "@ib/api-constants"
 import EmptyView from "../../../common/components/EmptyView"
 import ErrorView from "../../../common/components/ErrorView"
 import LoadingView from "../../../common/components/LoadingView"
-import { getAccessToken } from "../../../utilis/StorageUtilis"
-import { LIST_OF_ACTIONS_OPTIONS } from "../../constants"
 
 import userStrings from '../../i18n/userStrings.json'
 import { postObjectType } from "../../stores/types"
@@ -14,8 +12,6 @@ import { StyledLoadingViewContainer, StyledTagElementContainer, StyledTagsContai
 
 
 interface tagsContainerPropsType {
-    onToggleLoginModal: (value: boolean) => void,
-    onToggleCreateAPostModal : (value: boolean) => void,
     listOfPosts: Array<postObjectType>,
     postFetchingApiStatus: number,
     listOfPostTags: Array<string>,
@@ -56,13 +52,13 @@ const TagsContainer = (props: tagsContainerPropsType) => {
         onSetSelectedAction(userStrings.sharedPoststText)
     }
 
-   
-
-    
     const renderSuccessView = () => {
+
+        console.log("tagsContainer", selectedPostsTag)
+
         return <>
             <ActionsContainerComponent onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts}/>
-            <TagsContainerSectionHeading sectionHeading={userStrings.domainsSectionHeadingText}/>
+            <TagsContainerSectionHeading sectionHeading={userStrings.domainsSectionHeadingText} />
             {listOfPostTags.length > 0 ? <StyledTagElementContainer>{renderListOfTags()}</StyledTagElementContainer> : renderEmptyView()}
         </>
     }

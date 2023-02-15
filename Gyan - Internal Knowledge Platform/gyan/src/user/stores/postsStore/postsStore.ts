@@ -49,7 +49,8 @@ class PostsStore {
             onAddPostToSharedPostsList : action.bound,
             onSetMyPosts: action,
             onSetReportedPosts: action,
-            onSetSharedPosts : action,
+            onSetSharedPosts: action,
+            onDeleteMyPosts : action,
             listOfPostsBasedOnSelectedTags: action,
             listOfPostTags: computed,
         })
@@ -151,7 +152,7 @@ class PostsStore {
     }
 
     onSearchPost(postText: string) {
-        this.setSelectedTag(DEFAULT_SELECTED_TAG)
+         this.selectedTag = DEFAULT_SELECTED_TAG
         const searchedPosts = this.initialListOfPosts.filter(post => {
             if (post.title.toLowerCase().includes(postText.toLowerCase())) {
                 return post
@@ -163,6 +164,8 @@ class PostsStore {
         else {
             this.listOfPosts = this.initialListOfPosts
         }
+
+        console.log(this.selectedTag)
     }
 
     getPosts = async () => {
@@ -247,10 +250,19 @@ class PostsStore {
 
     onSetReportedPosts = () => {
         this.listOfPosts = this.reportedPosts
+        console.log(this.listOfPosts, "reported")
     }
 
     onSetSharedPosts = () => {
         this.listOfPosts = this.sharedPosts
+
+        console.log(this.listOfPosts, "shared posts")
+    }
+
+    onDeleteMyPosts = (id: string) => {
+        this.listOfPosts = this.listOfPosts.filter(post => post.id !== id)
+        this.initialListOfPosts = this.initialListOfPosts.filter(post => post.id !== id)
+        console.log(this.listOfPostTags)
     }
 
 }

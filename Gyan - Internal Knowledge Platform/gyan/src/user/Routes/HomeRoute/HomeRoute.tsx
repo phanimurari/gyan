@@ -42,6 +42,7 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     const onSearchPost = async (searchText: string) => {
         await getPostsStore().onSearchPost(searchText)
         settingListOfPosts()
+        setSelectedPostTag(getPostsStore().selectedTag)
     }
 
     const onToggleLoginModal = (value: boolean) => {
@@ -76,7 +77,6 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
     }
 
     const onSetSelectedAction = (selectedAction: string) => {
-        
         setSelectedPostTag(selectedAction)
         if (selectedAction === strings.mypostsText) {
             getPostsStore().onSetMyPosts()
@@ -88,6 +88,11 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
         else if (selectedAction === strings.sharedPoststText) {
             getPostsStore().onSetSharedPosts()
         }
+        settingListOfPosts()
+    }
+
+    const onDeleteMyPosts = (id: string) => {
+        getPostsStore().onDeleteMyPosts(id)
         settingListOfPosts()
     }
 
@@ -108,6 +113,7 @@ const HomeRoute = inject("authStore", "postsStore")(observer((props : any) => {
         onSetMyPosts={getPostsStore().onSetMyPosts}
         onSetReportedPosts={getPostsStore().onSetReportedPosts}
         onSetSharedPosts={getPostsStore().onSetSharedPosts}
+        onDeleteMyPosts={onDeleteMyPosts}
         setSelectedTag={onChangeSelectedTag}
         selectedPostsTag={selectedPostsTag}
         onSearchPost={onSearchPost}

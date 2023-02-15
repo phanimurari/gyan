@@ -36,23 +36,24 @@ interface HomeProps {
     onSetMyPosts: () => void,
     onSetReportedPosts: () => void,
     onSetSharedPosts: () => void,
-    onSetSelectedAction : (selectedAction : string) => void
+    onSetSelectedAction: (selectedAction: string) => void,
+    onDeleteMyPosts : (id: string) => void
 }
 
 const Home = (props: HomeProps) => {
 
-const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost, addPostToListOfPosts, addComment, onPostLike, displayOnLogOutModal, onToggleSignOutConfirmModal, onReportPost, onAddPostToSharedPostsList, onSetMyPosts, onSetReportedPosts, onSetSharedPosts, onSetSelectedAction, selectedAction} = props
+const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModal, onToggleCreateAPostModal, isUerLoggedIn, userLoginApiStatus, listOfPosts, postFetchingApiStatus , listOfPostTags, setSelectedTag, selectedPostsTag, onSearchPost, addPostToListOfPosts, addComment, onPostLike, displayOnLogOutModal, onToggleSignOutConfirmModal, onReportPost, onAddPostToSharedPostsList, onSetMyPosts, onSetReportedPosts, onSetSharedPosts, onSetSelectedAction, selectedAction, onDeleteMyPosts} = props
     
     return <StyledHomeContainer>
     <Header onSearchPost={onSearchPost} onToggleLoginModal={onToggleLoginModal} isUerLoggedIn={isUerLoggedIn} onToggleCreateAPostModal={onToggleCreateAPostModal} onToggleSignOutConfirmModal={onToggleSignOutConfirmModal}/>
     <StyledTagsAndPostContainer>
         <StyledTagsViewContainer>
-                <TagsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} onSetMyPosts={onSetMyPosts} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts} onSetSelectedAction={onSetSelectedAction} selectedAction={selectedAction}/>
+                <TagsContainer  listOfPosts={listOfPosts} postFetchingApiStatus={postFetchingApiStatus} listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} onSetMyPosts={onSetMyPosts} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts} onSetSelectedAction={onSetSelectedAction} selectedAction={selectedAction}/>
         </StyledTagsViewContainer>
-        <StyledTagsMobileViewContainer>
+            <StyledTagsMobileViewContainer>
                 <SideBar listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts}/>
         </StyledTagsMobileViewContainer>
-            <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment} onPostLike={onPostLike} setSelectedTag={setSelectedTag} onReportPost={onReportPost} onAddPostToSharedPostsList={onAddPostToSharedPostsList} />
+            <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment} onPostLike={onPostLike} setSelectedTag={setSelectedTag} onReportPost={onReportPost} onAddPostToSharedPostsList={onAddPostToSharedPostsList} onDeleteMyPosts={onDeleteMyPosts} />
         <ReactPopUpModal
             componentPassed={<SignOutConfirmModal onToggleLoginModal={onToggleSignOutConfirmModal}/>}
             displayModal={displayOnLogOutModal}

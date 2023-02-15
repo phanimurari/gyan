@@ -29,6 +29,7 @@ interface postItemProps {
     setSelectedTag: (id: string) => void
     onReportPost: (id: string) => void
     onAddPostToSharedPostsList: (id: string) => void,
+    onDeleteMyPosts : (id : string) => void
 }
 
 
@@ -38,7 +39,7 @@ const PostItem = (props: postItemProps) => {
     const [showPostItemOptions, setShowPostItemOptions ] = useState(false)
     const [isPostLiked, setisPostLiked] = useState(false)
 
-    const { post, addComment, onPostLike , onToggleLoginModal, setSelectedTag, onReportPost, onAddPostToSharedPostsList} = props
+    const { post, addComment, onPostLike , onToggleLoginModal, setSelectedTag, onReportPost, onAddPostToSharedPostsList, onDeleteMyPosts} = props
 
     const [showComments, setShowComments] = useState(false)
 
@@ -183,6 +184,9 @@ const PostItem = (props: postItemProps) => {
                 }
                 else if (optionItem === strings.reportPostOptionText) {
                      onReportPost(post.id)
+                }
+                else if (optionItem === strings.deletePostOptionText) {
+                    onDeleteMyPosts(post.id)
                 }
                 setShowPostItemOptions(false)
             }

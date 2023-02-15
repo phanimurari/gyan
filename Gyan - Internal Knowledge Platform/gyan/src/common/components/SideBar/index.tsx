@@ -23,17 +23,17 @@ const SideBar = (props: SideBarPropsTypes) => {
 
   const renderMenuItems = () => {
     const listOfPostTagsItems = listOfPostTags.map(tag => <MenuItem onClick={() => collapseSidebar()} ><PostTagItem tag={tag} key={tag} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag}/></MenuItem>)
-    return listOfPostTagsItems
+    return <>
+      <TagsContainerSectionHeading sectionHeading={strings.domainsSectionHeadingText} />
+      {listOfPostTagsItems}
+    </>
   }
 
   return (
     <div style={{ display: 'flex' }}>
         <Sidebar collapsedWidth={'0'} defaultCollapsed={true} >
         <Menu>
-          <MenuItem>
             <ActionsContainerComponent onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts} />
-          </MenuItem>
-          <TagsContainerSectionHeading sectionHeading={strings.domainsSectionHeadingText}/>
           {renderMenuItems()}
         </Menu>
       </Sidebar>
