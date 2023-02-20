@@ -33,7 +33,7 @@ const SideBar = (props: SideBarPropsTypes) => {
     <div style={{ display: 'flex' }}>
         <Sidebar collapsedWidth={'0'} defaultCollapsed={true} >
         <Menu>
-            <ActionsContainerComponent onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts} />
+          <ActionsContainerComponent onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts}/>
           {renderMenuItems()}
         </Menu>
       </Sidebar>

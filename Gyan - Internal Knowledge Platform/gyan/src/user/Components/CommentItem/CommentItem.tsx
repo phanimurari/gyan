@@ -15,7 +15,7 @@ const CommentItem = (props: CommentItemProps) => {
 
     const { commentItem } = props
 
-    const {commentAuthor, commentedDateAndTime, commenterImageUrl, isApproved, approvedBy, commentContent } = commentItem
+    const {commentAuthor, commentedDateAndTime, isApproved, approvedBy, commentContent } = commentItem
     
 
     const isCommentApproved = () => {

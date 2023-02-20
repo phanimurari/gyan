@@ -26,7 +26,7 @@ const { collapseSidebar } = useProSidebar();
         return <Menu><StyledTagElementContainer>{LIST_OF_ACTIONS_OPTIONS.map(optionText => {
             const optionOnClickMethod = () => {
                 if (optionText === userStrings.mypostsText) {
-                    return <MenuItem onClick={() => collapseSidebar()}><PostTagItem tag={optionText} key={optionText} setSelectedTag={onSetMyPosts} selectedPostsTag={selectedAction}/></MenuItem>
+                    return <MenuItem><PostTagItem tag={optionText} key={optionText} setSelectedTag={onSetMyPosts} selectedPostsTag={selectedAction}/></MenuItem>
                 }
                 else if (optionText === userStrings.reportedPostsText) {
                     return <MenuItem onClick={() => collapseSidebar()}><PostTagItem tag={optionText} key={optionText} setSelectedTag={onSetReportedPosts} selectedPostsTag={selectedAction}/></MenuItem>
