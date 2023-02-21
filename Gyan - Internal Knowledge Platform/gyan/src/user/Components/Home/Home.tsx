@@ -51,7 +51,7 @@ const { userLogin, displayLoginModal, onToggleLoginModal, displayCreateApostModa
                 <TagsContainer  listOfPosts={listOfPosts} postFetchingApiStatus={postFetchingApiStatus} listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} onSetMyPosts={onSetMyPosts} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts} onSetSelectedAction={onSetSelectedAction} selectedAction={selectedAction}/>
         </StyledTagsViewContainer>
             <StyledTagsMobileViewContainer>
-                <SideBar listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts}/>
+                <SideBar listOfPostTags={listOfPostTags} setSelectedTag={setSelectedTag} selectedPostsTag={selectedPostsTag} onSetMyPosts={onSetMyPosts} selectedAction={selectedAction} onSetReportedPosts={onSetReportedPosts} onSetSharedPosts={onSetSharedPosts} onSetSelectedAction={onSetSelectedAction}/>
         </StyledTagsMobileViewContainer>
             <PostsContainer onToggleLoginModal={onToggleLoginModal} listOfPosts={listOfPosts} onToggleCreateAPostModal={onToggleCreateAPostModal} postFetchingApiStatus={postFetchingApiStatus} addComment={addComment} onPostLike={onPostLike} setSelectedTag={setSelectedTag} onReportPost={onReportPost} onAddPostToSharedPostsList={onAddPostToSharedPostsList} onDeleteMyPosts={onDeleteMyPosts} />
         <ReactPopUpModal

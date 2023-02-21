@@ -255,7 +255,6 @@ class PostsStore {
 
     onSetSharedPosts = () => {
         this.listOfPosts = this.sharedPosts
-
         console.log(this.listOfPosts, "shared posts")
     }
 
