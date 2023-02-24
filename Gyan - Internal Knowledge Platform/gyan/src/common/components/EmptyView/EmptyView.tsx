@@ -1,3 +1,5 @@
+import { StyledEmptyViewHeading } from "./styledComponents"
+
 interface EmptyViewPropsTypes {
     displayText: string
 }
@@ -6,7 +8,7 @@ const EmptyView = (props: EmptyViewPropsTypes) =>{
 
     const {displayText} = props
 
-    return <h1>{displayText}</h1>
+    return <StyledEmptyViewHeading>{displayText}</StyledEmptyViewHeading>
 }
 
 export {EmptyView}

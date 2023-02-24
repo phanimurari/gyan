@@ -21,5 +21,6 @@
     "sharedPoststText" : "Shared Posts",
     "reportedPostsText" : "Reported Posts",
     "myActionSectionHeadingText" : "Actions",
-    "domainsSectionHeadingText" : "Domains"
+    "domainsSectionHeadingText" : "Domains",
+    "notFoundHeadingText" : "Not Found"
 }
